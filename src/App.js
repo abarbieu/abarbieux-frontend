@@ -1,31 +1,27 @@
 import React from 'react';
+import axios from 'axios';
 import Todos from './components/Todos';
 import Header from './components/style/Header';
 import AddTodo from './components/AddTodo';
-import uuid from 'uuid';
 
 import './App.css';
 
 class App extends React.Component {
   state = {
-    todos : [
-      {
-        id        : uuid.v4(),
-        title     : 'sleep',
-        completed : false
-      },
-      {
-        id        : uuid.v4(),
-        title     : 'eat food',
-        completed : false
-      },
-      {
-        id        : uuid.v4(),
-        title     : 'ride',
-        completed : false
-      }
-    ]
+    todos : []
   };
+
+  componentDidMount () {
+    axios.get('http://192.168.4.26:54321/').then((res) => {
+      console.log(res.data);
+    });
+    axios.get('http://192.168.4.26:54321/todos').then((res) => {
+      this.setState({
+        todos : res.data
+      });
+    });
+  }
+
   markComplete = (id) => {
     this.setState({
       todos : this.state.todos.map((todo) => {
@@ -39,6 +35,9 @@ class App extends React.Component {
 
   // Delete todo item
   deleteTodo = (id) => {
+    axios.delete(`http://192.168.4.26:54321/todos/${id}`).then((res) => {
+      console.log('deleted data: ' + res.data);
+    });
     this.setState({
       todos : [ ...this.state.todos.filter((todo) => todo.id !== id) ]
     });
@@ -46,12 +45,18 @@ class App extends React.Component {
 
   // Add todo item
   addTodo = (title) => {
-    const newTodo = {
-      id        : uuid.v4(),
-      title     : title,
-      completed : false
-    };
-    this.setState({ todos: [ ...this.state.todos, newTodo ] });
+    let newTodo = {};
+    axios
+      .post('http://192.168.4.26:54321/todos/', {
+        title    : title,
+        complete : false
+      })
+      .then((res) => {
+        newTodo = res.data;
+        console.log(newTodo);
+
+        this.setState({ todos: [ ...this.state.todos, newTodo ] });
+      });
   };
 
   render () {
