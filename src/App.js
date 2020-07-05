@@ -12,10 +12,10 @@ class App extends React.Component {
   };
 
   componentDidMount () {
-    axios.get('http://192.168.4.26:54321/').then((res) => {
+    axios.get('https://abarbieux.com:54321/api/api/').then((res) => {
       console.log(res.data);
     });
-    axios.get('http://192.168.4.26:54321/todos').then((res) => {
+    axios.get('https://abarbieux.com:54321/api/todos').then((res) => {
       this.setState({
         todos : res.data
       });
@@ -35,7 +35,7 @@ class App extends React.Component {
 
   // Delete todo item
   deleteTodo = (id) => {
-    axios.delete(`http://192.168.4.26:54321/todos/${id}`).then((res) => {
+    axios.delete(`https://abarbieux.com:54321/api/todos/${id}`).then((res) => {
       console.log('deleted data: ' + res.data);
     });
     this.setState({
@@ -47,7 +47,7 @@ class App extends React.Component {
   addTodo = (title) => {
     let newTodo = {};
     axios
-      .post('http://192.168.4.26:54321/todos/', {
+      .post('https://abarbieux.com:54321/api/todos/', {
         title    : title,
         complete : false
       })
