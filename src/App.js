@@ -17,7 +17,7 @@ class App extends React.Component {
     axios.get(this.apiUrl).then((res) => {
       console.log(res.data);
     });
-    axios.get(apiUrl + 'todos').then((res) => {
+    axios.get(this.apiUrl + 'todos').then((res) => {
       this.setState({
         todos : res.data
       });
@@ -37,7 +37,7 @@ class App extends React.Component {
 
   // Delete todo item
   deleteTodo = (id) => {
-    axios.delete(apiUrl + `todos/${id}`).then((res) => {
+    axios.delete(this.apiUrl + `todos/${id}`).then((res) => {
       console.log('deleted data: ' + res.data);
     });
     this.setState({
@@ -49,7 +49,7 @@ class App extends React.Component {
   addTodo = (title) => {
     let newTodo = {};
     axios
-      .post(apiUrl + 'todos/', {
+      .post(this.apiUrl + 'todos/', {
         title    : title,
         complete : false
       })
