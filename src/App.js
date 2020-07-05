@@ -7,15 +7,17 @@ import AddTodo from './components/AddTodo';
 import './App.css';
 
 class App extends React.Component {
+  apiUrl = 'https://abarbieux.com/api/';
+
   state = {
     todos : []
   };
 
   componentDidMount () {
-    axios.get('https://abarbieux.com:54321/api/api/').then((res) => {
+    axios.get(this.apiUrl).then((res) => {
       console.log(res.data);
     });
-    axios.get('https://abarbieux.com:54321/api/todos').then((res) => {
+    axios.get(apiUrl + 'todos').then((res) => {
       this.setState({
         todos : res.data
       });
@@ -35,7 +37,7 @@ class App extends React.Component {
 
   // Delete todo item
   deleteTodo = (id) => {
-    axios.delete(`https://abarbieux.com:54321/api/todos/${id}`).then((res) => {
+    axios.delete(apiUrl + `todos/${id}`).then((res) => {
       console.log('deleted data: ' + res.data);
     });
     this.setState({
@@ -47,7 +49,7 @@ class App extends React.Component {
   addTodo = (title) => {
     let newTodo = {};
     axios
-      .post('https://abarbieux.com:54321/api/todos/', {
+      .post(apiUrl + 'todos/', {
         title    : title,
         complete : false
       })
