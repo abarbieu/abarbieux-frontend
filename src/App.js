@@ -20,8 +20,10 @@ class App extends React.Component {
       });
     });
   };
-
   componentDidMount () {
+    axios.get(this.apiUrl).then((res) => {
+      console.log(res.data);
+    });
     this.getAllTodos();
   }
 
@@ -29,15 +31,14 @@ class App extends React.Component {
     axios.put(this.apiUrl + `todos/${id}`).then((res) => {
       console.log('toggled data: ' + res.data);
     });
-    // this.setState({
-    //   todos : this.state.todos.map((todo) => {
-    //     if (todo.id === id) {
-    //       todo.completed = !todo.completed;
-    //     }
-    //     return todo;
-    //   })
-    // });
-    this.getAllTodos();
+    this.setState({
+      todos : this.state.todos.map((todo) => {
+        if (todo.id === id) {
+          todo.completed = !todo.completed;
+        }
+        return todo;
+      })
+    });
   };
 
   // Delete todo item
@@ -45,10 +46,9 @@ class App extends React.Component {
     axios.delete(this.apiUrl + `todos/${id}`).then((res) => {
       console.log('deleted data: ' + res.data);
     });
-    // this.setState({
-    //   todos : [ ...this.state.todos.filter((todo) => todo.id !== id) ]
-    // });
-    this.getAllTodos();
+    this.setState({
+      todos : [ ...this.state.todos.filter((todo) => todo.id !== id) ]
+    });
   };
 
   // Add todo item
@@ -63,9 +63,8 @@ class App extends React.Component {
         newTodo = res.data;
         console.log(newTodo);
 
-        // this.setState({ todos: [ ...this.state.todos, newTodo ] });
+        this.setState({ todos: [ ...this.state.todos, newTodo ] });
       });
-    this.getAllTodos();
   };
 
   render () {
