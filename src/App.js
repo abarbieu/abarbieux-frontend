@@ -13,26 +13,31 @@ class App extends React.Component {
     todos : []
   };
 
-  componentDidMount () {
-    axios.get(this.apiUrl).then((res) => {
-      console.log(res.data);
-    });
+  getAllTodos = () => {
     axios.get(this.apiUrl + 'todos').then((res) => {
       this.setState({
         todos : res.data
       });
     });
+  };
+
+  componentDidMount () {
+    this.getAllTodos();
   }
 
   markComplete = (id) => {
-    this.setState({
-      todos : this.state.todos.map((todo) => {
-        if (todo.id === id) {
-          todo.completed = !todo.completed;
-        }
-        return todo;
-      })
+    axios.put(this.apiUrl + `todos/${id}`).then((res) => {
+      console.log('toggled data: ' + res.data);
     });
+    // this.setState({
+    //   todos : this.state.todos.map((todo) => {
+    //     if (todo.id === id) {
+    //       todo.completed = !todo.completed;
+    //     }
+    //     return todo;
+    //   })
+    // });
+    this.getAllTodos();
   };
 
   // Delete todo item
@@ -40,9 +45,10 @@ class App extends React.Component {
     axios.delete(this.apiUrl + `todos/${id}`).then((res) => {
       console.log('deleted data: ' + res.data);
     });
-    this.setState({
-      todos : [ ...this.state.todos.filter((todo) => todo.id !== id) ]
-    });
+    // this.setState({
+    //   todos : [ ...this.state.todos.filter((todo) => todo.id !== id) ]
+    // });
+    this.getAllTodos();
   };
 
   // Add todo item
@@ -57,8 +63,9 @@ class App extends React.Component {
         newTodo = res.data;
         console.log(newTodo);
 
-        this.setState({ todos: [ ...this.state.todos, newTodo ] });
+        // this.setState({ todos: [ ...this.state.todos, newTodo ] });
       });
+    this.getAllTodos();
   };
 
   render () {
