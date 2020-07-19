@@ -1,0 +1,21 @@
+{
+  "root": {
+    "todo": {
+      "important": "title: ",
+      "timed": "set time"
+    },
+    "recc": {
+      "type": {
+        "film": "title: ",
+        "book": "title: ",
+        "song": "title: ",
+        "artist": "title: "
+      }
+    },
+    "dream": {
+      "lucid?": "title: ",
+      "good? ": "title: ",
+      "bad? ": "title: "
+    }
+  }
+}

@@ -1,15 +1,31 @@
 import React from 'react';
-import logo from './fractal_512.png';
+import MenuItem from './components/selector/MenuItem';
+import MenuHeader from './components/selector/MenuHeader';
 import './App.css';
 
-function App () {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  state = {
+    btns : []
+  };
+
+  addBtn = (parent, title) => {
+    this.setState({
+      btns : [ ...this.state.btns, 'title' ]
+    });
+  };
+
+  render () {
+    return (
+      <div className="Tiled-back">
+        <div className="container">
+          <MenuHeader />
+          <div className="Menu-container">
+            <MenuItem title="+" addItem={this.addBtn} />
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;
