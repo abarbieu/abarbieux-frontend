@@ -1,20 +1,34 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './MenuItem.css';
+import menu from './resources/menu';
 
 class MenuItem extends Component {
-  state = { animated: this.props.animated ? this.props.animated : false };
+  constructor (props) {
+    super(props);
+    const { parent, animated, name, title } = props;
+    this.state = {
+      parent   : parent ? parent : 'root',
+      animated : animated ? animated : false,
+      name,
+      title,
+      inited   : true,
+    };
+  }
+  componentDidMount () {
+    console.log('state inited: %O', this.state);
+    console.log('menu: %O', menu);
+  }
 
   spawnKin = () => {
-    // this.props.addItem.bind(this, this, 'new item');
     this.setState({ animated: !this.state.animated });
   };
+
   render () {
-    console.log(this.state);
     if (this.state.animated) {
       return (
         <div>
-          <button className="Menu-btn Spawned" onClick={this.spawnKin}>
+          <button className='Menu-btn Spawned' onClick={this.spawnKin}>
             {this.props.title}
           </button>
         </div>
@@ -22,7 +36,7 @@ class MenuItem extends Component {
     } else {
       return (
         <div>
-          <button className="Menu-btn" onClick={this.spawnKin}>
+          <button className='Menu-btn' onClick={this.spawnKin}>
             {this.props.title}
           </button>
         </div>
@@ -33,8 +47,10 @@ class MenuItem extends Component {
 
 MenuItem.propTypes = {
   title    : PropTypes.string.isRequired,
+  name     : PropTypes.string.isRequired,
+  parent   : PropTypes.string,
   animated : PropTypes.bool,
-  addItem  : PropTypes.func
+  addItem  : PropTypes.func,
 };
 
 export default MenuItem;

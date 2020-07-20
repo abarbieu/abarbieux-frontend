@@ -16,11 +16,11 @@ class App extends React.Component {
 
   render () {
     return (
-      <div className="Tiled-back">
-        <div className="container">
+      <div className='Tiled-back'>
+        <div className='container'>
           <MenuHeader />
-          <div className="Menu-container">
-            <MenuItem title="+" addItem={this.addBtn} />
+          <div className='Menu-container'>
+            <MenuItem title='+' name='root' addItem={this.addBtn} />
           </div>
         </div>
       </div>

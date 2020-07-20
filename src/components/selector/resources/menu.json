@@ -1,21 +1,22 @@
 {
   "root": {
+    "children": [ "todo", "recc", "dream" ],
+    "title": "+",
     "todo": {
-      "important": "title: ",
-      "timed": "set time"
+      "title": "todo",
+      "children": [ "important", "timed" ]
     },
     "recc": {
+      "title": "reccomendation",
+      "children": [ "type" ],
       "type": {
-        "film": "title: ",
-        "book": "title: ",
-        "song": "title: ",
-        "artist": "title: "
+        "title": "of type",
+        "children": [ "film", "book", "song", "artist" ]
       }
     },
     "dream": {
-      "lucid?": "title: ",
-      "good? ": "title: ",
-      "bad? ": "title: "
+      "title": "dream",
+      "children": [ "lucid?", "good? ", "bad? " ]
     }
   }
 }
