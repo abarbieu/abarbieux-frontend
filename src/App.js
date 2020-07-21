@@ -3,6 +3,7 @@ import React from 'react';
 import MenuHeader from './components/selector/MenuHeader';
 import MenuMap from './components/selector/resources/menu';
 import Menu from './components/selector/Menu';
+import uuid from 'uuid';
 import './App.css';
 
 class App extends React.Component {
@@ -12,27 +13,35 @@ class App extends React.Component {
   };
 
   spawnKin = (parent, parentPos) => {
-    let spawned = parent.children.map((child) => {
-      if (parent[child]) {
+    // console.log('spawnkin from: %O at pos: %O', parent, parentPos);
+    const dirMap = {
+      0 : 'goL',
+      1 : 'goM',
+      2 : 'goU',
+      3 : 'goR',
+    };
+    if (parent) {
+      let spawned = parent.children.map((child, index) => {
+        console.log('%s, i %d -> ' + dirMap[index], child, index);
         return {
+          key      : uuid.v4(),
+          title    : child,
+          spawnDir : dirMap[index],
+          fromPos  : parentPos,
           fromMenu : parent[child],
           fresh    : true,
-          fromPos  : parentPos,
         };
-        // <MenuItem fromMenu={parent[child]} fresh={true} fromPos={parentPos} />
-      } else {
-        console.log('REACHED END');
-        return null;
-      }
-    });
-    this.setState(
-      {
-        menuItems : [ ...this.state.menuItems, ...spawned ],
-      },
-      () => {
-        console.log('State: %O', this.state);
-      }
-    );
+      });
+
+      this.setState(
+        {
+          menuItems : [ ...this.state.menuItems, ...spawned ],
+        },
+        () => {
+          console.log('added: %O, result: %O', spawned, this.state);
+        }
+      );
+    }
   };
 
   componentDidMount () {
@@ -40,15 +49,18 @@ class App extends React.Component {
       {
         menuItems : [
           {
+            key      : uuid.v4(),
+            title    : MenuMap.root.title,
+            spawnDir : 'goM',
+            fromPos  : [ 0, 0 ],
             fromMenu : MenuMap.root,
             fresh    : false,
-            fromPos  : [ 0, 0 ],
           },
         ],
         // <MenuItem fromMenu={MenuMap.root} onClick={this.spawnKin} /> ],
       },
       () => {
-        console.log('App mounted, initial state: %O', this.state);
+        // console.log('App mounted, initial state: %O', this.state);
       }
     );
   }

@@ -3,17 +3,17 @@ import PropTypes from 'prop-types';
 import MenuItem from './MenuItem';
 
 class Menu extends Component {
-  componentDidMount () {
-    console.log(this.props);
-  }
   render () {
-    console.log(this.props);
     return this.props.items.map((item) => {
       return (
         <MenuItem
-          fresh={item.fresh}
-          fromMenu={item.fromMenu}
+          key={item.key}
+          title={item.title}
+          spawnDir={item.spawnDir}
           onClick={this.props.spawnKin}
+          fromPos={item.fromPos}
+          fromMenu={item.fromMenu}
+          fresh={item.fresh}
         />
       );
     });

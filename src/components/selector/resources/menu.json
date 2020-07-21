@@ -10,7 +10,7 @@
     },
     "recc": {
       "id": "recc",
-      "title": "reccomendation",
+      "title": "recc",
       "children": [ "type" ],
       "type": {
         "id": "type",

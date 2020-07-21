@@ -1,38 +1,44 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+// import { css, keyframes } from 'styled-components';
 import './MenuItem.css';
 
 class MenuItem extends Component {
   constructor (props) {
     super(props);
-    const { title } = props.fromMenu;
-    let { fromPos, fresh } = props;
-    fromPos = fromPos ? fromPos : [ 0, 0 ];
+
+    let { fromPos, fresh, spawnDir } = props;
+    let dirs = [ 1, 1 ];
+    if (spawnDir === 'goL') {
+      dirs = [ 1, 0 ];
+    } else if (spawnDir === 'goU') {
+      dirs = [ 0, 1 ];
+    }
+
     this.state = {
       fresh     : fresh ? fresh : false,
-      title,
+      title     : props.title,
       endPos    : [
-        fromPos[0] + fresh ? 100 : 0,
-        fromPos[1] + fresh ? 100 : 0,
+        fromPos[0] + fresh ? dirs[0] * 100 : 0,
+        fromPos[1] + fresh ? dirs[1] * 100 : 0,
       ],
-      style     : {
-        right  : fromPos[0],
-        bottom : fromPos[1],
-      },
-      className : fresh ? 'Menu-btn Spawned' : 'Menu-btn',
+      className : fresh ? 'Menu-btn ' + spawnDir : 'Menu-btn',
     };
   }
 
-  componentDidMount () {
-    console.log('state inited: %O', this.state);
-  }
+  getStyle = () => {
+    return {
+      right  : this.props.fromPos[0],
+      bottom : this.props.fromPos[1],
+    };
+  };
 
   render () {
     return (
       <div>
         <button
           className={this.state.className}
-          style={this.state.style}
+          style={this.getStyle()}
           onClick={this.props.onClick.bind(
             this,
             this.props.fromMenu,
@@ -47,17 +53,12 @@ class MenuItem extends Component {
 }
 
 MenuItem.propTypes = {
-  fromMenu : PropTypes.object.isRequired,
-  fresh    : PropTypes.bool,
+  title    : PropTypes.string.isRequired,
+  spawnDir : PropTypes.string.isRequired,
+  onClick  : PropTypes.func.isRequired,
   fromPos  : PropTypes.array,
+  fromMenu : PropTypes.object,
+  fresh    : PropTypes.bool,
 };
-// MenuItem.propTypes = {
-//   title    : PropTypes.string.isRequired,
-//   name     : PropTypes.string.isRequired,
-//   children : PropTypes.array.isRequired,
-//   parent   : PropTypes.string,
-//   animated : PropTypes.bool,
-//   addItem  : PropTypes.func,
-// };
 
 export default MenuItem;

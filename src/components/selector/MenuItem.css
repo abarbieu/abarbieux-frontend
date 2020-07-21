@@ -19,15 +19,49 @@
   border-width: 2px;
 }
 
-.Menu-btn.Spawned {
-  animation: New-btn 350ms forwards;
+.goL {
+  animation: goLFrames 350ms forwards;
+}
+.goU {
+  animation: goUFrames 350ms forwards;
+}
+.goM {
+  animation: goMframes 350ms forwards;
 }
 
-@keyframes New-btn {
+.goR {
+  animation: goRframes 350ms forwards;
+}
+
+@keyframes goLFrames {
+  0% {
+    transform: translate(0px, 0px);
+  }
+  100% {
+    transform: translate(-100px, 0px);
+  }
+}
+@keyframes goUFrames {
+  0% {
+    transform: translate(0px, 0px);
+  }
+  100% {
+    transform: translate(0px, -100px);
+  }
+}
+@keyframes goMframes {
   0% {
     transform: translate(0px, 0px);
   }
   100% {
     transform: translate(-100px, -100px);
+  }
+}
+@keyframes goRframes {
+  0% {
+    transform: translate(0px, 0px);
+  }
+  100% {
+    transform: translate(100px, 0px);
   }
 }

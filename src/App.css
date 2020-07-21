@@ -12,19 +12,6 @@
   right: 0;
 }
 
-.Spawned-btn {
-  animation: New-btn 1s;
-}
-
-@keyframes New-btn {
-  0% {
-    transform: translate(0px, 0px);
-  }
-  100% {
-    transform: translate(-100px, -100px);
-  }
-}
-
 .Tiled-back {
   width: 100%;
   height: 200vh;
