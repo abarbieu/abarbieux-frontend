@@ -1,0 +1,27 @@
+{
+  "root": {
+    "id": "root",
+    "children": [ "todo", "recc", "dream" ],
+    "title": "+",
+    "todo": {
+      "id": "todo",
+      "title": "todo",
+      "children": [ "important", "timed" ]
+    },
+    "recc": {
+      "id": "recc",
+      "title": "recc",
+      "children": [ "type" ],
+      "type": {
+        "id": "type",
+        "title": "of type",
+        "children": [ "film", "book", "song", "artist" ]
+      }
+    },
+    "dream": {
+      "id": "dream",
+      "title": "dream",
+      "children": [ "lucid?", "good? ", "bad? " ]
+    }
+  }
+}

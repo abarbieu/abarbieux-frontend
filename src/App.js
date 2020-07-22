@@ -3,6 +3,10 @@ import axios from 'axios';
 import Todos from './components/Todos';
 import Header from './components/style/Header';
 import AddTodo from './components/AddTodo';
+import MenuMap from './components/selector/resources/menu';
+import Menu from './components/selector/Menu';
+import uuid from 'uuid';
+import './App.css';
 
 import './App.css';
 
@@ -10,22 +14,17 @@ class App extends React.Component {
   apiUrl = 'https://abarbieux.com/api/';
 
   state = {
-    todos : []
+    todos     : [],
+    menuItems : [],
   };
 
   getAllTodos = () => {
     axios.get(this.apiUrl + 'todos').then((res) => {
       this.setState({
-        todos : res.data
+        todos : res.data,
       });
     });
   };
-  componentDidMount () {
-    axios.get(this.apiUrl).then((res) => {
-      console.log(res.data);
-    });
-    this.getAllTodos();
-  }
 
   markComplete = (id) => {
     axios.put(this.apiUrl + `todos/${id}`).then((res) => {
@@ -37,7 +36,7 @@ class App extends React.Component {
           todo.completed = !todo.completed;
         }
         return todo;
-      })
+      }),
     });
   };
 
@@ -47,7 +46,7 @@ class App extends React.Component {
       console.log('deleted data: ' + res.data);
     });
     this.setState({
-      todos : [ ...this.state.todos.filter((todo) => todo.id !== id) ]
+      todos : [ ...this.state.todos.filter((todo) => todo.id !== id) ],
     });
   };
 
@@ -57,7 +56,7 @@ class App extends React.Component {
     axios
       .post(this.apiUrl + 'todos/', {
         title    : title,
-        complete : false
+        complete : false,
       })
       .then((res) => {
         newTodo = res.data;
@@ -66,11 +65,56 @@ class App extends React.Component {
         this.setState({ todos: [ ...this.state.todos, newTodo ] });
       });
   };
+  spawnKin = (parent, parentPos) => {
+    if (parent) {
+      let spawned = parent.children.map((child, index) => {
+        return {
+          key      : uuid.v4(),
+          title    : child,
+          spawnDir : Math.PI - index * Math.PI / 4.0,
+          fromPos  : parentPos,
+          fromMenu : parent[child],
+          fresh    : true,
+        };
+      });
+
+      this.setState(
+        {
+          menuItems : [ ...this.state.menuItems, ...spawned ],
+        },
+        () => {
+          console.log('added: %O, result: %O', spawned, this.state);
+        }
+      );
+    }
+  };
+  componentDidMount () {
+    axios.get(this.apiUrl).then((res) => {
+      console.log(res.data);
+    });
+    this.getAllTodos();
+    this.setState(
+      {
+        menuItems : [
+          {
+            key      : uuid.v4(),
+            title    : MenuMap.root.title,
+            fromPos  : [ 0, 0 ],
+            fromMenu : MenuMap.root,
+            fresh    : false,
+          },
+        ],
+      },
+      () => {
+        // console.log('App mounted, initial state: %O', this.state);
+      }
+    );
+  }
 
   render () {
     return (
-      <div className="App">
-        <div className="container">
+      <div className='Tiled-back'>
+        <div className='container'>
           <Header />
           <AddTodo addTodo={this.addTodo} />
           <Todos
@@ -78,18 +122,13 @@ class App extends React.Component {
             markComplete={this.markComplete}
             deleteTodo={this.deleteTodo}
           />
+          <div className='Menu-container'>
+            <Menu items={this.state.menuItems} spawnKin={this.spawnKin} />
+          </div>
         </div>
       </div>
     );
   }
 }
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <h1>App</h1>
-//     </div>
-//   );
-// }
 
 export default App;
