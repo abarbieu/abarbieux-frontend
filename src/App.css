@@ -1,15 +1,37 @@
-.App {
-  text-align: center;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.Menu-container {
-  position: relative;
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.4;
+}
+a {
+  color: #333;
+  text-decoration: none;
 }
 
-.Root {
-  position: absolute;
-  bottom: 0;
-  right: 0;
+.container {
+  padding: 0 1rem;
+}
+
+.btn {
+  display: inline-block;
+  border: none;
+  background: #d6d6d6ab;
+  padding: 7px 20px;
+  cursor: pointer;
+  outline: none;
+}
+
+.btn:hover {
+  background: #797575ab;
+}
+
+input[type="text"] {
+  outline: none;
 }
 
 .Tiled-back {
