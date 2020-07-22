@@ -1,6 +1,4 @@
 import React from 'react';
-// import MenuItem from './components/selector/MenuItem';
-import MenuHeader from './components/selector/MenuHeader';
 import MenuMap from './components/selector/resources/menu';
 import Menu from './components/selector/Menu';
 import uuid from 'uuid';
@@ -13,7 +11,6 @@ class App extends React.Component {
   };
 
   spawnKin = (parent, parentPos) => {
-    // console.log('spawnkin from: %O at pos: %O', parent, parentPos);
     if (parent) {
       let spawned = parent.children.map((child, index) => {
         return {
@@ -49,7 +46,6 @@ class App extends React.Component {
             fresh    : false,
           },
         ],
-        // <MenuItem fromMenu={MenuMap.root} onClick={this.spawnKin} /> ],
       },
       () => {
         // console.log('App mounted, initial state: %O', this.state);
@@ -61,9 +57,7 @@ class App extends React.Component {
     return (
       <div className='Tiled-back'>
         <div className='container'>
-          <MenuHeader />
           <div className='Menu-container'>
-            {/* {console.log(this.state.menuItems)} */}
             <Menu items={this.state.menuItems} spawnKin={this.spawnKin} />
           </div>
         </div>

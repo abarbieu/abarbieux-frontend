@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import { css, keyframes } from 'styled-components';
 import './MenuItem.css';
 
 class MenuItem extends Component {
@@ -27,7 +26,7 @@ class MenuItem extends Component {
     if (this.props.fresh) {
       let styleSheet = document.styleSheets[0];
       let animationName = `animation${Math.ceil(this.props.spawnDir)}`;
-      // -${this.props.spawnDir}
+
       let keyframes = `@keyframes ${animationName} {
         0% {
           transform: translate(0px, 0px);
@@ -53,15 +52,6 @@ class MenuItem extends Component {
 
       right         : this.props.fromPos[0],
       bottom        : this.props.fromPos[1],
-      // borderRadius            : '50%',
-      // fontSize                : '20pt',
-      // outline                 : 'none',
-      // position                : 'fixed',
-      // margin                  : '10px',
-      // color                   : '#fdb241',
-      // background              : '#07837da6',
-      // width                   : '2cm',
-      // height                  : '2cm',
     };
   };
 
