@@ -14,19 +14,12 @@ class App extends React.Component {
 
   spawnKin = (parent, parentPos) => {
     // console.log('spawnkin from: %O at pos: %O', parent, parentPos);
-    const dirMap = {
-      0 : 'goL',
-      1 : 'goM',
-      2 : 'goU',
-      3 : 'goR',
-    };
     if (parent) {
       let spawned = parent.children.map((child, index) => {
-        console.log('%s, i %d -> ' + dirMap[index], child, index);
         return {
           key      : uuid.v4(),
           title    : child,
-          spawnDir : dirMap[index],
+          spawnDir : Math.PI - index * Math.PI / 4.0,
           fromPos  : parentPos,
           fromMenu : parent[child],
           fresh    : true,
@@ -51,7 +44,6 @@ class App extends React.Component {
           {
             key      : uuid.v4(),
             title    : MenuMap.root.title,
-            spawnDir : 'goM',
             fromPos  : [ 0, 0 ],
             fromMenu : MenuMap.root,
             fresh    : false,

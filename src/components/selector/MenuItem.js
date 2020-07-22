@@ -8,28 +8,60 @@ class MenuItem extends Component {
     super(props);
 
     let { fromPos, fresh, spawnDir } = props;
-    let dirs = [ 1, 1 ];
-    if (spawnDir === 'goL') {
-      dirs = [ 1, 0 ];
-    } else if (spawnDir === 'goU') {
-      dirs = [ 0, 1 ];
-    }
+
+    const diffx = fromPos[0] + Math.cos(spawnDir) * -100;
+    const diffy = fromPos[1] + Math.sin(spawnDir) * 100;
 
     this.state = {
-      fresh     : fresh ? fresh : false,
-      title     : props.title,
-      endPos    : [
-        fromPos[0] + fresh ? dirs[0] * 100 : 0,
-        fromPos[1] + fresh ? dirs[1] * 100 : 0,
+      fresh         : fresh ? fresh : false,
+      title         : props.title,
+      endPos        : [
+        fresh ? diffx : fromPos[0],
+        fresh ? diffy : fromPos[1],
       ],
-      className : fresh ? 'Menu-btn ' + spawnDir : 'Menu-btn',
+      animationName : '',
     };
+  }
+
+  componentDidMount () {
+    if (this.props.fresh) {
+      let styleSheet = document.styleSheets[0];
+      let animationName = `animation${Math.ceil(this.props.spawnDir)}`;
+      // -${this.props.spawnDir}
+      let keyframes = `@keyframes ${animationName} {
+        0% {
+          transform: translate(0px, 0px);
+        }
+        100% {
+          transform: translate(
+            ${Math.cos(this.props.spawnDir) * 100}px,
+            ${Math.sin(this.props.spawnDir) * -100}px);
+          }
+        }`;
+
+      styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
+
+      this.setState({
+        animationName : animationName,
+      });
+    }
   }
 
   getStyle = () => {
     return {
-      right  : this.props.fromPos[0],
-      bottom : this.props.fromPos[1],
+      animationName : this.state.animationName,
+
+      right         : this.props.fromPos[0],
+      bottom        : this.props.fromPos[1],
+      // borderRadius            : '50%',
+      // fontSize                : '20pt',
+      // outline                 : 'none',
+      // position                : 'fixed',
+      // margin                  : '10px',
+      // color                   : '#fdb241',
+      // background              : '#07837da6',
+      // width                   : '2cm',
+      // height                  : '2cm',
     };
   };
 
@@ -37,7 +69,7 @@ class MenuItem extends Component {
     return (
       <div>
         <button
-          className={this.state.className}
+          className='Menu-btn'
           style={this.getStyle()}
           onClick={this.props.onClick.bind(
             this,
@@ -54,8 +86,8 @@ class MenuItem extends Component {
 
 MenuItem.propTypes = {
   title    : PropTypes.string.isRequired,
-  spawnDir : PropTypes.string.isRequired,
   onClick  : PropTypes.func.isRequired,
+  spawnDir : PropTypes.number,
   fromPos  : PropTypes.array,
   fromMenu : PropTypes.object,
   fresh    : PropTypes.bool,
