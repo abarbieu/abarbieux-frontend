@@ -173,10 +173,10 @@ class App extends React.Component {
   // TODO: test api
   componentDidMount () {
     //* TodoList
-    //? axios.get(this.apiUrl).then((res) => {
-    //?   console.log(res.data);
-    //? });
-    //? this.getAllTodos();
+    axios.get(this.apiUrl).then((res) => {
+      console.log(res.data);
+    });
+    this.getAllTodos();
     //* Menu
   }
 
