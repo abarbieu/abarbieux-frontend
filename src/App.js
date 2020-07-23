@@ -82,18 +82,43 @@ class App extends React.Component {
 
   //* Menu ============================================================== Menu
 
-  // Gets into nested objects via path
+  //* Gets into nested objects via path
   followPath = (root, path) => {
     try {
-      return path.split('.').reduce((accum, curr) => accum[curr], root);
+      return path
+        .split('.')
+        .reduce(
+          (accum, curr) => (accum[curr] = accum[curr] ? accum[curr] : {}),
+          root
+        );
     } catch (err) {
       return undefined;
     }
   };
 
-  //* Used to filter MenuItem siblings
-  comparePos = (a, b) => {
-    return a[0] === b[0] && a[1] === b[1];
+  updateMenu = (path, attr, val) => {
+    if (this.followPath(this.state.menuMap, path)) {
+      this.setState((prevState) => {
+        this.followPath(this.state.menuMap, path)[attr] = val;
+        return {
+          menuMap : prevState.menuMap,
+        };
+      });
+    }
+  };
+
+  //* Deactivates all kin downstream of path
+  deactivateChildren = (path) => {
+    console.log(path);
+    console.log(this.followPath(this.state.menuMap, path));
+    if (this.followPath(this.state.menuMap, path).children) {
+      let manifest = this.followPath(this.state.menuMap, path).children
+        .manifest;
+      manifest.forEach((child) => {
+        this.updateMenu(path + '.children.' + child, 'active', false);
+        this.deactivateChildren(path + '.children.' + child);
+      });
+    }
   };
 
   //* Deactivates all children at path except favoriteKid
@@ -103,20 +128,16 @@ class App extends React.Component {
     let manifest = this.followPath(this.state.menuMap, path).manifest;
     manifest.forEach((child) => {
       if (child !== chosen) {
-        this.setState((prevState) => {
-          console.log('deactivating: ', child, chosen);
-          this.followPath(this.state.menuMap, path)[child].active = false;
-          return {
-            menuMap : prevState.menuMap,
-          };
-        });
+        this.updateMenu(path + '.' + child, 'active', false);
       }
     });
   };
 
   //* Called when a MenuItem is clicked
-  // TODO: remove siblings
+  //* DONE: remove siblings
+  // TODO: remove strangers
   activateKin = (parent, parentPos) => {
+    this.deactivateChildren(parent.menuPath);
     if (parent.id !== 'root') {
       this.deactivateSiblings(parent.menuPath);
     }

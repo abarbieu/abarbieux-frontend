@@ -20,7 +20,7 @@ class Menu extends Component {
         item.children.manifest.forEach((child) => {
           if (item.children[child] && item.children[child].active) {
             activeQueue.push(item.children[child]);
-          } else if (!item.children[child]) {
+          } else if (!item.children[child] || !item.children[child].title) {
             item.children[child] = {
               title  : child,
               id     : child,
