@@ -109,8 +109,6 @@ class App extends React.Component {
 
   //* Deactivates all kin downstream of path
   deactivateChildren = (path) => {
-    console.log(path);
-    console.log(this.followPath(this.state.menuMap, path));
     if (this.followPath(this.state.menuMap, path).children) {
       let manifest = this.followPath(this.state.menuMap, path).children
         .manifest;

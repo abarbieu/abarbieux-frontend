@@ -1,0 +1,33 @@
+{
+  "root": {
+    "id": "root",
+    "active": true,
+    "title": "+",
+
+    "children": {
+      "manifest": [ "todo", "recc", "dream" ],
+      "todo": {
+        "id": "todo",
+        "title": "todo",
+        "children": { "manifest": [ "important", "timed" ] }
+      },
+      "recc": {
+        "id": "recc",
+        "title": "recc",
+        "children": {
+          "manifest": [ "type" ],
+          "type": {
+            "id": "type",
+            "title": "of type",
+            "children": { "manifest": [ "film", "book", "song", "artist" ] }
+          }
+        }
+      },
+      "dream": {
+        "id": "dream",
+        "title": "dream",
+        "children": { "manifest": [ "lucid?", "good? ", "bad? " ] }
+      }
+    }
+  }
+}
