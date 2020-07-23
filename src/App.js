@@ -15,10 +15,19 @@ class App extends React.Component {
   apiUrl = 'https://abarbieux.com/api/';
 
   state = {
-    todos     : [],
-    menuItems : MenuMap,
+    todos   : [],
+    menuMap : {
+      ...MenuMap,
+      root : {
+        ...MenuMap.root,
+        key      : uuid.v4(),
+        menuPath : 'root',
+        active   : true,
+        startPos : [ 0, 0 ],
+        animated : false,
+      },
+    },
   };
-
   //* Todo ============================================================== Todo
 
   // Gets all todos in db
@@ -73,41 +82,49 @@ class App extends React.Component {
 
   //* Menu ============================================================== Menu
 
+  // Used to update MenuItem positions in state
+  // setPos = (key) => {
+  //   for (let i = this.state.menuMap.length; i >= 0; i--) {
+  //     if (this.state.menuMap.key.equals(key)) {
+  //       this.setState(menuMap);
+  //     }
+  //   }
+  // };
+
+  followPath = (root, path) => {
+    try {
+      return path.split('.').reduce((accum, curr) => accum[curr], root);
+    } catch (err) {
+      return undefined;
+    }
+  };
+
   // Used to filter MenuItem siblings
   comparePos = (a, b) => {
     return a[0] === b[0] && a[1] === b[1];
   };
 
-  // Used to update MenuItem positions in state
-  setPos = (key) => {
-    for (let i = this.state.menuItems.length; i >= 0; i--) {
-      if (this.state.menuItems.key.equals(key)) {
-        this.setState(menuItems);
-      }
-    }
-  };
-
   // Called when a MenuItem is clicked
   activateKin = (parent, parentPos) => {
-    if (parent) {
-      let spawned = {};
-      parent.children.forEach((child, index) => {
-        spawned[child] = {
-          ...parent[child],
-          key      : uuid.v4(),
-          spawnDir : Math.PI - index * Math.PI / 4.0,
-          startPos : parentPos,
-          animated : true,
-        };
-      });
+    if (parent && parent.children) {
+      this.followPath(MenuMap, parent.path)['endpos'] = parentPos;
 
-      this.setState((prevState) => {
-        return {
-          menuItems : {
-            ...prevState.menuItems,
-            ...spawned,
-          },
-        };
+      parent.children.forEach((child, index) => {
+        this.setState((prevState) => {
+          this.followPath(prevState.menuMap, parent.menuPath)[child] = {
+            ...parent[child],
+            key      : uuid.v4(),
+            menuPath : parent.menuPath + '.' + child,
+            spawnDir : Math.PI - index * Math.PI / 4.0,
+            startPos : parentPos,
+            active   : true,
+            animated : true,
+          };
+
+          return {
+            menuMap : prevState.menuMap,
+          };
+        });
       });
     }
   };
@@ -117,29 +134,37 @@ class App extends React.Component {
   // Run when app is mounted
   componentDidMount () {
     //* TodoList
-    axios.get(this.apiUrl).then((res) => {
-      console.log(res.data);
-    });
-    this.getAllTodos();
+    // axios.get(this.apiUrl).then((res) => {
+    //   console.log(res.data);
+    // });
+    // this.getAllTodos();
 
     //* Menu
-    this.setState((prevState) => {
-      return {
-        menuItems : {
-          [MenuMap.root.id]: {
-            ...prevState.menuItems[MenuMap.root.id],
-            active   : true,
-            key      : uuid.v4(),
-            startPos : [ 0, 0 ],
-            animated : false,
-          },
-        },
-      };
-    });
+    console.log('mounting', this.state);
+
+    // this.setState(
+    //   (prevState) => {
+    //     prevState.menuMap.root = {
+    //       ...prevState.menuMap.root,
+    //       path     : 'root',
+    //       active   : true,
+    //       key      : uuid.v4(),
+    //       startPos : [ 0, 0 ],
+    //       animated : false,
+    //     };
+    //     return {
+    //       menuMap : prevState.menuMap,
+    //     };
+    //   },
+    //   () => {
+    //     console.log('mounted', this.state.menuMap);
+    //   }
+    // );
   }
 
   // Where the Magic Happens
   render () {
+    console.log('state at render: ', this.state);
     return (
       <div className='Tiled-back'>
         <div className='container'>
@@ -152,7 +177,7 @@ class App extends React.Component {
           />
           <div className='Menu-container'>
             <Menu
-              items={this.state.menuItems}
+              menuMap={this.state.menuMap}
               activateKin={this.activateKin}
               setPos={this.setPos}
             />

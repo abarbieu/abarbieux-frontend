@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import './MenuItem.css';
 
 class MenuItem extends Component {
+  core = this.props.core;
   constructor (props) {
     super(props);
-
+    console.log('core ', props.core);
     let { startPos, animated, spawnDir, title } = props.core;
 
     const diffx = startPos[0] + Math.cos(spawnDir) * -200;
@@ -50,7 +51,7 @@ class MenuItem extends Component {
     return {
       animationName : this.state.animationName,
 
-      right         : this.startPos[0],
+      right         : this.core.startPos[0],
       bottom        : this.startPos[1],
     };
   };
