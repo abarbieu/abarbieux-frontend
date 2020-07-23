@@ -24,9 +24,9 @@ class MenuItem extends Component {
   }
 
   componentDidMount () {
-    if (this.animated) {
+    if (this.core.animated) {
       let styleSheet = document.styleSheets[0];
-      let animationName = `animation${Math.ceil(this.spawnDir)}`;
+      let animationName = `animation${Math.ceil(this.core.spawnDir)}`;
 
       let keyframes = `@keyframes ${animationName} {
         0% {
@@ -34,8 +34,8 @@ class MenuItem extends Component {
         }
         100% {
           transform: translate(
-            ${Math.cos(this.spawnDir) * 200}px,
-            ${Math.sin(this.spawnDir) * -200}px);
+            ${Math.cos(this.core.spawnDir) * 200}px,
+            ${Math.sin(this.core.spawnDir) * -200}px);
           }
         }`;
 
@@ -52,7 +52,7 @@ class MenuItem extends Component {
       animationName : this.state.animationName,
 
       right         : this.core.startPos[0],
-      bottom        : this.startPos[1],
+      bottom        : this.core.startPos[1],
     };
   };
 
@@ -62,13 +62,9 @@ class MenuItem extends Component {
         <button
           className='Menu-btn'
           style={this.getStyle()}
-          onClick={this.props.onClick.bind(
-            this,
-            this.props.core,
-            this.state.endPos
-          )}
+          onClick={this.props.onClick.bind(this, this.core, this.state.endPos)}
         >
-          {this.state.title}
+          {this.core.title}
         </button>
       </div>
     );

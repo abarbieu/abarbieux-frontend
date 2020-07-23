@@ -82,15 +82,7 @@ class App extends React.Component {
 
   //* Menu ============================================================== Menu
 
-  // Used to update MenuItem positions in state
-  // setPos = (key) => {
-  //   for (let i = this.state.menuMap.length; i >= 0; i--) {
-  //     if (this.state.menuMap.key.equals(key)) {
-  //       this.setState(menuMap);
-  //     }
-  //   }
-  // };
-
+  // Gets into nested objects via path
   followPath = (root, path) => {
     try {
       return path.split('.').reduce((accum, curr) => accum[curr], root);
@@ -107,20 +99,24 @@ class App extends React.Component {
   // Called when a MenuItem is clicked
   activateKin = (parent, parentPos) => {
     if (parent && parent.children) {
-      this.followPath(MenuMap, parent.path)['endpos'] = parentPos;
+      let childList = parent.children.manifest;
 
-      parent.children.forEach((child, index) => {
+      console.log(parent.menuPath);
+      this.followPath(MenuMap, parent.menuPath)['endPos'] = parentPos;
+
+      childList.forEach((child, index) => {
         this.setState((prevState) => {
-          this.followPath(prevState.menuMap, parent.menuPath)[child] = {
-            ...parent[child],
+          this.followPath(prevState.menuMap, parent.menuPath).children[
+            child
+          ] = {
+            ...parent.children[child],
             key      : uuid.v4(),
-            menuPath : parent.menuPath + '.' + child,
+            menuPath : parent.menuPath + '.children.' + child,
             spawnDir : Math.PI - index * Math.PI / 4.0,
             startPos : parentPos,
             active   : true,
             animated : true,
           };
-
           return {
             menuMap : prevState.menuMap,
           };
@@ -134,37 +130,15 @@ class App extends React.Component {
   // Run when app is mounted
   componentDidMount () {
     //* TodoList
-    // axios.get(this.apiUrl).then((res) => {
-    //   console.log(res.data);
-    // });
-    // this.getAllTodos();
-
+    //? axios.get(this.apiUrl).then((res) => {
+    //?   console.log(res.data);
+    //? });
+    //? this.getAllTodos();
     //* Menu
-    console.log('mounting', this.state);
-
-    // this.setState(
-    //   (prevState) => {
-    //     prevState.menuMap.root = {
-    //       ...prevState.menuMap.root,
-    //       path     : 'root',
-    //       active   : true,
-    //       key      : uuid.v4(),
-    //       startPos : [ 0, 0 ],
-    //       animated : false,
-    //     };
-    //     return {
-    //       menuMap : prevState.menuMap,
-    //     };
-    //   },
-    //   () => {
-    //     console.log('mounted', this.state.menuMap);
-    //   }
-    // );
   }
 
   // Where the Magic Happens
   render () {
-    console.log('state at render: ', this.state);
     return (
       <div className='Tiled-back'>
         <div className='container'>

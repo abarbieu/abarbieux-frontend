@@ -6,7 +6,7 @@ class Menu extends Component {
   render () {
     var activeQueue = [];
     var menuItems = [];
-    console.log('rendering menu: ', this.props.menuMap);
+
     if (this.props.menuMap.root.active) {
       activeQueue.push(this.props.menuMap.root);
     }
@@ -16,18 +16,19 @@ class Menu extends Component {
       menuItems.push(
         <MenuItem key={item.key} core={item} onClick={this.props.activateKin} />
       );
-
-      item.children.forEach((child) => {
-        if (item[child] && item[child].active) {
-          activeQueue.push(item[child]);
-        } else if (!item[child]) {
-          item[child] = {
-            title  : child,
-            id     : child,
-            active : false,
-          };
-        }
-      });
+      if (item && item.children) {
+        item.children.manifest.forEach((child) => {
+          if (item.children[child] && item.children[child].active) {
+            activeQueue.push(item.children[child]);
+          } else if (!item.children[child]) {
+            item.children[child] = {
+              title  : child,
+              id     : child,
+              active : false,
+            };
+          }
+        });
+      }
     }
 
     return menuItems;
@@ -38,4 +39,5 @@ Menu.propTypes = {
   menuMap     : PropTypes.object.isRequired,
   activateKin : PropTypes.func.isRequired,
 };
+
 export default Menu;

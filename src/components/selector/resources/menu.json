@@ -2,28 +2,32 @@
   "root": {
     "id": "root",
     "active": true,
-    "children": [ "todo", "recc", "dream" ],
-    "title": "+",
 
-    "todo": {
-      "id": "todo",
-      "title": "todo",
-      "children": [ "important", "timed" ]
-    },
-    "recc": {
-      "id": "recc",
-      "title": "recc",
-      "children": [ "type" ],
-      "type": {
-        "id": "type",
-        "title": "of type",
-        "children": [ "film", "book", "song", "artist" ]
+    "title": "+",
+    "children": {
+      "manifest": [ "todo", "recc", "dream" ],
+      "todo": {
+        "id": "todo",
+        "title": "todo",
+        "children": { "manifest": [ "important", "timed" ] }
+      },
+      "recc": {
+        "id": "recc",
+        "title": "recc",
+        "children": {
+          "manifest": [ "type" ],
+          "type": {
+            "id": "type",
+            "title": "of type",
+            "children": { "manifest": [ "film", "book", "song", "artist" ] }
+          }
+        }
+      },
+      "dream": {
+        "id": "dream",
+        "title": "dream",
+        "children": { "manifest": [ "lucid?", "good? ", "bad? " ] }
       }
-    },
-    "dream": {
-      "id": "dream",
-      "title": "dream",
-      "children": [ "lucid?", "good? ", "bad? " ]
     }
   }
 }
