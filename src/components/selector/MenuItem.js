@@ -6,26 +6,26 @@ class MenuItem extends Component {
   constructor (props) {
     super(props);
 
-    let { fromPos, animated, spawnDir } = props;
+    let { startPos, animated, spawnDir, title } = props.core;
 
-    const diffx = fromPos[0] + Math.cos(spawnDir) * -200;
-    const diffy = fromPos[1] + Math.sin(spawnDir) * 200;
+    const diffx = startPos[0] + Math.cos(spawnDir) * -200;
+    const diffy = startPos[1] + Math.sin(spawnDir) * 200;
 
     this.state = {
       animated      : animated ? animated : false,
-      title         : props.title,
+      title         : title,
       endPos        : [
-        animated ? diffx : fromPos[0],
-        animated ? diffy : fromPos[1],
+        animated ? diffx : startPos[0],
+        animated ? diffy : startPos[1],
       ],
       animationName : '',
     };
   }
 
   componentDidMount () {
-    if (this.props.animated) {
+    if (this.animated) {
       let styleSheet = document.styleSheets[0];
-      let animationName = `animation${Math.ceil(this.props.spawnDir)}`;
+      let animationName = `animation${Math.ceil(this.spawnDir)}`;
 
       let keyframes = `@keyframes ${animationName} {
         0% {
@@ -33,8 +33,8 @@ class MenuItem extends Component {
         }
         100% {
           transform: translate(
-            ${Math.cos(this.props.spawnDir) * 200}px,
-            ${Math.sin(this.props.spawnDir) * -200}px);
+            ${Math.cos(this.spawnDir) * 200}px,
+            ${Math.sin(this.spawnDir) * -200}px);
           }
         }`;
 
@@ -50,8 +50,8 @@ class MenuItem extends Component {
     return {
       animationName : this.state.animationName,
 
-      right         : this.props.fromPos[0],
-      bottom        : this.props.fromPos[1],
+      right         : this.startPos[0],
+      bottom        : this.startPos[1],
     };
   };
 
@@ -63,7 +63,7 @@ class MenuItem extends Component {
           style={this.getStyle()}
           onClick={this.props.onClick.bind(
             this,
-            this.props.fromMenu,
+            this.props.core,
             this.state.endPos
           )}
         >
@@ -75,13 +75,8 @@ class MenuItem extends Component {
 }
 
 MenuItem.propTypes = {
-  title    : PropTypes.string.isRequired,
-  key      : PropTypes.string.isRequired,
-  onClick  : PropTypes.func.isRequired,
-  spawnDir : PropTypes.number,
-  fromPos  : PropTypes.array,
-  fromMenu : PropTypes.object,
-  animated : PropTypes.bool,
+  core    : PropTypes.object.isRequired,
+  onClick : PropTypes.func.isRequired,
 };
 
 export default MenuItem;

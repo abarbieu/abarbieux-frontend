@@ -11,13 +11,17 @@ import './App.css';
 import './App.css';
 
 class App extends React.Component {
+  // Move to env variable?
   apiUrl = 'https://abarbieux.com/api/';
 
   state = {
     todos     : [],
-    menuItems : {},
+    menuItems : MenuMap,
   };
 
+  //* Todo ============================================================== Todo
+
+  // Gets all todos in db
   getAllTodos = () => {
     axios.get(this.apiUrl + 'todos').then((res) => {
       this.setState({
@@ -26,6 +30,7 @@ class App extends React.Component {
     });
   };
 
+  // Called when Todo Checkbox clicked
   markComplete = (id) => {
     axios.put(this.apiUrl + `todos/${id}`).then((res) => {
       console.log('toggled data: ' + res.data);
@@ -65,26 +70,33 @@ class App extends React.Component {
         this.setState({ todos: [ ...this.state.todos, newTodo ] });
       });
   };
+
+  //* Menu ============================================================== Menu
+
+  // Used to filter MenuItem siblings
   comparePos = (a, b) => {
     return a[0] === b[0] && a[1] === b[1];
   };
-  // setPos = (key) => {
-  //   for (let i = this.state.menuItems.length; i >= 0; i--) {
-  //     if (this.state.menuItems.key.equals(key)) {
-  //       this.setState(menuItems);
-  //     }
-  //   }
-  // };
-  spawnKin = (parent, parentPos) => {
+
+  // Used to update MenuItem positions in state
+  setPos = (key) => {
+    for (let i = this.state.menuItems.length; i >= 0; i--) {
+      if (this.state.menuItems.key.equals(key)) {
+        this.setState(menuItems);
+      }
+    }
+  };
+
+  // Called when a MenuItem is clicked
+  activateKin = (parent, parentPos) => {
     if (parent) {
       let spawned = {};
       parent.children.forEach((child, index) => {
         spawned[child] = {
+          ...parent[child],
           key      : uuid.v4(),
-          title    : child,
           spawnDir : Math.PI - index * Math.PI / 4.0,
-          fromPos  : parentPos,
-          fromMenu : parent[child],
+          startPos : parentPos,
           animated : true,
         };
       });
@@ -99,28 +111,34 @@ class App extends React.Component {
       });
     }
   };
+
+  //* App ================================================================ App
+
+  // Run when app is mounted
   componentDidMount () {
+    //* TodoList
     axios.get(this.apiUrl).then((res) => {
       console.log(res.data);
     });
     this.getAllTodos();
-    this.setState(
-      {
+
+    //* Menu
+    this.setState((prevState) => {
+      return {
         menuItems : {
           [MenuMap.root.id]: {
-            ...MenuMap.root,
+            ...prevState.menuItems[MenuMap.root.id],
+            active   : true,
             key      : uuid.v4(),
-            fromPos  : [ 0, 0 ],
+            startPos : [ 0, 0 ],
             animated : false,
           },
         },
-      },
-      () => {
-        // console.log('App mounted, initial state: %O', this.state);
-      }
-    );
+      };
+    });
   }
 
+  // Where the Magic Happens
   render () {
     return (
       <div className='Tiled-back'>
@@ -135,7 +153,7 @@ class App extends React.Component {
           <div className='Menu-container'>
             <Menu
               items={this.state.menuItems}
-              spawnKin={this.spawnKin}
+              activateKin={this.activateKin}
               setPos={this.setPos}
             />
           </div>
