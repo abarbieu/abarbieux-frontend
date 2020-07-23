@@ -91,18 +91,41 @@ class App extends React.Component {
     }
   };
 
-  // Used to filter MenuItem siblings
+  //* Used to filter MenuItem siblings
   comparePos = (a, b) => {
     return a[0] === b[0] && a[1] === b[1];
   };
 
-  // Called when a MenuItem is clicked
+  //* Deactivates all children at path except favoriteKid
+  deactivateSiblings = (path) => {
+    let chosen = path.slice(path.search(/\.[^.]*$/) + 1);
+    path = path.replace(/\.[^.]*$/, '');
+    let manifest = this.followPath(this.state.menuMap, path).manifest;
+    manifest.forEach((child) => {
+      if (child !== chosen) {
+        this.setState((prevState) => {
+          console.log('deactivating: ', child, chosen);
+          this.followPath(this.state.menuMap, path)[child].active = false;
+          return {
+            menuMap : prevState.menuMap,
+          };
+        });
+      }
+    });
+  };
+
+  //* Called when a MenuItem is clicked
+  // TODO: remove siblings
   activateKin = (parent, parentPos) => {
+    if (parent.id !== 'root') {
+      this.deactivateSiblings(parent.menuPath);
+    }
     if (parent && parent.children) {
       let childList = parent.children.manifest;
 
-      console.log(parent.menuPath);
-      this.followPath(MenuMap, parent.menuPath)['endPos'] = parentPos;
+      this.followPath(this.state.menuMap, parent.menuPath)[
+        'endPos'
+      ] = parentPos;
 
       childList.forEach((child, index) => {
         this.setState((prevState) => {
@@ -127,7 +150,8 @@ class App extends React.Component {
 
   //* App ================================================================ App
 
-  // Run when app is mounted
+  //* Run when app is mounted
+  // TODO: test api
   componentDidMount () {
     //* TodoList
     //? axios.get(this.apiUrl).then((res) => {
@@ -137,7 +161,7 @@ class App extends React.Component {
     //* Menu
   }
 
-  // Where the Magic Happens
+  //* Where the Magic Happens
   render () {
     return (
       <div className='Tiled-back'>

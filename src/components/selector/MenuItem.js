@@ -6,11 +6,11 @@ class MenuItem extends Component {
   core = this.props.core;
   constructor (props) {
     super(props);
-    console.log('core ', props.core);
+
     let { startPos, animated, spawnDir, title } = props.core;
 
-    const diffx = startPos[0] + Math.cos(spawnDir) * -200;
-    const diffy = startPos[1] + Math.sin(spawnDir) * 200;
+    const diffx = startPos[0] + Math.cos(spawnDir) * -100;
+    const diffy = startPos[1] + Math.sin(spawnDir) * 100;
 
     this.state = {
       animated      : animated ? animated : false,
@@ -34,8 +34,8 @@ class MenuItem extends Component {
         }
         100% {
           transform: translate(
-            ${Math.cos(this.core.spawnDir) * 200}px,
-            ${Math.sin(this.core.spawnDir) * -200}px);
+            ${Math.cos(this.core.spawnDir) * 100}px,
+            ${Math.sin(this.core.spawnDir) * -100}px);
           }
         }`;
 
