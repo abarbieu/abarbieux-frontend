@@ -4,16 +4,17 @@ import MenuItem from './MenuItem';
 
 class Menu extends Component {
   render () {
-    return this.props.items.map((item) => {
+    return Object.entries(this.props.items).map(([ key, item ]) => {
       return (
         <MenuItem
           key={item.key}
+          id={key}
           title={item.title}
           spawnDir={item.spawnDir}
           onClick={this.props.spawnKin}
           fromPos={item.fromPos}
           fromMenu={item.fromMenu}
-          fresh={item.fresh}
+          animated={item.animated}
         />
       );
     });
@@ -21,7 +22,7 @@ class Menu extends Component {
 }
 
 Menu.propTypes = {
-  items    : PropTypes.array.isRequired,
+  items    : PropTypes.object.isRequired,
   spawnKin : PropTypes.func.isRequired,
 };
 export default Menu;

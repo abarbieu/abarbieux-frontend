@@ -1,6 +1,7 @@
 {
   "root": {
     "id": "root",
+    "active": true,
     "children": [ "todo", "recc", "dream" ],
     "title": "+",
     "todo": {

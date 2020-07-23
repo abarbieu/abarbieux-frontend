@@ -6,24 +6,24 @@ class MenuItem extends Component {
   constructor (props) {
     super(props);
 
-    let { fromPos, fresh, spawnDir } = props;
+    let { fromPos, animated, spawnDir } = props;
 
-    const diffx = fromPos[0] + Math.cos(spawnDir) * -100;
-    const diffy = fromPos[1] + Math.sin(spawnDir) * 100;
+    const diffx = fromPos[0] + Math.cos(spawnDir) * -200;
+    const diffy = fromPos[1] + Math.sin(spawnDir) * 200;
 
     this.state = {
-      fresh         : fresh ? fresh : false,
+      animated      : animated ? animated : false,
       title         : props.title,
       endPos        : [
-        fresh ? diffx : fromPos[0],
-        fresh ? diffy : fromPos[1],
+        animated ? diffx : fromPos[0],
+        animated ? diffy : fromPos[1],
       ],
       animationName : '',
     };
   }
 
   componentDidMount () {
-    if (this.props.fresh) {
+    if (this.props.animated) {
       let styleSheet = document.styleSheets[0];
       let animationName = `animation${Math.ceil(this.props.spawnDir)}`;
 
@@ -33,8 +33,8 @@ class MenuItem extends Component {
         }
         100% {
           transform: translate(
-            ${Math.cos(this.props.spawnDir) * 100}px,
-            ${Math.sin(this.props.spawnDir) * -100}px);
+            ${Math.cos(this.props.spawnDir) * 200}px,
+            ${Math.sin(this.props.spawnDir) * -200}px);
           }
         }`;
 
@@ -76,11 +76,12 @@ class MenuItem extends Component {
 
 MenuItem.propTypes = {
   title    : PropTypes.string.isRequired,
+  key      : PropTypes.string.isRequired,
   onClick  : PropTypes.func.isRequired,
   spawnDir : PropTypes.number,
   fromPos  : PropTypes.array,
   fromMenu : PropTypes.object,
-  fresh    : PropTypes.bool,
+  animated : PropTypes.bool,
 };
 
 export default MenuItem;

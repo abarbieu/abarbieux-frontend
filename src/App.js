@@ -15,7 +15,7 @@ class App extends React.Component {
 
   state = {
     todos     : [],
-    menuItems : [],
+    menuItems : {},
   };
 
   getAllTodos = () => {
@@ -65,27 +65,38 @@ class App extends React.Component {
         this.setState({ todos: [ ...this.state.todos, newTodo ] });
       });
   };
+  comparePos = (a, b) => {
+    return a[0] === b[0] && a[1] === b[1];
+  };
+  // setPos = (key) => {
+  //   for (let i = this.state.menuItems.length; i >= 0; i--) {
+  //     if (this.state.menuItems.key.equals(key)) {
+  //       this.setState(menuItems);
+  //     }
+  //   }
+  // };
   spawnKin = (parent, parentPos) => {
     if (parent) {
-      let spawned = parent.children.map((child, index) => {
-        return {
+      let spawned = {};
+      parent.children.forEach((child, index) => {
+        spawned[child] = {
           key      : uuid.v4(),
           title    : child,
           spawnDir : Math.PI - index * Math.PI / 4.0,
           fromPos  : parentPos,
           fromMenu : parent[child],
-          fresh    : true,
+          animated : true,
         };
       });
 
-      this.setState(
-        {
-          menuItems : [ ...this.state.menuItems, ...spawned ],
-        },
-        () => {
-          console.log('added: %O, result: %O', spawned, this.state);
-        }
-      );
+      this.setState((prevState) => {
+        return {
+          menuItems : {
+            ...prevState.menuItems,
+            ...spawned,
+          },
+        };
+      });
     }
   };
   componentDidMount () {
@@ -95,15 +106,14 @@ class App extends React.Component {
     this.getAllTodos();
     this.setState(
       {
-        menuItems : [
-          {
+        menuItems : {
+          [MenuMap.root.id]: {
+            ...MenuMap.root,
             key      : uuid.v4(),
-            title    : MenuMap.root.title,
             fromPos  : [ 0, 0 ],
-            fromMenu : MenuMap.root,
-            fresh    : false,
+            animated : false,
           },
-        ],
+        },
       },
       () => {
         // console.log('App mounted, initial state: %O', this.state);
@@ -123,7 +133,11 @@ class App extends React.Component {
             deleteTodo={this.deleteTodo}
           />
           <div className='Menu-container'>
-            <Menu items={this.state.menuItems} spawnKin={this.spawnKin} />
+            <Menu
+              items={this.state.menuItems}
+              spawnKin={this.spawnKin}
+              setPos={this.setPos}
+            />
           </div>
         </div>
       </div>
