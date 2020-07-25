@@ -27,7 +27,7 @@ class App extends React.Component {
 
           <TodoList apiUrl={this.apiUrl} />
           <div className='Menu-container'>
-            <Menu MenuMap={MenuMap} />
+            <Menu RootPos={{ x: 0, y: 0 }} MenuMap={MenuMap} />
           </div>
         </div>
       </div>

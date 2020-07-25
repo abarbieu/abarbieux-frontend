@@ -5,7 +5,59 @@
     "title": "+",
 
     "children": {
-      "manifest": [ "a", "b", "c", "d", "e", "f", "g", "h" ]
+      "manifest": [ "Todo", "Note", "Interest" ],
+      "Todo": {
+        "title": "Todo",
+        "children": {
+          "manifest": [ "Set Alarm", "Set Priority" ],
+          "Set Alarm": {
+            "title": "Set Alarm",
+            "children": {
+              "manifest": [ "1hr", "30m", "3hr", "10m", "Tomorrow" ]
+            }
+          },
+          "Set Priority": {
+            "title": "Set Priority",
+            "children": {
+              "manifest": [ "Med", "Low", "High", "Don't Care", "Oh Crap" ]
+            }
+          }
+        }
+      },
+      "Note": {
+        "title": "Note",
+        "children": {
+          "manifest": [ "Set Alarm", "Set Priority" ],
+          "Set Alarm": {
+            "title": "Set Alarm",
+            "children": {
+              "manifest": [ "1hr", "30m", "3hr", "10m", "Tomorrow" ]
+            }
+          },
+          "Set Priority": {
+            "title": "Set Priority",
+            "children": {
+              "manifest": [ "Med", "Low", "High", "Don't Care", "Oh Crap" ]
+            }
+          }
+        }
+      },
+      "Interest": {
+        "title": "Interest",
+        "children": {
+          "manifest": [ "Set Type", "Set Interest" ],
+          "Set Type": {
+            "title": "Set Type",
+            "children": { "manifest": [ "Film", "Book", "Song", "Artist" ] }
+          },
+          "Set Interest": {
+            "title": "Set Interest",
+            "children": {
+              "manifest": [ "Med", "Low", "High", "Don't Care", "Hell Yeah" ]
+            }
+          }
+        }
+      }
     }
   }
 }

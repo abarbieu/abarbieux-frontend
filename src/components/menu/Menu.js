@@ -15,7 +15,7 @@ class Menu extends Component {
           key      : uuid.v4(),
           menuPath : 'root',
           active   : true,
-          startPos : { x: 100, y: 50 },
+          startPos : props.RootPos || { x: 100, y: 50 },
           animated : false,
         },
       },
@@ -144,6 +144,7 @@ class Menu extends Component {
 
 Menu.propTypes = {
   MenuMap : PropTypes.object.isRequired,
+  RootPos : PropTypes.object,
 };
 
 export default Menu;

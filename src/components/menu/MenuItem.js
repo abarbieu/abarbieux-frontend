@@ -12,7 +12,7 @@ class MenuItem extends Component {
 
     let { startPos, animated, title } = props.core;
     this.state = {
-      animated      : animated ? animated : false,
+      animated      : animated || false,
       title         : title,
       endPos        : {
         x : startPos.x - (animated ? this.diffx : 0),
