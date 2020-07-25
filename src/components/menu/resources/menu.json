@@ -1,0 +1,11 @@
+{
+  "root": {
+    "id": "root",
+    "active": true,
+    "title": "+",
+
+    "children": {
+      "manifest": [ "a", "b", "c", "d", "e", "f", "g", "h" ]
+    }
+  }
+}

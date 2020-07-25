@@ -1,24 +1,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './MenuItem.css';
+import './style/MenuItem.css';
 
 class MenuItem extends Component {
   core = this.props.core;
+  diffx = Math.trunc(Math.cos(this.core.spawnDir) * 100);
+  diffy = Math.trunc(Math.sin(this.core.spawnDir) * 100);
+
   constructor (props) {
     super(props);
 
-    let { startPos, animated, spawnDir, title } = props.core;
-
-    const diffx = startPos[0] + Math.cos(spawnDir) * -100;
-    const diffy = startPos[1] + Math.sin(spawnDir) * 100;
-
+    let { startPos, animated, title } = props.core;
     this.state = {
       animated      : animated ? animated : false,
       title         : title,
-      endPos        : [
-        animated ? diffx : startPos[0],
-        animated ? diffy : startPos[1],
-      ],
+      endPos        : {
+        x : startPos.x - (animated ? this.diffx : 0),
+        y : startPos.y + (animated ? this.diffy : 0),
+      },
       animationName : '',
     };
   }
@@ -26,7 +25,7 @@ class MenuItem extends Component {
   componentDidMount () {
     if (this.core.animated) {
       let styleSheet = document.styleSheets[0];
-      let animationName = `animation${Math.ceil(this.core.spawnDir)}`;
+      let animationName = `animation${Math.ceil(this.core.spawnDir * 10)}`;
 
       let keyframes = `@keyframes ${animationName} {
         0% {
@@ -34,8 +33,8 @@ class MenuItem extends Component {
         }
         100% {
           transform: translate(
-            ${Math.cos(this.core.spawnDir) * 100}px,
-            ${Math.sin(this.core.spawnDir) * -100}px);
+            ${this.diffx}px,
+            ${-1 * this.diffy}px);
           }
         }`;
 
@@ -51,8 +50,8 @@ class MenuItem extends Component {
     return {
       animationName : this.state.animationName,
 
-      right         : this.core.startPos[0],
-      bottom        : this.core.startPos[1],
+      right         : this.core.startPos.x,
+      bottom        : this.core.startPos.y,
     };
   };
 
