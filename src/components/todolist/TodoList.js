@@ -1,5 +1,6 @@
 import React from 'react';
 import { TodoItem } from './TodoItem';
+import AddTodo from './AddTodo';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
@@ -10,6 +11,30 @@ class TodoList extends React.Component {
     this.state = {
       todos : [],
     };
+    this.apiUrl = props.apiUrl;
+  }
+
+  componentDidMount () {
+    axios.get(this.apiUrl).then((res) => {
+      console.log(res.data);
+    });
+    this.getAllTodos();
+  }
+
+  render () {
+    return (
+      <div>
+        <AddTodo addTodo={this.addTodo} />
+        {this.state.todos.map((todo) => (
+          <TodoItem
+            key={todo.id}
+            todo={todo}
+            markComplete={this.markComplete}
+            deleteTodo={this.deleteTodo}
+          />
+        ))}
+      </div>
+    );
   }
 
   //* Gets all todos in db
@@ -61,21 +86,10 @@ class TodoList extends React.Component {
         this.setState({ todos: [ ...this.state.todos, newTodo ] });
       });
   };
-
-  render () {
-    return this.state.todos.map((todo) => (
-      <TodoItem
-        key={todo.id}
-        todo={todo}
-        markComplete={this.props.markComplete}
-        deleteTodo={this.props.deleteTodo}
-      />
-    ));
-  }
 }
 
 TodoList.propTypes = {
-  todos : PropTypes.array.isRequired,
+  apiUrl : PropTypes.string.isRequired,
 };
 
 export default TodoList;
