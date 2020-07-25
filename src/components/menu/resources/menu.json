@@ -27,7 +27,7 @@
       "Note": {
         "title": "Note",
         "children": {
-          "manifest": [ "Set Alarm", "Set Priority" ],
+          "manifest": [ "Set Alarm", "Normal", "Set Priority" ],
           "Set Alarm": {
             "title": "Set Alarm",
             "children": {
