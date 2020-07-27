@@ -1,6 +1,6 @@
 [
   {
-    "rootNode": {
+    "root": {
       "title": "Enter",
       "children": [ "projects", "resume", "tools", "art" ]
     }
