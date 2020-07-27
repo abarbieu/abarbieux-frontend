@@ -2,13 +2,10 @@ import React from 'react';
 import TodoList from './components/todolist/TodoList';
 import Header from './components/todolist/style/Header';
 import MenuMap from './components/menu/resources/menu';
-import Menu from './components/menu/Menu';
-import './App.css';
-
+import MenuContainer from './components/menu/MenuContainer';
 import './App.css';
 
 class App extends React.Component {
-  //! Move to env variable?
   constructor (props) {
     super(props);
     if (process.env.NODE_ENV === 'development') {
@@ -27,7 +24,7 @@ class App extends React.Component {
 
           <TodoList apiUrl={this.apiUrl} />
           <div className='Menu-container'>
-            <Menu RootPos={{ x: 0, y: 0 }} MenuMap={MenuMap} />
+            <MenuContainer RootPos={{ x: 0, y: 0 }} MenuMap={MenuMap} />
           </div>
         </div>
       </div>

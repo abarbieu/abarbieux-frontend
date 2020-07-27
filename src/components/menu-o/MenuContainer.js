@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import MenuItem from './MenuItem';
+import Menu from './Menu';
 import uuid from 'uuid';
 
-class Menu extends Component {
+class MenuContainer extends Component {
   constructor (props) {
     super(props);
 
     this.state = {
-      menuMap : {
+      menuMap       : {
         ...props.MenuMap,
         root : {
           ...props.MenuMap.root,
@@ -19,28 +19,42 @@ class Menu extends Component {
           animated : false,
         },
       },
+      itemsToRender : [],
     };
   }
 
   render () {
-    var activeQueue = [];
-    var menuItems = [];
+    this.findActive(this.state.menuMap);
+    return (
+      <Menu
+        itemsToRender={this.state.itemsToRender}
+        onClick={this.activateKin}
+      />
+    );
+  }
 
-    if (this.state.menuMap.root.active) {
-      activeQueue.push(this.state.menuMap.root);
+  //* Traverses MenuMap and adds any active items to itemsToRender
+  findActive = (fromMap) => {
+    let activeQueue = [];
+    let activatedItems = [];
+    // let item = {};
+
+    if (fromMap.root.active) {
+      activeQueue.push(fromMap.root);
     }
+
     while (activeQueue.length > 0) {
       let item = activeQueue.shift();
+      let kids = item.children;
+      activatedItems.push(item);
 
-      menuItems.push(
-        <MenuItem key={item.key} core={item} onClick={this.activateKin} />
-      );
-      if (item && item.children) {
-        item.children.manifest.forEach((child) => {
-          if (item.children[child] && item.children[child].active) {
-            activeQueue.push(item.children[child]);
-          } else if (!item.children[child] || !item.children[child].title) {
-            item.children[child] = {
+      if (kids) {
+        kids.manifest.forEach((child) => {
+          if (kids[child] && kids[child].active) {
+            activeQueue.push(kids[child]);
+          } else if (!kids[child] || !kids[child].title) {
+            //* Creates generic child if listed but not specified in fromMap
+            kids[child] = {
               title  : child,
               id     : child,
               active : false,
@@ -49,9 +63,8 @@ class Menu extends Component {
         });
       }
     }
-
-    return menuItems;
-  }
+    this.setState({ itemsToRender: activatedItems });
+  };
 
   //* Gets into nested objects via path
   followPath = (root, path) => {
@@ -105,7 +118,6 @@ class Menu extends Component {
 
   //* Called when a MenuItem is clicked
   //* DONE: remove siblings
-  // TODO: remove strangers
   activateKin = (parent, parentPos) => {
     this.deactivateChildren(parent.menuPath);
     if (parent.id !== 'root') {
@@ -142,9 +154,9 @@ class Menu extends Component {
   };
 }
 
-Menu.propTypes = {
+MenuContainer.propTypes = {
   MenuMap : PropTypes.object.isRequired,
   RootPos : PropTypes.object,
 };
 
-export default Menu;
+export default MenuContainer;

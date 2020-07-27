@@ -1,0 +1,83 @@
+[
+  {
+    "rootNode": {
+      "title": "Enter",
+      "children": [ "projects", "resume", "tools", "art" ]
+    }
+  },
+  {
+    "projects": {
+      "title": "Projects",
+      "children": [ "all-projects", "web", "fun", "school" ]
+    },
+    "resume": {
+      "title": "Interactive Resume",
+      "route": "/interactive-resume/"
+    },
+    "tools": {
+      "title": "Tools",
+      "children": [ "notes", "timeline" ]
+    },
+    "art": {
+      "title": "Arty Things",
+      "children": [ "all-art", "ceramics", "photography", "random" ]
+    }
+  },
+  {
+    "all-projects": {
+      "title": "View All",
+      "link": "https://github.com/abarbieu?tab=repositories"
+    },
+    "web": {
+      "title": "Web Dev",
+      "children": [ "frontend", "backend", "database" ]
+    },
+    "fun": { "title": "Fun", "children": [ "fractals", "data-vis" ] },
+    "school": {
+      "title": "School Projects",
+      "children": [ "thumbsim", "highschool" ]
+    },
+    "notes": { "title": "Notes", "route": "/notes/" },
+    "timeline": { "title": "TimeLine", "route": "/timeline/" },
+    "all-art": { "title": "View All", "route": "/art/" },
+    "ceramics": { "title": "Ceramics", "route": "/art/ceramics/" },
+    "photography": { "title": "Photography", "route": "/art/photography" },
+    "random": { "title": "Random", "route": "/art/random" }
+  },
+  {
+    "frontend": {
+      "title": "Front-End",
+      "link": "https://github.com/abarbieu/abarbieux-frontend"
+    },
+    "backend": {
+      "title": "Back-End",
+      "link": "https://github.com/abarbieu/abarbieux-backend"
+    },
+    "database": {
+      "title": "Postgres Fun",
+      "link": "https://github.com/abarbieu/postgreSQL-playground"
+    },
+    "thumbsim": {
+      "title": "ARM Simulator",
+      "link": "https://github.com/abarbieu/arm-thumb-simulator"
+    },
+    "highschool": {
+      "title": "Highschool CS",
+      "children": [ "ants", "food-rater", "trig-circles" ]
+    }
+  },
+  {
+    "ants": {
+      "title": "Langtons Ant",
+      "link": "https://github.com/abarbieu/Ants"
+    },
+    "food-rater": {
+      "title": "Food Rater IOS App",
+      "link": "https://github.com/abarbieu/FoodRater"
+    },
+    "trig-circles": {
+      "title": "Trig Circles",
+      "link": "https://github.com/abarbieu/Trig-Circles"
+    }
+  }
+]
