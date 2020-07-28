@@ -1,9 +1,11 @@
 import * as React from 'react';
+import * as uuid from 'uuid';
 import './MenuNode.css';
 
 export default class Menu extends React.Component<MyProps, MyState> {
   constructor (props: MyProps) {
     super(props);
+
     this.state = {
       active:
         [
@@ -20,10 +22,13 @@ export default class Menu extends React.Component<MyProps, MyState> {
     };
   }
 
-  render (): Array<JSX.Element> {
-    const renderedItems: Array<JSX.Element> = [];
+  render () {
+    let renderedItems: Array<JSX.Element> = [];
     for (let i = 0; i < this.state.active.length; i++) {
-      renderedItems.concat(this.layerToBtns(this.state.active[i], i));
+      renderedItems = [
+        ...renderedItems,
+        ...this.layerToBtns(this.state.active[i], i),
+      ];
     }
     return renderedItems;
   }
@@ -32,7 +37,7 @@ export default class Menu extends React.Component<MyProps, MyState> {
     const jsxArr: Array<JSX.Element> = [];
     for (let [ id, node ] of Object.entries(layer)) {
       jsxArr.push(
-        <div>
+        <div key={uuid.v4()}>
           <button
             className='Menu-btn'
             style={node.style}
@@ -68,7 +73,7 @@ export default class Menu extends React.Component<MyProps, MyState> {
           //* Generates evenly distributed dirs for kids
           const dir = from + i / numKids * ((to < from ? to + 2 : to) - from);
 
-          const diff = this.addAnimation(dir, 100);
+          const diff = this.addAnimation(dir, 50);
 
           //* Initing each child in next later
           prevState.active[depth + 1][child] = {
@@ -97,7 +102,7 @@ export default class Menu extends React.Component<MyProps, MyState> {
   addAnimation = (dir: number, dist: number): { x: number; y: number } => {
     let styleSheet = document.styleSheets[0];
     let animationName: string = `animation${Math.ceil(dir * 10)}`;
-
+    dir = Math.PI * dir;
     let keyframes = `@keyframes ${animationName} {
         0% {
           transform: translate(0px, 0px);

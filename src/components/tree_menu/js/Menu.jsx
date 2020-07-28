@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
+const uuid = require("uuid");
 require("./MenuNode.css");
 class Menu extends React.Component {
     constructor(props) {
@@ -8,7 +9,7 @@ class Menu extends React.Component {
         this.layerToBtns = (layer, depth) => {
             const jsxArr = [];
             for (let [id, node] of Object.entries(layer)) {
-                jsxArr.push(<div>
+                jsxArr.push(<div key={uuid.v4()}>
           <button className='Menu-btn' style={node.style} onClick={this.nodeClicked.bind(this, depth, id)}>
             {this.props.menu[depth][id].title}
           </button>
@@ -33,7 +34,7 @@ class Menu extends React.Component {
                     menuNode.children.forEach((child, i) => {
                         //* Generates evenly distributed dirs for kids
                         const dir = from + i / numKids * ((to < from ? to + 2 : to) - from);
-                        const diff = this.addAnimation(dir, 100);
+                        const diff = this.addAnimation(dir, 50);
                         //* Initing each child in next later
                         prevState.active[depth + 1][child] = {
                             pos: { x: node.pos.x + diff.x, y: node.pos.y + diff.y },
@@ -62,6 +63,7 @@ class Menu extends React.Component {
         this.addAnimation = (dir, dist) => {
             let styleSheet = document.styleSheets[0];
             let animationName = `animation${Math.ceil(dir * 10)}`;
+            dir = Math.PI * dir;
             let keyframes = `@keyframes ${animationName} {
         0% {
           transform: translate(0px, 0px);
@@ -104,9 +106,12 @@ class Menu extends React.Component {
         };
     }
     render() {
-        const renderedItems = [];
+        let renderedItems = [];
         for (let i = 0; i < this.state.active.length; i++) {
-            renderedItems.concat(this.layerToBtns(this.state.active[i], i));
+            renderedItems = [
+                ...renderedItems,
+                ...this.layerToBtns(this.state.active[i], i),
+            ];
         }
         return renderedItems;
     }

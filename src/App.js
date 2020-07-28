@@ -1,5 +1,5 @@
 import React from 'react';
-import TodoList from './components/todolist/TodoList';
+// import TodoList from './components/todolist/TodoList';
 import Header from './components/todolist/style/Header';
 import LaunchMenu from './launch-menu';
 import TreeMenu from './components/tree_menu/js/Menu';
@@ -22,10 +22,10 @@ class App extends React.Component {
         <div className='container'>
           <Header />
 
-          <TodoList apiUrl={this.apiUrl} />
+          {/* <TodoList apiUrl={this.apiUrl} /> */}
           <div className='Menu-container'>
             <TreeMenu
-              rootPos={{ x: 400, y: 400 }}
+              rootPos={{ x: 500, y: 300 }}
               spawnRange={{ from: 0, to: 2 }}
               menu={LaunchMenu}
             />
