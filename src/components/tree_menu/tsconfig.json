@@ -2,8 +2,9 @@
   "compilerOptions": {
     "target": "ES6",
     "module": "commonjs",
+    "sourceMap": true,
+    "jsx":"preserve",
     "outDir": "js",
-    "sourceMap": true
   },
   "exclude": [
     "node_modules"

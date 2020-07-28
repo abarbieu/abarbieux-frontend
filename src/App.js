@@ -1,8 +1,8 @@
 import React from 'react';
 import TodoList from './components/todolist/TodoList';
 import Header from './components/todolist/style/Header';
-import MenuMap from './components/menu/resources/menu';
-import MenuContainer from './components/menu/MenuContainer';
+import LaunchMenu from './launch-menu';
+import TreeMenu from './components/tree_menu/js/Menu';
 import './App.css';
 
 class App extends React.Component {
@@ -24,7 +24,11 @@ class App extends React.Component {
 
           <TodoList apiUrl={this.apiUrl} />
           <div className='Menu-container'>
-            <MenuContainer RootPos={{ x: 0, y: 0 }} MenuMap={MenuMap} />
+            <TreeMenu
+              rootPos={{ x: 400, y: 400 }}
+              spawnRange={{ from: 0, to: 2 }}
+              menu={LaunchMenu}
+            />
           </div>
         </div>
       </div>
