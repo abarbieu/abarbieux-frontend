@@ -4,23 +4,8 @@
   "icons": [
     {
       "src": "favicon.ico",
-      "sizes": "48x48 32x32 16x16",
+      "sizes": "256x256",
       "type": "image/x-icon"
-    },
-    {
-      "src": "fractal_128.png",
-      "type": "image/png",
-      "sizes": "128x128"
-    },
-    {
-      "src": "fractal_512.png",
-      "type": "image/png",
-      "sizes": "512x512"
-    },
-    {
-      "src": "fractal_1024.png",
-      "type": "image/png",
-      "sizes": "1024x1024"
     }
   ],
   "start_url": ".",

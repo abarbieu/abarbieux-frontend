@@ -22,6 +22,8 @@ export default class Menu extends React.Component<MyProps, MyState> {
     };
   }
 
+  //! --------------------------------------------------------------------------
+
   render () {
     let renderedItems: Array<JSX.Element> = [];
     for (let i = 0; i < this.state.active.length; i++) {
@@ -33,72 +35,93 @@ export default class Menu extends React.Component<MyProps, MyState> {
     return renderedItems;
   }
 
+  //! --------------------------------------------------------------------------
+
   layerToBtns = (layer: Layer, depth: number): Array<JSX.Element> => {
     const jsxArr: Array<JSX.Element> = [];
     for (let [ id, node ] of Object.entries(layer)) {
       jsxArr.push(
-        <div key={uuid.v4()}>
-          <button
-            className='Menu-btn'
-            style={node.style}
-            onClick={this.nodeClicked.bind(this, depth, id)}
-          >
-            {this.props.menu[depth][id].title}
-          </button>
-        </div>
+        <button
+          key={uuid.v4()}
+          className='Menu-btn'
+          style={node.style}
+          onClick={this.nodeClicked.bind(this, depth, id)}
+        >
+          {/* {this.state.active[depth][id].spawnRange.from}
+          {' to '}
+          {this.state.active[depth][id].spawnRange.to} */}
+          {this.props.menu[depth][id].title}
+        </button>
       );
     }
     return jsxArr;
   };
 
+  //! --------------------------------------------------------------------------
+
   nodeClicked = (depth: number, id: string) => {
+    //* Queries provided menu json
+    let menuNode: MenuNode = this.props.menu[depth][id];
+    let node: ActiveNode = this.state.active[depth][id];
+
+    if (menuNode.children) {
+      this.setState((prevState) => {
+        //* Deactivates everything else
+        prevState.active.splice(depth);
+
+        //* Deactivated Siblings
+        prevState.active[depth] = { [id]: node };
+
+        return prevState;
+      });
+      this.addChildren(menuNode.children, node, depth);
+    } else if (menuNode.link) {
+      this.followLink(menuNode.link);
+    } else if (menuNode.route) {
+      this.followRoute(menuNode.route);
+    } else {
+      //! Throw error
+    }
+  };
+
+  //! --------------------------------------------------------------------------
+
+  addChildren = (children: Array<string>, node: ActiveNode, depth: number) => {
+    let to: number = node.spawnRange.to;
+    let from: number = node.spawnRange.from;
+
     this.setState((prevState) => {
-      //* Gets node info from menu object
-      let menuNode: MenuNode = this.props.menu[depth][id];
+      //* Resets layer just in case
+      prevState.active[depth + 1] = {};
 
-      let node: ActiveNode = prevState.active[depth][id];
+      //* Adds node's children to active array
+      children.forEach((child, i) => {
+        //* Generates evenly distributed dirs for kids
+        const dir =
+          from + i / children.length * ((to < from ? to + 2 : to) - from);
 
-      let from: number = node.spawnRange.from;
-      let to: number = node.spawnRange.to;
+        //* Diff is distance moved
+        const diff = this.addAnimation(dir, 100);
 
-      //* Deactivates any siblings
-      prevState.active[depth] = { [id]: node };
-      if (menuNode.children) {
-        const numKids = menuNode.children.length;
-        //* Resets layer just in case
-        prevState.active[depth + 1] = {};
-
-        //* Adds node's children to active array
-        menuNode.children.forEach((child, i) => {
-          //* Generates evenly distributed dirs for kids
-          const dir = from + i / numKids * ((to < from ? to + 2 : to) - from);
-
-          const diff = this.addAnimation(dir, 50);
-
-          //* Initing each child in next later
-          prevState.active[depth + 1][child] = {
-            pos: { x: node.pos.x + diff.x, y: node.pos.y + diff.y },
-            spawnRange: this.getSpawnRange(dir),
-            style:
-              {
-                animationName: `animation${Math.ceil(dir * 10)}`,
-                left: node.pos.x + diff.x,
-                top: node.pos.y + diff.y,
-              },
-          };
-        });
-      } else if (menuNode.link) {
-        this.followLink(menuNode.link);
-      } else if (menuNode.route) {
-        this.followRoute(menuNode.route);
-      } else {
-        //! Throw error
-      }
+        //* Initing each child in next later
+        prevState.active[depth + 1][child] = {
+          pos: { x: node.pos.x + diff.x, y: node.pos.y + diff.y },
+          spawnRange: this.getSpawnRange(dir),
+          style:
+            {
+              animationName: `animation${Math.ceil(dir * 10)}`,
+              left: node.pos.x,
+              top: node.pos.y,
+            },
+        };
+      });
       return prevState;
     });
   };
 
-  //* Returns difference translated
+  //! --------------------------------------------------------------------------
+
+  //* Returns dist translated
   addAnimation = (dir: number, dist: number): { x: number; y: number } => {
     let styleSheet = document.styleSheets[0];
     let animationName: string = `animation${Math.ceil(dir * 10)}`;
@@ -121,7 +144,10 @@ export default class Menu extends React.Component<MyProps, MyState> {
     };
   };
 
+  //! --------------------------------------------------------------------------
+
   getSpawnRange = (a: number) => {
+    a *= 8;
     let i: number = Math.floor(((a < 1 ? a + 15 : a) - 1) / 2);
     return {
       from: (Math.floor(i / 2) * 0.5) % 2,
@@ -129,14 +155,31 @@ export default class Menu extends React.Component<MyProps, MyState> {
     };
   };
 
+  //! --------------------------------------------------------------------------
+
   followLink = (link: string) => {
     console.log('Following link: %s', link);
   };
+
+  //! --------------------------------------------------------------------------
 
   followRoute = (route: string) => {
     console.log('Following route: %s', route);
   };
 }
+
+//! --------------------------------------------------------------------------
+
+//* Each index in active array denotes a layer of the tree,
+//* Each layer (at depth i) is an object mapping ids to positions
+type MyState = { active: Array<Layer> };
+type MyProps = {
+  rootPos: Point;
+  spawnRange: Range;
+  menu: Array<{ [key: string]: MenuNode }>;
+};
+
+//! Type stuff
 
 type MenuNode = {
   title: string;
@@ -156,13 +199,4 @@ type ActiveNode = {
 
 type Layer = {
   [key: string]: ActiveNode;
-};
-
-//* Each index in active array denotes a layer of the tree,
-//* Each layer (at depth i) is an object mapping ids to positions
-type MyState = { active: Array<Layer> };
-type MyProps = {
-  rootPos: Point;
-  spawnRange: Range;
-  menu: Array<{ [key: string]: MenuNode }>;
 };

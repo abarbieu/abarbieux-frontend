@@ -1,8 +1,8 @@
 import React from 'react';
-// import TodoList from './components/todolist/TodoList';
 import Header from './components/todolist/style/Header';
 import LaunchMenu from './launch-menu';
-import TreeMenu from './components/tree_menu/js/Menu';
+import * as TreeMenu from './components/tree_menu/js/Menu';
+// import useWindowDimensions from './components/WindowSize';
 import './App.css';
 
 class App extends React.Component {
@@ -13,19 +13,25 @@ class App extends React.Component {
     } else {
       this.apiUrl = 'https://abarbieux.com/api/';
     }
+    this.state = {
+      middle : { x: window.innerWidth / 2, y: window.innerHeight / 2 },
+    };
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
 
   //* Where the Magic Happens
   render () {
+    console.log(this.state);
     return (
       <div className='Tiled-back'>
         <div className='container'>
           <Header />
 
           {/* <TodoList apiUrl={this.apiUrl} /> */}
+
           <div className='Menu-container'>
             <TreeMenu
-              rootPos={{ x: 500, y: 300 }}
+              rootPos={this.state.middle}
               spawnRange={{ from: 0, to: 2 }}
               menu={LaunchMenu}
             />
@@ -33,6 +39,19 @@ class App extends React.Component {
         </div>
       </div>
     );
+  }
+
+  componentDidMount () {
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions () {
+    this.setState({ midde: { x: window.innerWidth, y: window.innerHeight } });
   }
 }
 
