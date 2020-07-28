@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as uuid from 'uuid';
 import './MenuNode.css';
 
-export default class Menu extends React.Component<MyProps, MyState> {
+class TreeMenu extends React.Component<MyProps, MyState> {
   constructor (props: MyProps) {
     super(props);
 
@@ -123,7 +123,7 @@ export default class Menu extends React.Component<MyProps, MyState> {
 
   //* Returns dist translated
   addAnimation = (dir: number, dist: number): { x: number; y: number } => {
-    let styleSheet = document.styleSheets[0];
+    let styleSheet = document.styleSheets[0] as CSSStyleSheet;
     let animationName: string = `animation${Math.ceil(dir * 10)}`;
     dir = Math.PI * dir;
     let keyframes = `@keyframes ${animationName} {
@@ -200,3 +200,5 @@ type ActiveNode = {
 type Layer = {
   [key: string]: ActiveNode;
 };
+
+export default TreeMenu;

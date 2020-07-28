@@ -1,12 +1,22 @@
 import React from 'react';
+import LaunchMenu from './launch-menu.json';
 import Header from './components/todolist/style/Header';
-import LaunchMenu from './launch-menu';
-import * as TreeMenu from './components/tree_menu/js/Menu';
-// import useWindowDimensions from './components/WindowSize';
-import './App.css';
+import TreeMenu from './components/tree_menu/TreeMenu';
+import TodoList from './components/todolist/TodoList';
 
-class App extends React.Component {
-  constructor (props) {
+import './App.css';
+type MyState = { middle: { x: number; y: number } };
+type MyProps = {};
+type MenuNode = {
+  title: string;
+  children?: Array<string>;
+  link?: string;
+  route?: string;
+};
+class App extends React.Component<MyProps, MyState> {
+  apiUrl: String;
+
+  constructor (props: MyProps) {
     super(props);
     if (process.env.NODE_ENV === 'development') {
       this.apiUrl = 'http://127.0.0.1:54321/api/';
@@ -14,20 +24,18 @@ class App extends React.Component {
       this.apiUrl = 'https://abarbieux.com/api/';
     }
     this.state = {
-      middle : { x: window.innerWidth / 2, y: window.innerHeight / 2 },
+      middle: { x: window.innerWidth / 2, y: window.innerHeight / 2 },
     };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
 
-  //* Where the Magic Happens
   render () {
-    console.log(this.state);
     return (
       <div className='Tiled-back'>
         <div className='container'>
           <Header />
 
-          {/* <TodoList apiUrl={this.apiUrl} /> */}
+          <TodoList apiUrl={this.apiUrl} />
 
           <div className='Menu-container'>
             <TreeMenu
@@ -40,7 +48,6 @@ class App extends React.Component {
       </div>
     );
   }
-
   componentDidMount () {
     this.updateWindowDimensions();
     window.addEventListener('resize', this.updateWindowDimensions);
@@ -51,7 +58,7 @@ class App extends React.Component {
   }
 
   updateWindowDimensions () {
-    this.setState({ midde: { x: window.innerWidth, y: window.innerHeight } });
+    this.setState({ middle: { x: window.innerWidth, y: window.innerHeight } });
   }
 }
 
