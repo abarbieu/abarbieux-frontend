@@ -1,8 +1,10 @@
 import * as React from 'react';
 import * as uuid from 'uuid';
-import './MenuNode.css';
+import styled from 'styled-components';
 
 class TreeMenu extends React.Component<MyProps, MyState> {
+  scale: number = 75;
+  units: string = 'px';
   constructor (props: MyProps) {
     super(props);
 
@@ -12,10 +14,10 @@ class TreeMenu extends React.Component<MyProps, MyState> {
           {
             root:
               {
-                pos: this.props.rootPos,
+                offset: { x: 0, y: 0 },
+                startOffset: { x: 0, y: 0 },
                 spawnRange: this.props.spawnRange,
-                style:
-                  { left: this.props.rootPos.x, top: this.props.rootPos.y },
+                animation: '',
               },
           },
         ],
@@ -40,18 +42,15 @@ class TreeMenu extends React.Component<MyProps, MyState> {
   layerToBtns = (layer: Layer, depth: number): Array<JSX.Element> => {
     const jsxArr: Array<JSX.Element> = [];
     for (let [ id, node ] of Object.entries(layer)) {
+      let MenuButton = this.getButtonStyle(node);
+
       jsxArr.push(
-        <button
+        <MenuButton
           key={uuid.v4()}
-          className='Menu-btn'
-          style={node.style}
           onClick={this.nodeClicked.bind(this, depth, id)}
         >
-          {/* {this.state.active[depth][id].spawnRange.from}
-          {' to '}
-          {this.state.active[depth][id].spawnRange.to} */}
           {this.props.menu[depth][id].title}
-        </button>
+        </MenuButton>
       );
     }
     return jsxArr;
@@ -74,7 +73,7 @@ class TreeMenu extends React.Component<MyProps, MyState> {
 
         return prevState;
       });
-      this.addChildren(menuNode.children, node, depth);
+      this.addChildren(menuNode.children, depth, id);
     } else if (menuNode.link) {
       this.followLink(menuNode.link);
     } else if (menuNode.route) {
@@ -86,9 +85,11 @@ class TreeMenu extends React.Component<MyProps, MyState> {
 
   //! --------------------------------------------------------------------------
 
-  addChildren = (children: Array<string>, node: ActiveNode, depth: number) => {
+  addChildren = (children: Array<string>, depth: number, id: string) => {
+    let node: ActiveNode = this.state.active[depth][id];
     let to: number = node.spawnRange.to;
     let from: number = node.spawnRange.from;
+    const theta = (to - from) / (children.length - 1);
 
     this.setState((prevState) => {
       //* Resets layer just in case
@@ -97,22 +98,17 @@ class TreeMenu extends React.Component<MyProps, MyState> {
       //* Adds node's children to active array
       children.forEach((child, i) => {
         //* Generates evenly distributed dirs for kids
-        const dir =
-          from + i / children.length * ((to < from ? to + 2 : to) - from);
-
+        const dir = from + i * theta;
+        console.log(child, dir);
         //* Diff is distance moved
-        const diff = this.addAnimation(dir, 100);
+        const diff = this.addAnimation(dir);
 
         //* Initing each child in next later
         prevState.active[depth + 1][child] = {
-          pos: { x: node.pos.x + diff.x, y: node.pos.y + diff.y },
+          offset: { x: node.offset.x + diff.x, y: node.offset.y + diff.y },
+          startOffset: { x: node.offset.x, y: node.offset.y },
           spawnRange: this.getSpawnRange(dir),
-          style:
-            {
-              animationName: `animation${Math.ceil(dir * 10)}`,
-              left: node.pos.x,
-              top: node.pos.y,
-            },
+          animation: `animation${Math.ceil(dir * 10)}`,
         };
       });
       return prevState;
@@ -122,7 +118,7 @@ class TreeMenu extends React.Component<MyProps, MyState> {
   //! --------------------------------------------------------------------------
 
   //* Returns dist translated
-  addAnimation = (dir: number, dist: number): { x: number; y: number } => {
+  addAnimation = (dir: number): { x: number; y: number } => {
     let styleSheet = document.styleSheets[0] as CSSStyleSheet;
     let animationName: string = `animation${Math.ceil(dir * 10)}`;
     dir = Math.PI * dir;
@@ -132,26 +128,63 @@ class TreeMenu extends React.Component<MyProps, MyState> {
         }
         100% {
           transform: translate(
-            ${Math.trunc(Math.cos(dir) * dist)}px,
-            ${Math.trunc(Math.sin(dir) * -dist)}px);
+            ${Math.trunc(Math.cos(dir) * this.scale)}${this.units},
+            ${Math.trunc(Math.sin(dir) * -this.scale)}${this.units});
           }
         }`;
 
     styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
     return {
-      x: Math.trunc(Math.cos(dir) * dist),
-      y: Math.trunc(Math.sin(dir) * -dist),
+      x: Math.trunc(Math.cos(dir) * this.scale),
+      y: Math.trunc(Math.sin(dir) * -this.scale),
     };
   };
 
   //! --------------------------------------------------------------------------
 
+  getButtonStyle = (node: ActiveNode) => {
+    let width = this.props.rootPos.x;
+    let height = this.props.rootPos.y;
+    let x = node.startOffset.x;
+    let y = node.startOffset.y;
+    // console.log(x, y);
+    // console.log(width, height);
+    let radius = this.scale;
+    return styled.button`
+      font-size: 10pt;
+      outline: none;
+      position: fixed;
+
+      color: #fdb241;
+      background: #07837da6;
+      border-radius: 50%;
+
+      width: ${radius}${this.units};
+      height: ${radius}${this.units};
+      margin-top: -${radius / 2}${this.units};
+      margin-left: -${radius / 2}${this.units};
+
+      left: ${width / 2 + x}px;
+      top: ${height / 2 + y}px;
+
+      animation: ${node.animation} 350ms ease-in-out forwards;
+
+      &:hover {
+        border-color: #fdb241;
+        border-width: 2px;
+      }
+    `;
+  };
+
+  //! --------------------------------------------------------------------------
+  //{ "title": "Fun", "children": [ "fractals", "data-vis" ] }
+
   getSpawnRange = (a: number) => {
     a *= 8;
     let i: number = Math.floor(((a < 1 ? a + 15 : a) - 1) / 2);
     return {
-      from: (Math.floor(i / 2) * 0.5) % 2,
-      to: (Math.floor((i + 3) / 2) * 0.5) % 2,
+      from: Math.floor(i / 2) * 0.5,
+      to: Math.floor((i + 3) / 2) * 0.5,
     };
   };
 
@@ -192,9 +225,10 @@ type Point = { x: number; y: number };
 type Range = { from: number; to: number };
 
 type ActiveNode = {
-  pos: Point;
+  offset: Point;
+  startOffset: Point;
   spawnRange: Range;
-  style: object;
+  animation: string;
 };
 
 type Layer = {

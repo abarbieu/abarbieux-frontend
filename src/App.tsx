@@ -1,18 +1,13 @@
 import React from 'react';
-import LaunchMenu from './launch-menu.json';
+import LaunchMenu from './resources/launch-menu.json';
 import Header from './components/todolist/style/Header';
 import TreeMenu from './components/tree_menu/TreeMenu';
-import TodoList from './components/todolist/TodoList';
-
+//! import TodoList from './components/todolist/TodoList';
 import './App.css';
+
 type MyState = { middle: { x: number; y: number } };
 type MyProps = {};
-type MenuNode = {
-  title: string;
-  children?: Array<string>;
-  link?: string;
-  route?: string;
-};
+
 class App extends React.Component<MyProps, MyState> {
   apiUrl: String;
 
@@ -34,13 +29,10 @@ class App extends React.Component<MyProps, MyState> {
       <div className='Tiled-back'>
         <div className='container'>
           <Header />
-
-          <TodoList apiUrl={this.apiUrl} />
-
           <div className='Menu-container'>
             <TreeMenu
               rootPos={this.state.middle}
-              spawnRange={{ from: 0, to: 2 }}
+              spawnRange={{ from: 0, to: 1.5 }}
               menu={LaunchMenu}
             />
           </div>

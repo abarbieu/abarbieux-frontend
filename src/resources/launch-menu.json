@@ -2,13 +2,13 @@
   {
     "root": {
       "title": "Enter",
-      "children": [ "projects", "resume", "tools", "art" ]
+      "children": [ "resume", "projects", "tools", "art" ]
     }
   },
   {
     "projects": {
       "title": "Projects",
-      "children": [ "all-projects", "web", "fun", "school" ]
+      "children": [ "fun", "all-projects", "school", "web" ]
     },
     "resume": {
       "title": "Interactive Resume",
@@ -20,7 +20,7 @@
     },
     "art": {
       "title": "Arty Things",
-      "children": [ "all-art", "ceramics", "photography", "random" ]
+      "children": [ "all-art", "ceramics", "photography" ]
     }
   },
   {
@@ -32,7 +32,10 @@
       "title": "Web Dev",
       "children": [ "frontend", "backend", "database" ]
     },
-    "fun": { "title": "Fun", "children": [ "fractals", "data-vis" ] },
+    "fun": {
+      "title": "Fun",
+      "children": [ "fractals", "data-vis" ]
+    },
     "school": {
       "title": "School Projects",
       "children": [ "thumbsim", "highschool" ]
@@ -64,6 +67,14 @@
     "highschool": {
       "title": "Highschool CS",
       "children": [ "ants", "food-rater", "trig-circles" ]
+    },
+    "fractals": {
+      "title": "Fractals",
+      "link": "https://github.com/abarbieu/Mandelbrot"
+    },
+    "data-vis": {
+      "title": "Data Visualization",
+      "link": "https://github.com/abarbieu/gpxVis"
     }
   },
   {
