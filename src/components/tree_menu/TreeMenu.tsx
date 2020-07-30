@@ -12,10 +12,36 @@ import uuid from 'uuid';
 class TreeMenu extends React.Component<MyProps, MyState> {
   scale: number = 75;
   units: string = 'px';
+  menuApi: TreeMenuApi;
   constructor (props: MyProps) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      elements:
+        [
+          {
+            root:
+              {
+                pos: { x: 0, y: 0 },
+                title: props.menu[0].root.title,
+                spawnRange: { from: 0, to: 1.5 },
+              },
+          },
+        ],
+    };
+    this.menuApi = new TreeMenuApi({
+      menu: props.menu,
+      scale: 75,
+      units: 'px',
+    });
+  }
+
+  //! --------------------------------------------------------------------------
+
+  componentDidMount () {
+    console.log('Mounted');
+    console.log(this.menuApi.handleSpawn(this.state.elements, 0, 'root'));
+    console.log(this.state);
   }
 
   //! --------------------------------------------------------------------------
@@ -23,40 +49,6 @@ class TreeMenu extends React.Component<MyProps, MyState> {
   render () {
     return <p>hi</p>;
   }
-
-  getButtonStyle = (node: InfoNode) => {
-    let width = this.props.rootPos.x;
-    let height = this.props.rootPos.y;
-    let x = node.startPos.x;
-    let y = node.startPos.y;
-    // console.log(x, y);
-    // console.log(width, height);
-    let radius = this.scale;
-    return styled.button`
-      font-size: 10pt;
-      outline: none;
-      position: fixed;
-
-      color: #fdb241;
-      background: #07837da6;
-      border-radius: 50%;
-
-      width: ${radius}${this.units};
-      height: ${radius}${this.units};
-      margin-top: -${radius / 2}${this.units};
-      margin-left: -${radius / 2}${this.units};
-
-      left: ${width / 2 + x}px;
-      top: ${height / 2 + y}px;
-
-      animation: ${node.animation} 350ms ease-in-out forwards;
-
-      &:hover {
-        border-color: #fdb241;
-        border-width: 2px;
-      }
-    `;
-  };
 }
 
 //! --------------------------------------------------------------------------
@@ -66,7 +58,9 @@ class TreeMenu extends React.Component<MyProps, MyState> {
 //* Each index in active array denotes a layer of the tree,
 //* Each layer (at depth i) is an object mapping ids to positions
 // type MyState = { active: Array<Layer> };
-type MyState = {};
+type MyState = {
+  elements: Array<{ [key: string]: InfoNode }>;
+};
 type MyProps = {
   rootPos: Point;
   spawnRange: SpawnRange;

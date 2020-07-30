@@ -112,7 +112,6 @@ class TreeMenuApi {
 //* Types and stuff
 
 interface MyProps {
-  rootPos: Point;
   menu: Array<{ [key: string]: MenuNode }>;
   scale: number;
   units: string;
