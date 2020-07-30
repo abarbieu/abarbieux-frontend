@@ -1,8 +1,9 @@
 import React from 'react';
+import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
 import LaunchMenu from './resources/launch-menu.json';
 import Header from './components/todolist/style/Header';
 import TreeMenu from './components/tree_menu/TreeMenu';
-//! import TodoList from './components/todolist/TodoList';
+import TodoList from './components/todolist/TodoList';
 import './App.css';
 
 type MyState = { middle: { x: number; y: number } };
@@ -27,16 +28,34 @@ class App extends React.Component<MyProps, MyState> {
   render () {
     return (
       <div className='Tiled-back'>
-        <div className='container'>
-          <Header />
-          <div className='Menu-container'>
-            <TreeMenu
-              rootPos={this.state.middle}
-              spawnRange={{ from: 0, to: 1.5 }}
-              menu={LaunchMenu}
-            />
-          </div>
-        </div>
+        <Router>
+          {/* <li>
+            <Link to='/nav/'>Navigator</Link>
+          </li> */}
+          {/* <div className='container'>
+            <Header />
+            <div className='Menu-container'>
+              <TreeMenu
+                rootPos={this.state.middle}
+                spawnRange={{ from: 0, to: 1.5 }}
+                menu={LaunchMenu}
+              />
+            </div>
+          </div> */}
+          <Switch>
+            <Route path='/notes/'>
+              <Header />
+              <TodoList apiUrl={this.apiUrl} />
+            </Route>
+            <Route path='/'>
+              <TreeMenu
+                rootPos={this.state.middle}
+                spawnRange={{ from: 0, to: 1.5 }}
+                menu={LaunchMenu}
+              />
+            </Route>
+          </Switch>
+        </Router>
       </div>
     );
   }

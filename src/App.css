@@ -17,10 +17,6 @@ a {
   padding: 0 1rem;
 }
 
-.Menu-container {
-  position: relative;
-}
-
 .btn {
   display: inline-block;
   border: none;
