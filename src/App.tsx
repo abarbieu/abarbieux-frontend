@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import LaunchMenu from './resources/launch-menu.json';
 import Header from './components/todolist/style/Header';
 import TreeMenu from './components/tree_menu/TreeMenu';
@@ -50,7 +50,7 @@ class App extends React.Component<MyProps, MyState> {
             <Route path='/'>
               <TreeMenu
                 rootPos={this.state.middle}
-                spawnRange={{ from: 0, to: 1.5 }}
+                spawnRange={{ from: 0, to: 2 }}
                 menu={LaunchMenu}
               />
             </Route>

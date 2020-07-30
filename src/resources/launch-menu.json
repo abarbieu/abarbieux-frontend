@@ -2,7 +2,7 @@
   {
     "root": {
       "title": "Enter",
-      "children": [ "resume", "projects", "tools", "art" ]
+      "children": [ "resume", "projects", "tools", "art", "about" ]
     }
   },
   {
@@ -21,6 +21,10 @@
     "art": {
       "title": "Arty Things",
       "children": [ "all-art", "ceramics", "photography" ]
+    },
+    "about": {
+      "title": "About Me",
+      "route": "/about/"
     }
   },
   {

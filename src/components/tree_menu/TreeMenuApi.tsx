@@ -1,5 +1,5 @@
 // import * as uuid from 'uuid';
-import styled, { keyframes, Keyframes } from 'styled-components';
+import { keyframes, Keyframes } from 'styled-components';
 
 class TreeMenuApi {
   scale: number;
@@ -15,10 +15,14 @@ class TreeMenuApi {
 
   handleSpawn = (currElem: Array<Layer>, depth: number, id: string) => {
     let node: InfoNodeChildren = currElem[depth][id] as InfoNodeChildren;
-    const to: number = node.spawnRange.to;
     const from: number = node.spawnRange.from;
+    let to: number = node.spawnRange.to;
     const children: Array<string> = (this.menu[depth][id] as MenuNodeChildren)
       .children;
+    //* Handles root, or 360 spawn, prevents overlap
+    if (from + 2 === to) {
+      to = to - 2 / children.length;
+    }
     const theta = (to - from) / (children.length - 1);
 
     //* Deactivates everything else
@@ -31,13 +35,13 @@ class TreeMenuApi {
     currElem[depth + 1] = {};
 
     //* Adds node's children to currElem, returns currElem
-    children.forEach((child, i) => {
+    children.forEach((child: string, i: number) => {
       //* Generates evenly distributed dirs for kids
       const dir = from + i * theta;
 
       //* Diff is distance moved
       const diff = this.dirToDist(dir);
-      const menuInfo: MenuNode = this.menu[depth][id];
+      const menuInfo: MenuNode = this.menu[depth + 1][child];
       const baseInfo = {
         title: menuInfo.title,
         pos: { x: diff.x + node.pos.x, y: diff.y + node.pos.y },
@@ -95,11 +99,13 @@ class TreeMenuApi {
   //! --------------------------------------------------------------------------
 
   getSpawnRange = (a: number) => {
-    a *= 8;
-    let i: number = Math.floor(((a < 1 ? a + 15 : a) - 1) / 2);
+    // a *= 8;
+    // let i: number = Math.floor(((a < 1 ? a + 15 : a) - 1) / 2);
     return {
-      from: Math.floor(i / 2) * 0.5,
-      to: Math.floor((i + 3) / 2) * 0.5,
+      from: 1.5 + a,
+      to: 2.5 + a,
+      // from: Math.floor(i / 2) * 0.5,
+      // to: Math.floor((i + 3) / 2) * 0.5,
     };
   };
 }

@@ -1,5 +1,8 @@
 import * as React from 'react';
-import styled, { keyframes, Keyframes } from 'styled-components';
+import { Link } from 'react-router-dom';
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
+// keyframes,
+// Keyframes,
 import TreeMenuApi, {
   InfoNode,
   Point,
@@ -24,7 +27,7 @@ class TreeMenu extends React.Component<MyProps, MyState> {
               {
                 pos: { x: 0, y: 0 },
                 title: props.menu[0].root.title,
-                spawnRange: { from: 0, to: 1.5 },
+                spawnRange: props.spawnRange,
               },
           },
         ],
@@ -38,28 +41,115 @@ class TreeMenu extends React.Component<MyProps, MyState> {
 
   //! --------------------------------------------------------------------------
 
-  componentDidMount () {
-    console.log('Mounted');
-    console.log(this.menuApi.handleSpawn(this.state.elements, 0, 'root'));
-    console.log(this.state);
+  //! --------------------------------------------------------------------------
+
+  render (): Array<JSX.Element> {
+    let jsxArr: Array<JSX.Element> = [];
+    for (let i = 0; i < this.state.elements.length; i++) {
+      Object.entries(this.state.elements[i]).forEach(([ id, node ]) => {
+        jsxArr.push(this.nodeToJSX(node, i, id));
+      });
+    }
+    return jsxArr;
   }
 
   //! --------------------------------------------------------------------------
 
-  render () {
-    return <p>hi</p>;
-  }
-}
+  nodeToJSX = (node: InfoNode, depth: number, id: string): JSX.Element => {
+    let MenuButton = this.getDynamicStyle(node);
+    if (node.animation) {
+      this.state.elements[depth][id].animation = undefined;
+    }
+    if (node.route) {
+      return (
+        <Link to={node.route} key={uuid.v4()}>
+          <MenuButton>{node.title}</MenuButton>
+        </Link>
+      );
+    } else if (node.spawnRange) {
+      return (
+        <MenuButton
+          key={uuid.v4()}
+          onClick={this.nodeClicked.bind(this, depth, id)}
+        >
+          {node.title}
+        </MenuButton>
+      );
+    } else if (node.link) {
+      return (
+        <MenuButton
+          key={uuid.v4()}
+          onClick={() => (window.location.href = node.link)}
+        >
+          {node.title}
+        </MenuButton>
+      );
+    }
+    return <MenuButton key={uuid.v4()}>{node.title}</MenuButton>;
+  };
 
+  //! --------------------------------------------------------------------------
+
+  nodeClicked = (depth: number, id: string): void => {
+    this.setState((prevState: MyState) => {
+      prevState.elements = this.menuApi.handleSpawn(
+        prevState.elements,
+        depth,
+        id
+      );
+      return prevState;
+    });
+  };
+
+  //! --------------------------------------------------------------------------
+
+  baseStyle = () => {
+    return styled.button`
+      font-size: 10pt;
+      outline: none;
+      position: fixed;
+
+      width: ${this.scale}${this.units};
+      height: ${this.scale}${this.units};
+      margin-top: -${this.scale / 2}${this.units};
+      margin-left: -${this.scale / 2}${this.units};
+
+      color: #fdb241;
+      background: #07837da6;
+      border-radius: 50%;
+      &:hover {
+        border-color: #fdb241;
+        border-width: 2px;
+      }
+    `;
+  };
+  getDynamicStyle = (node: InfoNode) => {
+    let posx = node.pos.x;
+    let posy = node.pos.y;
+    let extra: FlattenSimpleInterpolation = css``;
+    if (node.animation) {
+      posx = node.animation.startPos.x;
+      posy = node.animation.startPos.y;
+      extra = css`
+        animation: ${node.animation.keyframes} 350ms ease-in-out forwards;
+      `;
+    }
+    return styled(this.baseStyle())`
+      left: ${this.props.rootPos.x / 2 + posx}px;
+      top: ${this.props.rootPos.y / 2 + posy}px;
+
+      ${extra}
+    `;
+  };
+}
 //! --------------------------------------------------------------------------
 
 //* Types and stuff
 
 //* Each index in active array denotes a layer of the tree,
 //* Each layer (at depth i) is an object mapping ids to positions
-// type MyState = { active: Array<Layer> };
 type MyState = {
-  elements: Array<{ [key: string]: InfoNode }>;
+  elements: Array<Layer>;
 };
 type MyProps = {
   rootPos: Point;
