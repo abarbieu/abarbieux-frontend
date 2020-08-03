@@ -5,7 +5,7 @@ import Header from './components/todolist/Header';
 import TodoList from './components/todolist/TodoList';
 import LaunchMenu from './resources/launch-menu.json';
 import TreeMenu from './components/tree_menu/TreeMenu';
-import Cover from './components/cover/TreeMenuCover';
+// import Cover from './components/cover/TreeMenuCover';
 // import Panels from './components/panels/Panels';
 // import MyAlert from './components/test/MyAlert';
 import './App.css';

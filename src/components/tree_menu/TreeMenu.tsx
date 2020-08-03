@@ -140,17 +140,18 @@ class TreeMenu extends React.Component<MyProps, MyState> {
       margin-left: -${this.scale / 2}${this.units};
 
       background-size: contain;
-
+      transition: all ease-out 500ms;
+      transition-delay: 200ms;
       border-radius: 50%;
-      &:hover {
-        z-index: 500;
-        font-size: 14pt;
-        margin-top: -${this.scale}${this.units};
-        margin-left: -${this.scale}${this.units};
-        width: ${this.scale * 2}${this.units};
-        height: ${this.scale * 2}${this.units};
+      &:active {
         border-color: #fdb241;
         border-width: 2px;
+        z-index: 500;
+        font-size: 0pt;
+        margin-top: -${this.scale * 2}${this.units};
+        margin-left: -${this.scale * 2}${this.units};
+        width: ${this.scale * 4}${this.units};
+        height: ${this.scale * 4}${this.units};
       }
     `;
   };
@@ -161,13 +162,15 @@ class TreeMenu extends React.Component<MyProps, MyState> {
     let extra: FlattenSimpleInterpolation = css``;
     if (node.hiding && node.animation) {
       extra = css`
-        animation: ${node.animation.keyframes} 350ms ease-in-out forwards;
+        animation: ${node.animation.keyframes} 550ms ease-in-out forwards;
       `;
     } else if (node.animation && this.animatedLayer === depth && !node.parent) {
-      posx = node.animation.startPos.x;
-      posy = node.animation.startPos.y;
+      let posx1 = posx - node.animation.startPos.x;
+      posx = node.animation.startPos.x + 4 * posx1;
+      let posy1 = posy - node.animation.startPos.y;
+      posy = node.animation.startPos.y + 4 * posy1;
       extra = css`
-        animation: ${node.animation.keyframes} 350ms ease-in-out forwards;
+        animation: ${node.animation.keyframes} 550ms ease-in forwards;
       `;
     }
     // background: ${node.background || '#404040'};

@@ -81,7 +81,7 @@ class TreeMenuApi {
   killKids = (currElem: Array<Layer>, depth: number, id: string): number => {
     let node: InfoNodeChildren = currElem[depth][id] as InfoNodeChildren;
 
-    setTimeout(() => currElem.splice(depth + 1), 0);
+    // setTimeout(() => currElem.splice(depth + 1), 0);
     for (let i = depth + 1; i < currElem.length; i++) {
       Object.entries(currElem[i]).forEach(([ id, child ]) => {
         if (!child.hiding) {
@@ -106,22 +106,44 @@ class TreeMenuApi {
     const { x, y } = this.dirToDist(dir);
     return keyframes`
     0% {
-      transform: translate(0px, 0px);
+      transform: rotate(0deg) translate(0px, 0px);
       visibility: hidden;
-      opacity: .25;
+      opacity: 0;
     }
-    50%{
-      visibility: hidden;
+    70% {
+      transform: translate(
+        ${x * -3}${this.units},
+        ${y * -3}${this.units}
+      );
+    }
+    80% {
+      transform: translate(
+        ${x * -2.5}${this.units},
+        ${y * -2.5}${this.units}
+      );
     }
     100% {
+      transform: translate(
+        ${x * -3}${this.units},
+        ${y * -3}${this.units}
+      );
       visibility: visible;
       opacity: 1;
-      transform: translate(
-        ${x}${this.units},
-        ${y}${this.units});
-      }
     }`;
   };
+  // 80% {
+  //   transform:  rotate(45deg) translate(
+  //     ${x * -3 * 0.8}${this.units},
+  //     ${y * -3 * 0.8}${this.units}
+  //   );
+  // }
+  // 90% {
+  //   transform:  rotate(-45deg);
+  //   transform: translate(
+  //     ${x * -3 * 0.9}${this.units},
+  //     ${y * -3 * 0.9}${this.units}
+  //   );
+  // }
 
   //! --------------------------------------------------------------------------
 

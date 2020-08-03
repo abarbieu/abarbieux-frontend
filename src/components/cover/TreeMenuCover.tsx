@@ -15,7 +15,7 @@ export default class TreeMenuCover extends Component<MyProps, MyState> {
   render () {
     return (
       <Container
-        style={{ width: 500, height: 500 }}
+        style={{ width: 300, height: 300 }}
         className='justify-content-sm-center'
       >
         <Row>
