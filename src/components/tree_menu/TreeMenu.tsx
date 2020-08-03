@@ -42,8 +42,6 @@ class TreeMenu extends React.Component<MyProps, MyState> {
 
   //! --------------------------------------------------------------------------
 
-  //! --------------------------------------------------------------------------
-
   render (): Array<JSX.Element> {
     let jsxArr: Array<JSX.Element> = [];
     for (let i = 0; i < this.state.elements.length; i++) {
@@ -113,11 +111,11 @@ class TreeMenu extends React.Component<MyProps, MyState> {
     });
   };
 
-  //! --------------------------------------------------------------------------
+  //! -------------------------------------------------------------------------
 
   baseStyle = () => {
     return styled.button`
-      font-size: 10pt;
+      font-size: 9pt;
       font-weight: 600;
       color: #ffffff;
       text-shadow: 2px 2px #000000;
@@ -163,7 +161,7 @@ class TreeMenu extends React.Component<MyProps, MyState> {
     background-image: linear-gradient(
       rgba(0, 0, 0, 0.25),
       rgba(0, 0, 0, 0.25)
-    ), url(/${node.background || 'default.png'});
+    ), url(/${node.background || 'icons/default.png'});
     ${extra}
     `;
   };

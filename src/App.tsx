@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 // import { elastic as Sidebar } from 'react-burger-menu';
-// import Header from './components/todolist/Header';
-// import TodoList from './components/todolist/TodoList';
+import Header from './components/todolist/Header';
+import TodoList from './components/todolist/TodoList';
 import LaunchMenu from './resources/launch-menu.json';
 import TreeMenu from './components/tree_menu/TreeMenu';
 // import Panels from './components/panels/Panels';
@@ -15,15 +15,15 @@ type MyState = {
 type MyProps = {};
 
 class App extends React.Component<MyProps, MyState> {
-  // apiUrl: String;
+  apiUrl: String;
 
   constructor (props: MyProps) {
     super(props);
-    // if (process.env.NODE_ENV === 'development') {
-    //   this.apiUrl = 'http://127.0.0.1:54321/api/';
-    // } else {
-    //   this.apiUrl = 'https://abarbieux.com/api/';
-    // }
+    if (process.env.NODE_ENV === 'development') {
+      this.apiUrl = 'http://127.0.0.1:54321/api/';
+    } else {
+      this.apiUrl = 'https://abarbieux.com/api/';
+    }
     this.state = {
       windowSize: { x: window.innerWidth / 2, y: window.innerHeight / 2 },
     };
@@ -32,13 +32,15 @@ class App extends React.Component<MyProps, MyState> {
   render () {
     return (
       <div className='Tiled-back'>
-        <MyAlert />
+        {/* <MyAlert /> */}
         <div>
           <main>
             <Router>
               <Switch>
                 <Route path='/notes/'>
-                  <div>Note Page</div>
+                  <Header />
+                  <TodoList apiUrl={this.apiUrl} />
+                  {/* <div>Note Page</div> */}
                 </Route>
                 <Route path='/'>
                   <TreeMenu

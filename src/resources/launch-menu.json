@@ -8,7 +8,7 @@
   {
     "projects": {
       "title": "Projects",
-      "background": "code.png",
+      "background": "icons/code.png",
       "children": [ "fun", "all-projects", "web", "school" ]
     },
     "resume": {
@@ -21,11 +21,12 @@
     },
     "art": {
       "title": "Arty Things",
-      "background": "sherbert.svg",
+      "background": "icons/sherbert.svg",
       "children": [ "all-art", "ceramics", "photography" ]
     },
     "about": {
       "title": "About Me",
+      "background": "icons/cookie-power.png",
       "route": "/about/"
     }
   },
@@ -36,6 +37,7 @@
     },
     "web": {
       "title": "Web Dev",
+      "background": "icons/internet.png",
       "children": [ "frontend", "backend", "database" ]
     },
     "fun": {
@@ -49,21 +51,35 @@
     "notes": { "title": "Notes", "route": "/notes/" },
     "timeline": { "title": "TimeLine", "route": "/timeline/" },
     "all-art": { "title": "View All", "route": "/art/" },
-    "ceramics": { "title": "Ceramics", "route": "/art/ceramics/" },
-    "photography": { "title": "Photography", "route": "/art/photography" },
-    "random": { "title": "Random", "route": "/art/random" }
+    "ceramics": {
+      "title": "Ceramics",
+      "background": "icons/color-bowl.png",
+      "route": "/art/ceramics/"
+    },
+    "photography": {
+      "title": "Photography",
+      "background": "icons/droplet.png",
+      "route": "/art/photography"
+    },
+    "random": {
+      "title": "Random",
+      "route": "/art/random"
+    }
   },
   {
     "frontend": {
       "title": "Front-End",
+      "background": "icons/react.png",
       "link": "https://github.com/abarbieu/abarbieux-frontend"
     },
     "backend": {
       "title": "Back-End",
+      "background": "icons/postgres.png",
       "link": "https://github.com/abarbieu/abarbieux-backend"
     },
     "database": {
       "title": "Postgres Fun",
+      "background": "icons/postgres.png",
       "link": "https://github.com/abarbieu/postgreSQL-playground"
     },
     "thumbsim": {
@@ -76,10 +92,12 @@
     },
     "fractals": {
       "title": "Fractals",
+      "background": "icons/jzoom.gif",
       "link": "https://github.com/abarbieu/Mandelbrot"
     },
     "data-vis": {
       "title": "Data Visualization",
+      "background": "icons/gpxvisdemo.gif",
       "link": "https://github.com/abarbieu/gpxVis"
     }
   },
