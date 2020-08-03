@@ -81,6 +81,7 @@ class TreeMenuApi {
   killKids = (currElem: Array<Layer>, depth: number, id: string): number => {
     let node: InfoNodeChildren = currElem[depth][id] as InfoNodeChildren;
 
+    setTimeout(() => currElem.splice(depth + 1), 0);
     for (let i = depth + 1; i < currElem.length; i++) {
       Object.entries(currElem[i]).forEach(([ id, child ]) => {
         if (!child.hiding) {
@@ -96,7 +97,6 @@ class TreeMenuApi {
         }
       });
     }
-    // currElem.splice(depth + 1);
     return depth + 1;
   };
 
@@ -109,6 +109,9 @@ class TreeMenuApi {
       transform: translate(0px, 0px);
       visibility: hidden;
       opacity: .25;
+    }
+    50%{
+      visibility: hidden;
     }
     100% {
       visibility: visible;

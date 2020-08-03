@@ -17,6 +17,7 @@
     },
     "tools": {
       "title": "Tools",
+      "background": "icons/notes.png",
       "children": [ "notes", "timeline" ]
     },
     "art": {
@@ -38,27 +39,32 @@
     "web": {
       "title": "Web Dev",
       "background": "icons/internet.png",
-      "children": [ "frontend", "backend", "database" ]
+      "children": [ "frontend", "backend" ]
     },
     "fun": {
       "title": "Fun",
+      "background": "icons/mzoom.gif",
       "children": [ "fractals", "data-vis" ]
     },
     "school": {
       "title": "School Projects",
       "children": [ "highschool", "thumbsim" ]
     },
-    "notes": { "title": "Notes", "route": "/notes/" },
+    "notes": {
+      "title": "Notes",
+      "background": "icons/notes.png",
+      "route": "/notes/"
+    },
     "timeline": { "title": "TimeLine", "route": "/timeline/" },
     "all-art": { "title": "View All", "route": "/art/" },
     "ceramics": {
       "title": "Ceramics",
-      "background": "icons/color-bowl.png",
+      "background": "icons/color-bowl.jpg",
       "route": "/art/ceramics/"
     },
     "photography": {
       "title": "Photography",
-      "background": "icons/droplet.png",
+      "background": "icons/droplet-o.png",
       "route": "/art/photography"
     },
     "random": {
@@ -92,12 +98,12 @@
     },
     "fractals": {
       "title": "Fractals",
-      "background": "icons/jzoom.gif",
+      "background": "icons/jzoom-o.gif",
       "link": "https://github.com/abarbieu/Mandelbrot"
     },
     "data-vis": {
       "title": "Data Visualization",
-      "background": "icons/gpxvisdemo.gif",
+      "background": "icons/gpxdemo-o.gif",
       "link": "https://github.com/abarbieu/gpxVis"
     }
   },

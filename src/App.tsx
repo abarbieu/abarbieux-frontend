@@ -5,12 +5,14 @@ import Header from './components/todolist/Header';
 import TodoList from './components/todolist/TodoList';
 import LaunchMenu from './resources/launch-menu.json';
 import TreeMenu from './components/tree_menu/TreeMenu';
+import Cover from './components/cover/TreeMenuCover';
 // import Panels from './components/panels/Panels';
-import MyAlert from './components/test/MyAlert';
+// import MyAlert from './components/test/MyAlert';
 import './App.css';
 
 type MyState = {
   windowSize: { x: number; y: number };
+  rando?: JSX.Element;
 };
 type MyProps = {};
 
@@ -32,7 +34,9 @@ class App extends React.Component<MyProps, MyState> {
   render () {
     return (
       <div className='Tiled-back'>
+        {/* <Cover /> */}
         {/* <MyAlert /> */}
+        {/* {this.state.rando} */}
         <div>
           <main>
             <Router>
@@ -59,7 +63,14 @@ class App extends React.Component<MyProps, MyState> {
       </div>
     );
   }
+
+  randoo = () => {
+    setTimeout(() => {
+      this.setState({ rando: <p style={{ fontSize: 20 }}>hello!</p> });
+    }, 3000);
+  };
   componentDidMount () {
+    this.randoo();
     this.updateWindowDimensions();
     window.addEventListener('resize', this.updateWindowDimensions);
   }

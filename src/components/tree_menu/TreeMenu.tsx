@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
+// keyframes,
+// Keyframes,
 import TreeMenuApi, {
   InfoNode,
   Point,
@@ -109,6 +111,15 @@ class TreeMenu extends React.Component<MyProps, MyState> {
       }
       return prevState;
     });
+    // setTimeout(() => {
+    //   this.setState((prevState) => {
+    //     Object.entries(
+    //       prevState.elements[depth + 1]
+    //     ).forEach(([ id, child ]) => {
+    //       child.animation = undefined;
+    //     });
+    //   });
+    // }, 400);
   };
 
   //! -------------------------------------------------------------------------
@@ -132,6 +143,12 @@ class TreeMenu extends React.Component<MyProps, MyState> {
 
       border-radius: 50%;
       &:hover {
+        z-index: 500;
+        font-size: 14pt;
+        margin-top: -${this.scale}${this.units};
+        margin-left: -${this.scale}${this.units};
+        width: ${this.scale * 2}${this.units};
+        height: ${this.scale * 2}${this.units};
         border-color: #fdb241;
         border-width: 2px;
       }
