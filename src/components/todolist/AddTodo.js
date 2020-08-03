@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 export default class AddTodo extends Component {
   state = {
-    title : ''
+    title : '',
   };
 
   onType = (e) => this.setState({ [e.target.name]: e.target.value });
@@ -15,17 +15,17 @@ export default class AddTodo extends Component {
     return (
       <form onSubmit={this.onSubmit} style={{ display: 'flex' }}>
         <input
-          type="text"
-          name="title"
+          type='text'
+          name='title'
           style={{ flex: '10' }}
-          placeholder="Add Todo..."
+          placeholder='Add Todo...'
           value={this.state.title}
           onChange={this.onType}
         />
         <input
-          type="submit"
-          value="Submit"
-          className="btn"
+          type='submit'
+          value='Submit'
+          className='btn'
           style={{ flex: '1', padding: '5px' }}
         />
       </form>

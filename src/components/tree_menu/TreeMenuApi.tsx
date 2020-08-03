@@ -13,7 +13,7 @@ class TreeMenuApi {
 
   //! --------------------------------------------------------------------------
 
-  handleSpawn = (currElem: Array<Layer>, depth: number, id: string) => {
+  handleSpawn = (currElem: Array<Layer>, depth: number, id: string): number => {
     let node: InfoNodeChildren = currElem[depth][id] as InfoNodeChildren;
     const from: number = node.spawnRange.from;
     let to: number = node.spawnRange.to;
@@ -26,47 +26,78 @@ class TreeMenuApi {
     const theta = (to - from) / (children.length - 1);
 
     //* Deactivates everything else
-    currElem.splice(depth);
+    currElem.splice(depth + 2);
 
     //* Deactivates Siblings
+    node.parent = true;
     currElem[depth] = { [id]: node };
 
     //* Resets next layer
-    currElem[depth + 1] = {};
+    currElem[depth + 1] = currElem[depth + 1] ? currElem[depth + 1] : {};
 
     //* Adds node's children to currElem, returns currElem
     children.forEach((child: string, i: number) => {
-      //* Generates evenly distributed dirs for kids
-      const dir = from + i * theta;
+      if (!currElem[depth + 1][child] || currElem[depth + 1][child].hiding) {
+        //* Generates evenly distributed dirs for kids
+        const dir = from + i * theta;
 
-      //* Diff is distance moved
-      const diff = this.dirToDist(dir);
-      const menuInfo: MenuNode = this.menu[depth + 1][child];
-      const baseInfo = {
-        title: menuInfo.title,
-        pos: { x: diff.x + node.pos.x, y: diff.y + node.pos.y },
-        animation: { keyframes: this.getKeyframes(dir), startPos: node.pos },
-      };
+        //* Diff is distance moved
+        const diff = this.dirToDist(dir);
+        const menuInfo: MenuNode = this.menu[depth + 1][child];
+        const baseInfo = {
+          title: menuInfo.title,
+          background: menuInfo.background,
+          parent: false,
+          hiding: false,
+          willSpawn: true,
+          pos: { x: diff.x + node.pos.x, y: diff.y + node.pos.y },
+          animation: { keyframes: this.getKeyframes(dir), startPos: node.pos },
+        };
 
-      //* Populates new children based on type, inline typeguards
-      if ((menuInfo as MenuNodeChildren).children) {
-        currElem[depth + 1][child] = {
-          ...baseInfo,
-          spawnRange: this.getSpawnRange(dir),
-        };
-      } else if ((menuInfo as MenuNodeRoute).route) {
-        currElem[depth + 1][child] = {
-          ...baseInfo,
-          route: (menuInfo as MenuNodeRoute).route,
-        };
-      } else if ((menuInfo as MenuNodeLink).link) {
-        currElem[depth + 1][child] = {
-          ...baseInfo,
-          link: (menuInfo as MenuNodeLink).link,
-        };
+        //* Populates new children based on type, inline typeguards
+        if ((menuInfo as MenuNodeChildren).children) {
+          currElem[depth + 1][child] = {
+            ...baseInfo,
+            spawnRange: this.getSpawnRange(dir),
+          };
+        } else if ((menuInfo as MenuNodeRoute).route) {
+          currElem[depth + 1][child] = {
+            ...baseInfo,
+            route: (menuInfo as MenuNodeRoute).route,
+          };
+        } else if ((menuInfo as MenuNodeLink).link) {
+          currElem[depth + 1][child] = {
+            ...baseInfo,
+            link: (menuInfo as MenuNodeLink).link,
+          };
+        }
       }
     });
-    return currElem;
+    return depth + 1;
+  };
+
+  //! --------------------------------------------------------------------------
+
+  killKids = (currElem: Array<Layer>, depth: number, id: string): number => {
+    let node: InfoNodeChildren = currElem[depth][id] as InfoNodeChildren;
+
+    for (let i = depth + 1; i < currElem.length; i++) {
+      Object.entries(currElem[i]).forEach(([ id, child ]) => {
+        if (!child.hiding) {
+          child.hiding = true;
+          if (child.animation) {
+            child.animation.keyframes = this.getHidingKeyframes(
+              node.pos,
+              child.pos
+            );
+          }
+        } else if (child.animation) {
+          child.animation.keyframes = this.getHiddenKeyframes();
+        }
+      });
+    }
+    // currElem.splice(depth + 1);
+    return depth + 1;
   };
 
   //! --------------------------------------------------------------------------
@@ -76,11 +107,47 @@ class TreeMenuApi {
     return keyframes`
     0% {
       transform: translate(0px, 0px);
+      visibility: hidden;
+      opacity: .25;
     }
     100% {
+      visibility: visible;
+      opacity: 1;
       transform: translate(
         ${x}${this.units},
         ${y}${this.units});
+      }
+    }`;
+  };
+
+  //! --------------------------------------------------------------------------
+
+  getHidingKeyframes = (from: Point, to: Point): Keyframes => {
+    return keyframes`
+    0% {
+      transform: translate(0px, 0px);
+      visibility: visible;
+      opacity: 1;
+    }
+    100% {
+      transform: translate(
+        ${from.x - to.x}${this.units},
+        ${from.y - to.y}${this.units});
+        visibility: hidden;
+        opacity: 0;
+      }
+    }`;
+  };
+
+  //! --------------------------------------------------------------------------
+
+  getHiddenKeyframes = (): Keyframes => {
+    return keyframes`
+    0% {
+      visibility: hidden;
+    }
+    100% {
+      visibility: hidden;
       }
     }`;
   };
@@ -137,6 +204,7 @@ export interface Layer {
 
 interface MenuNodeBasics {
   title: string;
+  background?: string;
 }
 interface MenuNodeChildren extends MenuNodeBasics {
   children: Array<string>;
@@ -160,6 +228,10 @@ export type MenuNode = MenuNodeChildren | MenuNodeLink | MenuNodeRoute;
 interface InfoNodeBasics {
   pos: Point;
   title: string;
+  parent?: boolean;
+  background?: string;
+  willSpawn?: boolean;
+  hiding?: boolean;
   animation?: {
     startPos: Point;
     keyframes: Keyframes;

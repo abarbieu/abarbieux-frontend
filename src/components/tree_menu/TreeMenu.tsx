@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
-// keyframes,
-// Keyframes,
 import TreeMenuApi, {
   InfoNode,
   Point,
@@ -16,6 +14,8 @@ class TreeMenu extends React.Component<MyProps, MyState> {
   scale: number = 75;
   units: string = 'px';
   menuApi: TreeMenuApi;
+  animatedLayer = 1;
+
   constructor (props: MyProps) {
     super(props);
 
@@ -27,6 +27,7 @@ class TreeMenu extends React.Component<MyProps, MyState> {
               {
                 pos: { x: 0, y: 0 },
                 title: props.menu[0].root.title,
+                willSpawn: true,
                 spawnRange: props.spawnRange,
               },
           },
@@ -50,16 +51,17 @@ class TreeMenu extends React.Component<MyProps, MyState> {
         jsxArr.push(this.nodeToJSX(node, i, id));
       });
     }
+    this.animatedLayer++;
     return jsxArr;
   }
 
   //! --------------------------------------------------------------------------
 
   nodeToJSX = (node: InfoNode, depth: number, id: string): JSX.Element => {
-    let MenuButton = this.getDynamicStyle(node);
-    if (node.animation) {
-      this.state.elements[depth][id].animation = undefined;
-    }
+    let MenuButton = this.getDynamicStyle(node, depth);
+    // if (node.animation) {
+    //   this.state.elements[depth][id].animation = undefined;
+    // }
     if (node.route) {
       return (
         <Link to={node.route} key={uuid.v4()}>
@@ -92,11 +94,21 @@ class TreeMenu extends React.Component<MyProps, MyState> {
 
   nodeClicked = (depth: number, id: string): void => {
     this.setState((prevState: MyState) => {
-      prevState.elements = this.menuApi.handleSpawn(
-        prevState.elements,
-        depth,
-        id
-      );
+      if (prevState.elements[depth][id].willSpawn) {
+        prevState.elements[depth][id].willSpawn = false;
+        this.animatedLayer = this.menuApi.handleSpawn(
+          prevState.elements,
+          depth,
+          id
+        );
+      } else {
+        prevState.elements[depth][id].willSpawn = true;
+        this.animatedLayer = this.menuApi.killKids(
+          prevState.elements,
+          depth,
+          id
+        );
+      }
       return prevState;
     });
   };
@@ -106,6 +118,10 @@ class TreeMenu extends React.Component<MyProps, MyState> {
   baseStyle = () => {
     return styled.button`
       font-size: 10pt;
+      font-weight: 600;
+      color: #ffffff;
+      text-shadow: 2px 2px #000000;
+
       outline: none;
       position: fixed;
 
@@ -114,8 +130,8 @@ class TreeMenu extends React.Component<MyProps, MyState> {
       margin-top: -${this.scale / 2}${this.units};
       margin-left: -${this.scale / 2}${this.units};
 
-      color: #fdb241;
-      background: #07837da6;
+      background-size: contain;
+
       border-radius: 50%;
       &:hover {
         border-color: #fdb241;
@@ -123,22 +139,32 @@ class TreeMenu extends React.Component<MyProps, MyState> {
       }
     `;
   };
-  getDynamicStyle = (node: InfoNode) => {
+
+  getDynamicStyle = (node: InfoNode, depth: number) => {
     let posx = node.pos.x;
     let posy = node.pos.y;
     let extra: FlattenSimpleInterpolation = css``;
-    if (node.animation) {
+    if (node.hiding && node.animation) {
+      extra = css`
+        animation: ${node.animation.keyframes} 350ms ease-in-out forwards;
+      `;
+    } else if (node.animation && this.animatedLayer === depth && !node.parent) {
       posx = node.animation.startPos.x;
       posy = node.animation.startPos.y;
       extra = css`
         animation: ${node.animation.keyframes} 350ms ease-in-out forwards;
       `;
     }
+    // background: ${node.background || '#404040'};
     return styled(this.baseStyle())`
-      left: ${this.props.rootPos.x / 2 + posx}px;
-      top: ${this.props.rootPos.y / 2 + posy}px;
-
-      ${extra}
+    left: ${this.props.rootPos.x + posx}px;
+    top: ${this.props.rootPos.y + posy}px;
+    
+    background-image: linear-gradient(
+      rgba(0, 0, 0, 0.25),
+      rgba(0, 0, 0, 0.25)
+    ), url(/${node.background || 'default.png'});
+    ${extra}
     `;
   };
 }

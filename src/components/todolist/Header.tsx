@@ -3,7 +3,7 @@ import React from 'react';
 function Header () {
   return (
     <header style={headerStyle}>
-      <h1>Todo List</h1>
+      <h1>Notes</h1>
     </header>
   );
 }
@@ -14,4 +14,5 @@ const headerStyle = {
   textAlight: 'center',
   padding: '10px',
 };
+
 export default Header;

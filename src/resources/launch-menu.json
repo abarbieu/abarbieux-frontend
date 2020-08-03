@@ -2,12 +2,13 @@
   {
     "root": {
       "title": "Enter",
-      "children": [ "resume", "projects", "tools", "art", "about" ]
+      "children": [ "projects", "resume", "tools", "art", "about" ]
     }
   },
   {
     "projects": {
       "title": "Projects",
+      "background": "code.png",
       "children": [ "fun", "all-projects", "web", "school" ]
     },
     "resume": {
@@ -20,6 +21,7 @@
     },
     "art": {
       "title": "Arty Things",
+      "background": "sherbert.svg",
       "children": [ "all-art", "ceramics", "photography" ]
     },
     "about": {
@@ -42,7 +44,7 @@
     },
     "school": {
       "title": "School Projects",
-      "children": [ "thumbsim", "highschool" ]
+      "children": [ "highschool", "thumbsim" ]
     },
     "notes": { "title": "Notes", "route": "/notes/" },
     "timeline": { "title": "TimeLine", "route": "/timeline/" },
