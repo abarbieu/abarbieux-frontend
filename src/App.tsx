@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 // import { elastic as Sidebar } from 'react-burger-menu';
 import Header from './components/todolist/Header';
 import TodoList from './components/todolist/TodoList';
@@ -34,24 +34,18 @@ class App extends React.Component<MyProps, MyState> {
   render () {
     return (
       <div className='Tiled-back'>
-        {/* <Cover
-          pos={{
-            x: this.state.windowSize.x / 2,
-            y: this.state.windowSize.y / 2,
-          }}
-        /> */}
-        {/* <MyAlert /> */}
-        {/* {this.state.rando} */}
         <div>
           <main>
             <Router>
               <Switch>
-                <Route path='/notes/'>
-                  <Header />
-                  <TodoList apiUrl={this.apiUrl} />
-                  {/* <div>Note Page</div> */}
-                </Route>
-                <Route path='/'>
+                <Route path='/explore'>
+                  <Cover
+                    pos={{
+                      x: this.state.windowSize.x / 2,
+                      y: this.state.windowSize.y / 2,
+                    }}
+                    fading={true}
+                  />
                   <TreeMenu
                     rootPos={{
                       x: this.state.windowSize.x / 2,
@@ -59,6 +53,20 @@ class App extends React.Component<MyProps, MyState> {
                     }}
                     spawnRange={{ from: 0.5, to: 2.5 }}
                     menu={LaunchMenu}
+                  />
+                </Route>
+                <Route path='/notes/'>
+                  <Header />
+                  <TodoList apiUrl={this.apiUrl} />
+                  {/* <div>Note Page</div> */}
+                </Route>
+                <Route exact path='/'>
+                  <Cover
+                    pos={{
+                      x: this.state.windowSize.x / 2,
+                      y: this.state.windowSize.y / 2,
+                    }}
+                    fading={false}
                   />
                 </Route>
               </Switch>

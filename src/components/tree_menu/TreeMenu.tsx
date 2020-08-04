@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import { RouteComponentProps } from 'react-router';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 // keyframes,
 // Keyframes,
@@ -11,6 +12,23 @@ import TreeMenuApi, {
   Layer,
 } from './TreeMenuApi';
 import uuid from 'uuid';
+
+//* Types and stuff
+
+//* Each index in active array denotes a layer of the tree,
+
+//* Each layer (at depth i) is an object mapping ids to positions
+type MyState = {
+  elements: Array<Layer>;
+};
+type LocationState = {
+  openPath?: Array<string>;
+};
+type MyProps = RouteComponentProps<{}, {}, LocationState> & {
+  rootPos: Point;
+  spawnRange: SpawnRange;
+  menu: Array<{ [key: string]: MenuNode }>;
+};
 
 class TreeMenu extends React.Component<MyProps, MyState> {
   scale: number = 75;
@@ -53,6 +71,21 @@ class TreeMenu extends React.Component<MyProps, MyState> {
     }
     this.animatedLayer++;
     return jsxArr;
+  }
+
+  //! --------------------------------------------------------------------------
+
+  componentDidMount () {
+    setTimeout(() => {
+      if (this.props.location.state && this.props.location.state.openPath) {
+        for (let i = 0; i < this.props.location.state.openPath.length; i++) {
+          let path = this.props.location.state.openPath[i];
+          if (this.state.elements.length > i && this.state.elements[i][path]) {
+            this.nodeClicked(i, path);
+          }
+        }
+      }
+    }, 500);
   }
 
   //! --------------------------------------------------------------------------
@@ -109,21 +142,11 @@ class TreeMenu extends React.Component<MyProps, MyState> {
           id
         );
         setTimeout(() => {
-          console.log('respawning');
           this.nodeClicked(depth, id);
         }, 250);
       }
       return prevState;
     });
-    // setTimeout(() => {
-    //   this.setState((prevState) => {
-    //     Object.entries(
-    //       prevState.elements[depth + 1]
-    //     ).forEach(([ id, child ]) => {
-    //       child.animation = undefined;
-    //     });
-    //   });
-    // }, 400);
   };
 
   //! -------------------------------------------------------------------------
@@ -191,19 +214,4 @@ class TreeMenu extends React.Component<MyProps, MyState> {
 
 //! --------------------------------------------------------------------------
 
-//* Types and stuff
-
-//* Each index in active array denotes a layer of the tree,
-
-//* Each layer (at depth i) is an object mapping ids to positions
-
-type MyState = {
-  elements: Array<Layer>;
-};
-type MyProps = {
-  rootPos: Point;
-  spawnRange: SpawnRange;
-  menu: Array<{ [key: string]: MenuNode }>;
-};
-
-export default TreeMenu;
+export default withRouter(TreeMenu);
