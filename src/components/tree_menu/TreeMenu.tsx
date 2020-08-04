@@ -108,6 +108,10 @@ class TreeMenu extends React.Component<MyProps, MyState> {
           depth,
           id
         );
+        setTimeout(() => {
+          console.log('respawning');
+          this.nodeClicked(depth, id);
+        }, 250);
       }
       return prevState;
     });
@@ -146,7 +150,7 @@ class TreeMenu extends React.Component<MyProps, MyState> {
       &:active {
         border-color: #fdb241;
         border-width: 2px;
-        z-index: 500;
+        z-index: 20;
         font-size: 0pt;
         margin-top: -${this.scale * 2}${this.units};
         margin-left: -${this.scale * 2}${this.units};
@@ -162,15 +166,13 @@ class TreeMenu extends React.Component<MyProps, MyState> {
     let extra: FlattenSimpleInterpolation = css``;
     if (node.hiding && node.animation) {
       extra = css`
-        animation: ${node.animation.keyframes} 550ms ease-in-out forwards;
+        animation: ${node.animation.keyframes} 350ms ease-in forwards;
       `;
     } else if (node.animation && this.animatedLayer === depth && !node.parent) {
-      let posx1 = posx - node.animation.startPos.x;
-      posx = node.animation.startPos.x + 4 * posx1;
-      let posy1 = posy - node.animation.startPos.y;
-      posy = node.animation.startPos.y + 4 * posy1;
+      posx = -3 * node.animation.startPos.x + 4 * posx;
+      posy = -3 * node.animation.startPos.y + 4 * posy;
       extra = css`
-        animation: ${node.animation.keyframes} 550ms ease-in forwards;
+        animation: ${node.animation.keyframes} 500ms ease-in forwards;
       `;
     }
     // background: ${node.background || '#404040'};
@@ -186,12 +188,15 @@ class TreeMenu extends React.Component<MyProps, MyState> {
     `;
   };
 }
+
 //! --------------------------------------------------------------------------
 
 //* Types and stuff
 
 //* Each index in active array denotes a layer of the tree,
+
 //* Each layer (at depth i) is an object mapping ids to positions
+
 type MyState = {
   elements: Array<Layer>;
 };

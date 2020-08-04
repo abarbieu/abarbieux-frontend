@@ -81,7 +81,6 @@ class TreeMenuApi {
   killKids = (currElem: Array<Layer>, depth: number, id: string): number => {
     let node: InfoNodeChildren = currElem[depth][id] as InfoNodeChildren;
 
-    // setTimeout(() => currElem.splice(depth + 1), 0);
     for (let i = depth + 1; i < currElem.length; i++) {
       Object.entries(currElem[i]).forEach(([ id, child ]) => {
         if (!child.hiding) {
@@ -131,19 +130,6 @@ class TreeMenuApi {
       opacity: 1;
     }`;
   };
-  // 80% {
-  //   transform:  rotate(45deg) translate(
-  //     ${x * -3 * 0.8}${this.units},
-  //     ${y * -3 * 0.8}${this.units}
-  //   );
-  // }
-  // 90% {
-  //   transform:  rotate(-45deg);
-  //   transform: translate(
-  //     ${x * -3 * 0.9}${this.units},
-  //     ${y * -3 * 0.9}${this.units}
-  //   );
-  // }
 
   //! --------------------------------------------------------------------------
 
@@ -153,8 +139,11 @@ class TreeMenuApi {
       transform: translate(0px, 0px);
       visibility: visible;
       opacity: 1;
+      z-index: 0;
     }
+    
     100% {
+      z-index: 0;
       transform: translate(
         ${from.x - to.x}${this.units},
         ${from.y - to.y}${this.units});

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Point } from '../tree_menu/TreeMenuApi';
-import img from './ceramic-hands.png';
+import styled from 'styled-components';
 import Container from 'react-bootstrap/Container';
 import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
@@ -8,28 +8,73 @@ import Col from 'react-bootstrap/Col';
 type MyState = {};
 
 type MyProps = {
-  pos?: Point;
+  pos: Point;
 };
 
 export default class TreeMenuCover extends Component<MyProps, MyState> {
   render () {
+    let ImgBlock = styled.img`
+      width: 100px;
+      height: 100px;
+    `;
     return (
-      <Container
-        style={{ width: 300, height: 300 }}
-        className='justify-content-sm-center'
+      <div
+        style={{
+          zIndex: 100,
+          position: 'absolute',
+          width: 300,
+          height: 300,
+          left: this.props.pos.x - 150,
+          top: this.props.pos.y - 150,
+        }}
+        className='m-0 p-0 rounded'
       >
-        <Row>
-          <Col className='col-md-4' xs={6} md={4}>
-            <Image width={128} height={128} src={img} />
-          </Col>
-          <Col className='col-md-4' xs={6} md={4}>
-            <Image width={128} height={128} src={img} />
-          </Col>
-          <Col className='col-md-4' xs={6} md={4}>
-            <Image width={128} height={128} src={img} />
-          </Col>
-        </Row>
-      </Container>
+        <Container className='justify-content-center m-0 p-0 rounded'>
+          <Row className='m-0 p-0'>
+            <Col className='m-0 p-0'>
+              <ImgBlock src='/icons/default.png' className='rounded-left' />
+            </Col>
+            <Col className='m-0 p-0'>
+              <ImgBlock src='/icons/default.png' />
+            </Col>
+            <Col className='m-0 p-0'>
+              <ImgBlock src='/icons/default.png' className='rounded-right' />
+            </Col>
+          </Row>
+          <div
+            style={{
+              position: 'absolute',
+              height: 100,
+              bottom: 100,
+            }}
+            className='m-0 p-0 rounded'
+          >
+            <h1 className='text-center'>
+              <p>ENTER</p>
+            </h1>
+          </div>
+          <div
+            style={{
+              position: 'absolute',
+              height: 100,
+              bottom: 0,
+            }}
+            className='m-0 p-0 rounded'
+          >
+            <Row className='m-0 p-0'>
+              <Col className='m-0 p-0'>
+                <ImgBlock src='/icons/default.png' className='rounded-left' />
+              </Col>
+              <Col className='m-0 p-0'>
+                <ImgBlock src='/icons/default.png' />
+              </Col>
+              <Col className='m-0 p-0'>
+                <ImgBlock src='/icons/default.png' className='rounded-right' />
+              </Col>
+            </Row>
+          </div>
+        </Container>
+      </div>
     );
   }
 }

@@ -5,7 +5,7 @@ import Header from './components/todolist/Header';
 import TodoList from './components/todolist/TodoList';
 import LaunchMenu from './resources/launch-menu.json';
 import TreeMenu from './components/tree_menu/TreeMenu';
-// import Cover from './components/cover/TreeMenuCover';
+import Cover from './components/cover/TreeMenuCover';
 // import Panels from './components/panels/Panels';
 // import MyAlert from './components/test/MyAlert';
 import './App.css';
@@ -27,14 +27,19 @@ class App extends React.Component<MyProps, MyState> {
       this.apiUrl = 'https://abarbieux.com/api/';
     }
     this.state = {
-      windowSize: { x: window.innerWidth / 2, y: window.innerHeight / 2 },
+      windowSize: { x: 0, y: 0 },
     };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
   render () {
     return (
       <div className='Tiled-back'>
-        {/* <Cover /> */}
+        {/* <Cover
+          pos={{
+            x: this.state.windowSize.x / 2,
+            y: this.state.windowSize.y / 2,
+          }}
+        /> */}
         {/* <MyAlert /> */}
         {/* {this.state.rando} */}
         <div>
