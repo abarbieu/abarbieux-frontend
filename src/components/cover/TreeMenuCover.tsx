@@ -9,6 +9,7 @@ import Col from 'react-bootstrap/Col';
 
 type LocationState = {
   openPath?: Array<string>;
+  highlighted?: string;
 };
 type MyState = {
   // clicked: boolean;
@@ -19,6 +20,9 @@ type MyProps = RouteComponentProps<{}, {}, LocationState> & {
 };
 
 class TreeMenuCover extends Component<MyProps, MyState> {
+  renderable = true;
+  timeouts: Array<number> = [];
+
   getAnimation = () => {
     const frames = keyframes`
     0% {
@@ -37,9 +41,27 @@ class TreeMenuCover extends Component<MyProps, MyState> {
       animation: ${frames} 1000ms ease-in forwards;
     `;
   };
+
   render () {
-    if (!this.props.fading || this.props.location.state) {
+    if (!this.props.fading || (this.props.location.state && this.renderable)) {
+      if (this.props.fading) {
+        this.timeouts.push(
+          setTimeout(() => {
+            console.log('unrenderable');
+            this.renderable = false;
+            this.timeouts.push(
+              setTimeout(() => {
+                this.renderable = true;
+              }, 800)
+            );
+          }, 400)
+        );
+      }
       const Boat = styled.div`
+        border-radius: 20px;
+        border-width: 100px;
+        border-color: #227b99;
+
         z-index: 100;
         position: absolute;
         width: 300px;
@@ -50,13 +72,29 @@ class TreeMenuCover extends Component<MyProps, MyState> {
         ${this.props.fading ? this.getAnimation() : ''};
       `;
       const ImgBlock = styled.img`
-        width: 100px;
-        height: 100px;
+        border-radius: 20px;
+        width: 98px;
+        height: 98px;
       `;
-
+      const ImgButton = styled.button`
+        border-width: 1px;
+        border-radius: 20px;
+        background-color: #227b99;
+        &:hover {
+          border-color: #fdb241;
+        }
+      `;
+      const BigButton = styled.button`
+        border-width: 1px;
+        border-radius: 20px;
+        background-color: #227b99;
+        &:hover {
+          border-color: #fdb241;
+        }
+      `;
       return (
-        <Boat className='m-0 p-0 rounded'>
-          <Container className='justify-content-center m-0 p-0 rounded'>
+        <Boat>
+          <Container className='justify-content-center m-0 p-0'>
             <Row className='m-0 p-0'>
               <Link
                 to={{
@@ -64,12 +102,11 @@ class TreeMenuCover extends Component<MyProps, MyState> {
                   state: { openPath: [ 'root', 'projects' ] },
                 }}
               >
-                <Col className='m-0 p-0'>
-                  <ImgBlock
-                    src='/icons/gpxdemo-o.gif'
-                    className='rounded-left'
-                  />
-                </Col>
+                <ImgButton>
+                  <Col className='m-0 p-0'>
+                    <ImgBlock src='/icons/gpxdemo-o.gif' />
+                  </Col>
+                </ImgButton>
               </Link>
               <Link
                 to={{
@@ -77,9 +114,11 @@ class TreeMenuCover extends Component<MyProps, MyState> {
                   state: { openPath: [ 'root', 'art' ] },
                 }}
               >
-                <Col className='m-0 p-0'>
-                  <ImgBlock src='/icons/sherbert.svg' />
-                </Col>
+                <ImgButton>
+                  <Col className='m-0 p-0'>
+                    <ImgBlock src='/icons/sherbert.svg' />
+                  </Col>
+                </ImgButton>
               </Link>
               <Link
                 to={{
@@ -87,9 +126,11 @@ class TreeMenuCover extends Component<MyProps, MyState> {
                   state: { openPath: [ 'root', 'projects', 'fun' ] },
                 }}
               >
-                <Col className='m-0 p-0'>
-                  <ImgBlock src='/icons/mzoom.gif' className='rounded-right' />
-                </Col>
+                <ImgButton>
+                  <Col className='m-0 p-0'>
+                    <ImgBlock src='/icons/mzoom.gif' />
+                  </Col>
+                </ImgButton>
               </Link>
             </Row>
             <Link
@@ -98,7 +139,7 @@ class TreeMenuCover extends Component<MyProps, MyState> {
                 state: { openPath: [ 'root' ] },
               }}
             >
-              <button
+              <BigButton
                 style={{
                   position: 'absolute',
                   textAlign: 'center',
@@ -110,7 +151,6 @@ class TreeMenuCover extends Component<MyProps, MyState> {
                   left: 0,
                   backgroundColor: '#116a88',
                 }}
-                className='rounded'
               >
                 <h1
                   style={{
@@ -119,7 +159,7 @@ class TreeMenuCover extends Component<MyProps, MyState> {
                 >
                   Explore
                 </h1>
-              </button>
+              </BigButton>
             </Link>
             <div
               style={{
@@ -127,7 +167,6 @@ class TreeMenuCover extends Component<MyProps, MyState> {
                 height: 100,
                 bottom: 0,
               }}
-              className='m-0 p-0 rounded'
             >
               <Row className='m-0 p-0'>
                 <Link
@@ -136,12 +175,11 @@ class TreeMenuCover extends Component<MyProps, MyState> {
                     state: { openPath: [ 'root', 'art' ] },
                   }}
                 >
-                  <Col className='m-0 p-0'>
-                    <ImgBlock
-                      src='/icons/raw-bowl.jpg'
-                      className='rounded-left'
-                    />
-                  </Col>
+                  <ImgButton>
+                    <Col className='m-0 p-0'>
+                      <ImgBlock src='/icons/raw-bowl.JPG' />
+                    </Col>
+                  </ImgButton>
                 </Link>
                 <Link
                   to={{
@@ -149,9 +187,11 @@ class TreeMenuCover extends Component<MyProps, MyState> {
                     state: { openPath: [ 'root', 'projects' ] },
                   }}
                 >
-                  <Col className='m-0 p-0'>
-                    <ImgBlock src='/icons/jzoom.gif' />
-                  </Col>
+                  <ImgButton>
+                    <Col className='m-0 p-0'>
+                      <ImgBlock src='/icons/jzoom.gif' />
+                    </Col>
+                  </ImgButton>
                 </Link>
                 <Link
                   to={{
@@ -159,12 +199,11 @@ class TreeMenuCover extends Component<MyProps, MyState> {
                     state: { openPath: [ 'root', 'art' ] },
                   }}
                 >
-                  <Col className='m-0 p-0'>
-                    <ImgBlock
-                      src='/icons/macro-drops.jpg'
-                      className='rounded-right'
-                    />
-                  </Col>
+                  <ImgButton>
+                    <Col className='m-0 p-0'>
+                      <ImgBlock src='/icons/macro-drops.jpg' />
+                    </Col>
+                  </ImgButton>
                 </Link>
               </Row>
             </div>
@@ -174,6 +213,12 @@ class TreeMenuCover extends Component<MyProps, MyState> {
     }
 
     return <div style={{ display: 'none' }} />;
+  }
+
+  //! --------------------------------------------------------------------------
+
+  componentWillUnmount () {
+    this.timeouts.forEach((timeoutId) => clearTimeout(timeoutId));
   }
 }
 

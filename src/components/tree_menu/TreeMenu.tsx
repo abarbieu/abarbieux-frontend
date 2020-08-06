@@ -23,6 +23,7 @@ type MyState = {
 };
 type LocationState = {
   openPath?: Array<string>;
+  highlighted?: string;
 };
 type MyProps = RouteComponentProps<{}, {}, LocationState> & {
   rootPos: Point;
@@ -35,7 +36,7 @@ class TreeMenu extends React.Component<MyProps, MyState> {
   units: string = 'px';
   menuApi: TreeMenuApi;
   animatedLayer = 1;
-
+  timeouts: Array<number> = [];
   constructor (props: MyProps) {
     super(props);
 
@@ -76,16 +77,31 @@ class TreeMenu extends React.Component<MyProps, MyState> {
   //! --------------------------------------------------------------------------
 
   componentDidMount () {
-    setTimeout(() => {
-      if (this.props.location.state && this.props.location.state.openPath) {
-        for (let i = 0; i < this.props.location.state.openPath.length; i++) {
-          let path = this.props.location.state.openPath[i];
-          if (this.state.elements.length > i && this.state.elements[i][path]) {
-            this.nodeClicked(i, path);
+    this.timeouts.push(
+      setTimeout(() => {
+        if (this.props.location.state && this.props.location.state.openPath) {
+          for (let i = 0; i < this.props.location.state.openPath.length; i++) {
+            let path = this.props.location.state.openPath[i];
+            this.timeouts.push(
+              setTimeout(() => {
+                if (
+                  this.state.elements.length > i &&
+                  this.state.elements[i][path]
+                ) {
+                  this.nodeClicked(i, path);
+                }
+              }, i * 700)
+            );
           }
         }
-      }
-    }, 500);
+      }, 500)
+    );
+  }
+
+  //! --------------------------------------------------------------------------
+
+  componentWillUnmount () {
+    this.timeouts.forEach((timeoutId) => clearTimeout(timeoutId));
   }
 
   //! --------------------------------------------------------------------------
@@ -143,7 +159,7 @@ class TreeMenu extends React.Component<MyProps, MyState> {
         );
         setTimeout(() => {
           this.nodeClicked(depth, id);
-        }, 250);
+        }, 350);
       }
       return prevState;
     });
@@ -167,10 +183,12 @@ class TreeMenu extends React.Component<MyProps, MyState> {
       margin-left: -${this.scale / 2}${this.units};
 
       background-size: contain;
-      transition: all ease-out 500ms;
-      transition-delay: 200ms;
+
       border-radius: 50%;
+
       &:active {
+        transition: all ease-out 500ms;
+        transition-delay: 200ms;
         border-color: #fdb241;
         border-width: 2px;
         z-index: 20;
@@ -191,7 +209,7 @@ class TreeMenu extends React.Component<MyProps, MyState> {
       extra = css`
         animation: ${node.animation.keyframes} 350ms ease-in forwards;
       `;
-    } else if (node.animation && this.animatedLayer === depth && !node.parent) {
+    } else if (node.animation && this.animatedLayer === depth) {
       posx = -3 * node.animation.startPos.x + 4 * posx;
       posy = -3 * node.animation.startPos.y + 4 * posy;
       extra = css`

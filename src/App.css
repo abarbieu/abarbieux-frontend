@@ -5,6 +5,18 @@
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans,
     Ubuntu, Cantarell, Helvetica Neue, sans-serif;
 }
+
+button {
+  border-color: #434161;
+  border-width: 1px;
+}
+button:hover {
+  transition: border-color 320ms;
+  transition-delay: 0ms;
+  border-width: 1px;
+  border-color: #fdb241;
+}
+
 .Tiled-back {
   width: 100vw;
   height: 100vh;

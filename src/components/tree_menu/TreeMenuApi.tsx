@@ -24,12 +24,13 @@ class TreeMenuApi {
       to = to - 2 / children.length;
     }
     const theta = (to - from) / (children.length - 1);
-
+    // if (node.parent) {
+    //   this.killKids(currElem, depth - 1, node.parent, id);
+    // }
     //* Deactivates everything else
     currElem.splice(depth + 2);
 
     //* Deactivates Siblings
-    node.parent = true;
     currElem[depth] = { [id]: node };
 
     //* Resets next layer
@@ -47,7 +48,7 @@ class TreeMenuApi {
         const baseInfo = {
           title: menuInfo.title,
           background: menuInfo.background,
-          parent: false,
+          parent: id,
           hiding: false,
           willSpawn: true,
           pos: { x: diff.x + node.pos.x, y: diff.y + node.pos.y },
@@ -78,21 +79,28 @@ class TreeMenuApi {
 
   //! --------------------------------------------------------------------------
 
-  killKids = (currElem: Array<Layer>, depth: number, id: string): number => {
+  killKids = (
+    currElem: Array<Layer>,
+    depth: number,
+    id: string,
+    except?: string
+  ): number => {
     let node: InfoNodeChildren = currElem[depth][id] as InfoNodeChildren;
 
     for (let i = depth + 1; i < currElem.length; i++) {
       Object.entries(currElem[i]).forEach(([ id, child ]) => {
-        if (!child.hiding) {
-          child.hiding = true;
-          if (child.animation) {
-            child.animation.keyframes = this.getHidingKeyframes(
-              node.pos,
-              child.pos
-            );
+        if (id !== except) {
+          if (!child.hiding) {
+            child.hiding = true;
+            if (child.animation) {
+              child.animation.keyframes = this.getHidingKeyframes(
+                node.pos,
+                child.pos
+              );
+            }
+          } else if (child.animation) {
+            child.animation.keyframes = this.getHiddenKeyframes();
           }
-        } else if (child.animation) {
-          child.animation.keyframes = this.getHiddenKeyframes();
         }
       });
     }
@@ -242,7 +250,7 @@ export type MenuNode = MenuNodeChildren | MenuNodeLink | MenuNodeRoute;
 interface InfoNodeBasics {
   pos: Point;
   title: string;
-  parent?: boolean;
+  parent?: string;
   background?: string;
   willSpawn?: boolean;
   hiding?: boolean;

@@ -5,6 +5,7 @@ if [ "$#" -ne 1 ]; then
 elif [ ! -d "../prod-master/" ]; then
   echo "../prod-master/ is not a valid directory"
 else
+  npm run build
   rm -rf ../prod-master/build
   cp -r ./build ../prod-master
   cd ../prod-master
