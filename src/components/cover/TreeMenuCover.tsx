@@ -52,7 +52,7 @@ class TreeMenuCover extends Component<MyProps, MyState> {
             this.timeouts.push(
               setTimeout(() => {
                 this.renderable = true;
-              }, 800)
+              }, 1300)
             );
           }, 400)
         );
