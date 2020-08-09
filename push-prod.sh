@@ -7,7 +7,7 @@ elif [ ! -d "../prod-master/" ]; then
 else
   npm run build
   rm -rf ../prod-master/front-end
-  cp -r ./build ../front-end
+  cp -r ./build ../prod-master/front-end
   cd ../prod-master
   git add ./front-end
   git commit -m "$1"
