@@ -34,7 +34,7 @@
   {
     "all-projects": {
       "title": "View All",
-      "link": "https://github.com/abarbieu?tab=repositories"
+      "link": "/projects/"
     },
     "web": {
       "title": "Web Dev",

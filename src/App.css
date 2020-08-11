@@ -16,7 +16,64 @@ button:hover {
   border-width: 1px;
   border-color: #fdb241;
 }
+.footer {
+  position: absolute;
+  bottom: 0;
+  background-color: #222233bb;
+}
+.svg-link {
+  height: 1cm;
+  fill: currentColor;
+}
+.link {
+  transition: color 250ms;
+  text-decoration: none;
+  display: inline;
+  color: #a0a0a5;
+}
+.link:hover {
+  text-decoration: none;
+  color: #336999bb;
+}
+.shr-btn {
+  transition: all 250ms;
+}
+.shr-btn:focus {
+  outline: none;
+}
 
+.shr-btn:hover {
+  animation: enlarge 150ms ease-in forwards;
+}
+.shr-btn:active {
+  animation: shrink 150ms ease-in forwards;
+}
+.transparent-bg {
+  background-color: transparent;
+}
+@keyframes enlarge {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.25);
+  }
+}
+@keyframes shrink {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.75);
+  }
+}
+#collasible-nav-dropdown {
+  transition: all 250ms;
+}
+
+.custom_nav_link {
+  align-self: flex-end;
+}
 .Tiled-back {
   width: 100vw;
   height: 100vh;
@@ -28,6 +85,7 @@ button:hover {
   padding: 0px;
   margin: 0px;
 }
+
 /* .screenCover {
   outline: none;
   margin: 0px;

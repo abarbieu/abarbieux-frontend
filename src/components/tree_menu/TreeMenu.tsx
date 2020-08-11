@@ -37,6 +37,7 @@ class TreeMenu extends React.Component<MyProps, MyState> {
   menuApi: TreeMenuApi;
   animatedLayer = 1;
   timeouts: Array<number> = [];
+  locState: LocationState = {};
   constructor (props: MyProps) {
     super(props);
 
@@ -77,25 +78,42 @@ class TreeMenu extends React.Component<MyProps, MyState> {
   //! --------------------------------------------------------------------------
 
   componentDidMount () {
+    this.handleLoc();
+  }
+
+  handleLoc = () => {
+    if (this.props.location.state !== this.locState) {
+      if (this.props.location.state) {
+        this.locState = this.props.location.state;
+        console.log(this.locState);
+        if (this.locState.openPath) {
+          this.openPath(this.locState.openPath);
+        }
+      }
+    }
+  };
+  openPath = (openPath: Array<string>) => {
     this.timeouts.push(
       setTimeout(() => {
-        if (this.props.location.state && this.props.location.state.openPath) {
-          for (let i = 0; i < this.props.location.state.openPath.length; i++) {
-            let path = this.props.location.state.openPath[i];
-            this.timeouts.push(
-              setTimeout(() => {
-                if (
-                  this.state.elements.length > i &&
-                  this.state.elements[i][path]
-                ) {
-                  this.nodeClicked(i, path);
-                }
-              }, i * 700)
-            );
-          }
+        for (let i = 0; i < openPath.length; i++) {
+          let part = openPath[i];
+          this.timeouts.push(
+            setTimeout(() => {
+              if (
+                this.state.elements.length > i &&
+                this.state.elements[i][part]
+              ) {
+                this.nodeClicked(i, part);
+              }
+            }, i * 700)
+          );
         }
       }, 500)
     );
+  };
+
+  componentDidUpdate () {
+    this.handleLoc();
   }
 
   //! --------------------------------------------------------------------------

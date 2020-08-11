@@ -15,7 +15,7 @@ type MyState = {
   // clicked: boolean;
 };
 type MyProps = RouteComponentProps<{}, {}, LocationState> & {
-  pos: Point;
+  pos?: Point;
   fading: boolean;
 };
 
@@ -47,7 +47,6 @@ class TreeMenuCover extends Component<MyProps, MyState> {
       if (this.props.fading) {
         this.timeouts.push(
           setTimeout(() => {
-            console.log('unrenderable');
             this.renderable = false;
             this.timeouts.push(
               setTimeout(() => {
@@ -66,8 +65,9 @@ class TreeMenuCover extends Component<MyProps, MyState> {
         position: absolute;
         width: 300px;
         height: 300px;
-        left: ${this.props.pos.x - 150}px;
-        top: ${this.props.pos.y - 150}px;
+        margin: -150px;
+        left: 50vw;
+        top: 50vh;
         background-color: #227b99;
         ${this.props.fading ? this.getAnimation() : ''};
       `;
@@ -99,7 +99,7 @@ class TreeMenuCover extends Component<MyProps, MyState> {
               <Link
                 to={{
                   pathname: '/explore',
-                  state: { openPath: [ 'root', 'projects' ] },
+                  state: { openPath: [ 'root', 'projects', 'fun' ] },
                 }}
               >
                 <ImgButton>
