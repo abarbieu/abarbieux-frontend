@@ -24,10 +24,12 @@ class App extends React.Component<MyProps, MyState> {
     return (
       <ParallaxProvider>
         <div className='Tiled-back'>
-          <Router>
-            <MainNavbar />
-            <Routes rootPos={this.state.mid} />
-          </Router>
+          <div id='wrap'>
+            <Router>
+              <MainNavbar />
+              <Routes rootPos={this.state.mid} />
+            </Router>
+          </div>
           <footer className='footer'>
             <Footer />
             {/* <small style={{ color: '#121314' }}>

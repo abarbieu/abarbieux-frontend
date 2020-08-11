@@ -11,8 +11,8 @@ import Logos from './Logos';
 export default function Footer () {
   return (
     <div style={{ width: '100vw' }}>
-      <Container className='pt-2' fluid='lg'>
-        <Row xs={2} sm={3} md={3}>
+      <Container fluid='lg'>
+        <Row xs={3} sm={3} md={3}>
           <Col>
             <DropdownButton
               as={ButtonGroup}
@@ -20,24 +20,19 @@ export default function Footer () {
               id={'dropdown-button-drop-up'}
               drop='up'
               variant='btn-transparent'
-              title={
-                <div className='link'>
-                  {Logos.ig}
-                  <span>Instagram</span>
-                </div>
-              }
+              title={<div className='link'>{Logos.ig}</div>}
             >
               <Dropdown.Item href='https://www.instagram.com/aidan_barbieux/'>
                 {Logos.ig}
-                <span>Ceramics</span>
+                <span>{'   '}Ceramics</span>
               </Dropdown.Item>
               <Dropdown.Item href='https://www.instagram.com/bbq_photos/'>
                 {Logos.ig}
-                <span>Photography</span>
+                <span>{'   '}Photography</span>
               </Dropdown.Item>
               <Dropdown.Item href='https://www.instagram.com/aidan.bbq/'>
                 {Logos.ig}
-                <span>Personal</span>
+                <span>{'   '}Personal</span>
               </Dropdown.Item>
             </DropdownButton>
           </Col>
@@ -49,7 +44,6 @@ export default function Footer () {
                 href='https://github.com/abarbieu/'
               >
                 {Logos.git}
-                <span>GitHub</span>
               </a>
             </Button>
           </Col>
@@ -61,7 +55,6 @@ export default function Footer () {
                 href='https://www.linkedin.com/in/aidanbarbieux/'
               >
                 {Logos.in}
-                <span>LinkedIn</span>
               </a>
             </Button>
           </Col>

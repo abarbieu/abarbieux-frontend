@@ -22,7 +22,11 @@ function MainNavbar () {
       variant='dark'
     >
       <Container fluid='lg'>
-        <Navbar.Brand className='shr-btn' href='#home'>
+        <Navbar.Brand
+          style={{ color: '#60aaf0' }}
+          className='shr-btn'
+          href='#home'
+        >
           <img alt='' src='/icons/sherbert.svg' width='32' height='32' />{' '}
           {'Aidan Barbieux'}
         </Navbar.Brand>
@@ -81,20 +85,22 @@ function MainNavbar () {
             <NavDropdown
               className='my-auto '
               title={
-                <img
-                  className='shr-btn'
-                  alt='Email'
-                  src='/icons/email.svg'
-                  width='32'
-                  height='32'
-                />
+                <div className=' ml-4 d-inline'>
+                  <img
+                    className='shr-btn'
+                    alt='Email'
+                    src='/icons/email.svg'
+                    width='32'
+                    height='32'
+                  />
+                </div>
               }
               id='collasible-nav-dropdown'
             >
-              <div>
+              <Container className='justify-content-center m-0 p-0'>
                 <Navbar.Text
                   style={{ fontSize: 12, color: 'black' }}
-                  className='d-inline m-1 font-weight-bold'
+                  className=' d-inline m-1 font-weight-bold'
                 >
                   <OverlayTrigger
                     placement='left'
@@ -127,7 +133,7 @@ function MainNavbar () {
                   </OverlayTrigger>
                   abarbieu@calpoly.edu
                 </Navbar.Text>
-              </div>
+              </Container>
             </NavDropdown>
             <Nav.Link
               className='shr-btn nav-link m-auto shr-btn'

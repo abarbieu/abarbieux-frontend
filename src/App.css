@@ -17,18 +17,21 @@ button:hover {
   border-color: #fdb241;
 }
 .footer {
-  position: absolute;
-  bottom: 0;
+  position: relative;
+  margin-top: -42px; /* negative value of footer height */
+  height: 42px;
+  clear: both;
   background-color: #222233bb;
 }
 .svg-link {
-  height: 1cm;
+  width: 25px;
+  height: 25px;
   fill: currentColor;
 }
 .link {
   transition: color 250ms;
   text-decoration: none;
-  display: inline;
+  display: inline-block;
   color: #a0a0a5;
 }
 .link:hover {
@@ -70,9 +73,8 @@ button:hover {
 #collasible-nav-dropdown {
   transition: all 250ms;
 }
-
-.custom_nav_link {
-  align-self: flex-end;
+#wrap {
+  min-height: 100vh;
 }
 .Tiled-back {
   width: 100vw;
