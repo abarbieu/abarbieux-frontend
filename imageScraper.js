@@ -30,7 +30,9 @@ const convertImgArr = (images, imageLoc, outPrefix) => {
       dims.height = tmp;
     }
     out.push({
-      src : outPrefix + images[i],
+      src       : outPrefix + images[i],
+      original  : outPrefix + images[i],
+      thumbnail : outPrefix + images[i],
       ...dims,
     });
     // await getSizePromise(filePath)
@@ -71,10 +73,10 @@ const imagesToJSON = (imageLoc, outPrefix, outFile) => {
 imagesToJSON(
   './public/ceramics/',
   '/ceramics/',
-  './src/components/ceramics/ceramics-photos.json'
+  './src/components/routes/ceramics-photos.json'
 );
 imagesToJSON(
   './public/photos/',
   '/photos/',
-  './src/components/photos/photos.json'
+  './src/components/routes/photos.json'
 );

@@ -13,6 +13,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 type MyProps = { rootPos: { x: number; y: number } };
 
 function Routes (props: MyProps) {
+  const thumbPos = props.rootPos.x > props.rootPos.y ? 'left' : 'bottom';
   let apiUrl: String;
   if (process.env.NODE_ENV === 'development') {
     apiUrl = 'http://127.0.0.1:54321/api/';
@@ -22,13 +23,13 @@ function Routes (props: MyProps) {
   return (
     <Switch>
       <Route path='/art/ceramics'>
-        <ImgGallery photos={ceramicsPhotos} />
+        <ImgGallery thumbPos={thumbPos} photos={ceramicsPhotos} />
       </Route>
       <Route path='/art/photos'>
-        <ImgGallery photos={photos} />
+        <ImgGallery thumbPos={thumbPos} photos={photos} />
       </Route>
       <Route path='/art'>
-        <ImgGallery photos={photos} />
+        <ImgGallery thumbPos={thumbPos} photos={photos} />
       </Route>
       <Route path='/explore'>
         <Cover fading={true} />
