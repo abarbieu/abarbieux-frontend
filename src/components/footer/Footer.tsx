@@ -37,7 +37,7 @@ export default function Footer () {
             </DropdownButton>
           </Col>
           <Col>
-            <Button variant='btn-transparent'>
+            <Button className='link' variant='btn-transparent'>
               <a
                 className='link'
                 title='GitHub'

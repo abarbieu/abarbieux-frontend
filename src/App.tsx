@@ -27,7 +27,9 @@ class App extends React.Component<MyProps, MyState> {
           <div id='wrap'>
             <Router>
               <MainNavbar />
-              <Routes rootPos={this.state.mid} />
+              <div style={{ paddingTop: '65px' }}>
+                <Routes rootPos={this.state.mid} />
+              </div>
             </Router>
           </div>
           <footer className='footer'>

@@ -1,10 +1,13 @@
 #!/bin/bash
 
-if [ "$#" -ne 1 ]; then
-  echo "Usage: ./push-prod.sh <message>"
+if [ "$#" -lt 1 ]; then
+  echo "Usage: ./push-prod.sh <message> [update images?]"
 elif [ ! -d "../prod-master/" ]; then
   echo "../prod-master/ is not a valid directory"
 else
+  if [ "$#" -e 2 ]; then
+    node imageScraper.js
+  fi
   npm run build
   rm -rf ../prod-master/front-end
   cp -r ./build ../prod-master/front-end

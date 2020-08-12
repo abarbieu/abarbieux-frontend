@@ -7,10 +7,6 @@ import Container from 'react-bootstrap/Container';
 import Tooltip from 'react-bootstrap/Tooltip';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
-type MyState = {
-  show: boolean;
-};
-type MyProps = {};
 function MainNavbar () {
   const [ show, setShow ] = useState(false);
   return (
@@ -116,18 +112,27 @@ function MainNavbar () {
                   >
                     <span className='d-inline-block'>
                       <button
+                        style={{ backgroundColor: 'transparent' }}
                         className='d-inline border-0 mr-1 shr-btn'
                         onClick={() => {
                           navigator.clipboard.writeText('abarbieu@calpoly.edu');
                         }}
                       >
-                        <img
-                          width='15'
-                          height='15'
-                          id='copyIcon'
-                          src='/icons/copy.svg'
-                          alt=''
-                        />
+                        <OverlayTrigger
+                          placement='top'
+                          delay={{ show: 550, hide: 400 }}
+                          overlay={
+                            <Tooltip id='copy-email'>Copy Email?</Tooltip>
+                          }
+                        >
+                          <img
+                            width='15'
+                            height='15'
+                            id='copyIcon'
+                            src='/icons/copy.svg'
+                            alt=''
+                          />
+                        </OverlayTrigger>
                       </button>
                     </span>
                   </OverlayTrigger>

@@ -10,12 +10,25 @@ button {
   border-color: #434161;
   border-width: 1px;
 }
+
 button:hover {
   transition: border-color 320ms;
   transition-delay: 0ms;
   border-width: 1px;
   border-color: #fdb241;
 }
+
+.Tiled-back {
+  min-width: 100vw;
+  min-height: 100vh;
+  text-align: center;
+  background: url('./resources/background-patterns/bg-pblue-str.png');
+  background-repeat: round;
+  background-size: 64px;
+  padding: 0px;
+  margin: 0px;
+}
+
 .footer {
   position: relative;
   margin-top: -42px; /* negative value of footer height */
@@ -23,24 +36,29 @@ button:hover {
   clear: both;
   background-color: #222233bb;
 }
+
 .svg-link {
   width: 25px;
   height: 25px;
   fill: currentColor;
 }
+
 .link {
   transition: color 250ms;
   text-decoration: none;
   display: inline-block;
   color: #a0a0a5;
 }
+
 .link:hover {
   text-decoration: none;
   color: #336999bb;
 }
+
 .shr-btn {
   transition: all 250ms;
 }
+
 .shr-btn:focus {
   outline: none;
 }
@@ -48,44 +66,39 @@ button:hover {
 .shr-btn:hover {
   animation: enlarge 150ms ease-in forwards;
 }
+
 .shr-btn:active {
   animation: shrink 150ms ease-in forwards;
 }
+
 .transparent-bg {
   background-color: transparent;
 }
+
+#collasible-nav-dropdown {
+  transition: all 250ms;
+}
+
+#wrap {
+  min-height: 100vh;
+}
+
 @keyframes enlarge {
   0% {
     transform: scale(1);
   }
   100% {
-    transform: scale(1.25);
+    transform: scale(1.2);
   }
 }
+
 @keyframes shrink {
   0% {
     transform: scale(1);
   }
   100% {
-    transform: scale(0.75);
+    transform: scale(0.8);
   }
-}
-#collasible-nav-dropdown {
-  transition: all 250ms;
-}
-#wrap {
-  min-height: 100vh;
-}
-.Tiled-back {
-  width: 100vw;
-  height: 100vh;
-  text-align: center;
-  overflow: hidden;
-  background: url('./resources/background-patterns/bg-pblue-str.png');
-  background-repeat: round;
-  background-size: 64px;
-  padding: 0px;
-  margin: 0px;
 }
 
 /* .screenCover {

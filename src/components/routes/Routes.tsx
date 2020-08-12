@@ -3,6 +3,7 @@ import Header from '../todolist/Header';
 import TodoList from '../todolist/TodoList';
 import LaunchMenu from '../../resources/launch-menu.json';
 import TreeMenu from '../tree_menu/TreeMenu';
+import CeramicsGallery from '../ceramics/CeramicsGallery';
 import Cover from '../cover/TreeMenuCover';
 
 import { Switch, Route, Redirect } from 'react-router-dom';
@@ -18,6 +19,9 @@ function Routes (props: MyProps) {
   }
   return (
     <Switch>
+      <Route path='/art/ceramics'>
+        <CeramicsGallery />
+      </Route>
       <Route path='/explore'>
         <Cover fading={true} />
         <TreeMenu
@@ -29,7 +33,6 @@ function Routes (props: MyProps) {
       <Route path='/notes/'>
         <Header />
         <TodoList apiUrl={apiUrl} />
-        {/* <div>Note Page</div> */}
       </Route>
       <Route path='/home/'>
         <Cover fading={false} />
