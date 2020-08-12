@@ -1,5 +1,4 @@
 import React, { useState, useCallback } from 'react';
-import Container from 'react-bootstrap/Container';
 import Gallery from 'react-photo-gallery';
 import Carousel, { Modal, ModalGateway } from 'react-images';
 import photos from './ceramics-photos';
@@ -17,8 +16,13 @@ export default function CeramicsGallery () {
     setViewerIsOpen(false);
   };
   return (
-    <Container style={{ paddingBottom: '50px' }} fluid='large'>
-      <Gallery photos={photos} direction={'column'} onClick={openLightbox} />
+    <div style={{ width: '85vw' }} className='mx-auto p-0'>
+      <Gallery
+        className='m-0 p-0'
+        direction='row'
+        photos={photos}
+        onClick={openLightbox}
+      />
       <ModalGateway>
         {viewerIsOpen ? (
           <Modal onClose={closeLightbox}>
@@ -33,6 +37,6 @@ export default function CeramicsGallery () {
           </Modal>
         ) : null}
       </ModalGateway>
-    </Container>
+    </div>
   );
 }

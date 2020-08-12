@@ -54,12 +54,27 @@ function MainNavbar () {
             <Link
               className='nav-link shr-btn'
               to={{
-                pathname: '/explore/',
+                pathname: '/art/ceramics',
                 search: '?path=art',
                 state: { openPath: [ 'root', 'art' ] },
               }}
             >
-              <img alt='Art' src='/icons/art.svg' width='32' height='32' />
+              <img alt='Ceramics' src='/icons/art.svg' width='32' height='32' />
+            </Link>
+            <Link
+              className='nav-link shr-btn'
+              to={{
+                pathname: '/art/photos',
+                search: '?path=art',
+                state: { openPath: [ 'root', 'art' ] },
+              }}
+            >
+              <img
+                alt='Photos'
+                src='/icons/photos.svg'
+                width='32'
+                height='32'
+              />
             </Link>
             <Link
               className='nav-link shr-btn'

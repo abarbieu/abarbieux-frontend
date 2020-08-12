@@ -65,7 +65,7 @@
     "photography": {
       "title": "Photography",
       "background": "icons/droplet-o.png",
-      "route": "/art/photography"
+      "route": "/art/photos"
     },
     "random": {
       "title": "Random",

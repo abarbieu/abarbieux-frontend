@@ -5,7 +5,7 @@ if [ "$#" -lt 1 ]; then
 elif [ ! -d "../prod-master/" ]; then
   echo "../prod-master/ is not a valid directory"
 else
-  if [ "$#" -e 2 ]; then
+  if [ "$#" -eq 2 ]; then
     node imageScraper.js
   fi
   npm run build

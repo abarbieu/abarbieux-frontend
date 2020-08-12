@@ -27,7 +27,7 @@ class App extends React.Component<MyProps, MyState> {
           <div id='wrap'>
             <Router>
               <MainNavbar />
-              <div style={{ paddingTop: '65px' }}>
+              <div style={{ paddingTop: '65px', paddingBottom: '42px' }}>
                 <Routes rootPos={this.state.mid} />
               </div>
             </Router>

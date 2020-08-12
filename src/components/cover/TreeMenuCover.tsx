@@ -110,7 +110,7 @@ class TreeMenuCover extends Component<MyProps, MyState> {
               </Link>
               <Link
                 to={{
-                  pathname: '/explore',
+                  pathname: '/art/',
                   state: { openPath: [ 'root', 'art' ] },
                 }}
               >
@@ -171,7 +171,7 @@ class TreeMenuCover extends Component<MyProps, MyState> {
               <Row className='m-0 p-0'>
                 <Link
                   to={{
-                    pathname: '/explore',
+                    pathname: '/art/ceramics',
                     state: { openPath: [ 'root', 'art' ] },
                   }}
                 >
@@ -184,7 +184,7 @@ class TreeMenuCover extends Component<MyProps, MyState> {
                 <Link
                   to={{
                     pathname: '/explore',
-                    state: { openPath: [ 'root', 'projects' ] },
+                    state: { openPath: [ 'root', 'projects', 'fun' ] },
                   }}
                 >
                   <ImgButton>
@@ -195,7 +195,7 @@ class TreeMenuCover extends Component<MyProps, MyState> {
                 </Link>
                 <Link
                   to={{
-                    pathname: '/explore',
+                    pathname: '/art/photos',
                     state: { openPath: [ 'root', 'art' ] },
                   }}
                 >

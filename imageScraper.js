@@ -62,7 +62,7 @@ const imagesToJSON = (imageLoc, outPrefix, outFile) => {
       console.log(outStr);
 
       fs.writeFile(outFile, outStr, 'utf8', () =>
-        console.log(`Saved ceramics photos obj to ${outFile}`)
+        console.log(`Saved photos obj to ${outFile}`)
       );
     }
   });
@@ -72,4 +72,9 @@ imagesToJSON(
   './public/ceramics/',
   '/ceramics/',
   './src/components/ceramics/ceramics-photos.json'
+);
+imagesToJSON(
+  './public/photos/',
+  '/photos/',
+  './src/components/photos/photos.json'
 );

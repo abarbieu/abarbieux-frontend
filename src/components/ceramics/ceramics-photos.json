@@ -1,616 +1,88 @@
 [
     {
-        "src": "/ceramics/20191104_133943.jpg",
-        "height": 3024,
-        "orientation": 1,
-        "width": 4032,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/20191106_202134.jpg",
-        "height": 4032,
-        "orientation": 6,
-        "width": 3024,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/20191117_145247.jpg",
-        "height": 4032,
-        "orientation": 6,
-        "width": 3024,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/20191119_181114.jpg",
-        "height": 4032,
-        "orientation": 6,
-        "width": 3024,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/20191123_133323.jpg",
-        "height": 3759,
-        "orientation": 1,
-        "width": 3024,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/20191123_133418.jpg",
-        "height": 2431,
-        "orientation": 1,
-        "width": 3011,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/20191125_135448.jpg",
-        "height": 4032,
-        "orientation": 6,
-        "width": 3024,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/20191125_143322.jpg",
-        "height": 4032,
-        "orientation": 6,
-        "width": 3024,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/20191204_111444.jpg",
-        "height": 4032,
-        "orientation": 6,
-        "width": 3024,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/20191204_111716.jpg",
-        "height": 4032,
-        "orientation": 6,
-        "width": 3024,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/20191208_123550.jpg",
-        "height": 4032,
-        "orientation": 6,
-        "width": 3024,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/20191208_123642.jpg",
-        "height": 3846,
-        "orientation": 1,
-        "width": 2884,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/20191208_145511.jpg",
-        "height": 4032,
-        "orientation": 6,
-        "width": 3024,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/20191208_145800.jpg",
-        "height": 4032,
-        "orientation": 6,
-        "width": 3024,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/20191214_171849.jpg",
-        "height": 4032,
-        "orientation": 6,
-        "width": 3024,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/20191215_175227.jpg",
-        "height": 2806,
-        "orientation": 1,
-        "width": 2459,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/20191225_112343.jpg",
-        "height": 3024,
-        "orientation": 3,
-        "width": 4032,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/20191225_124448.jpg",
-        "height": 3024,
-        "orientation": 1,
-        "width": 4032,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/20200103011440_IMG_4584.jpg",
-        "height": 1600,
-        "orientation": 1,
-        "width": 2400,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/20200105021021_IMG_5021.jpg",
-        "height": 1600,
-        "orientation": 1,
-        "width": 2400,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/20200105021030_IMG_5022.jpg",
-        "height": 1600,
-        "orientation": 1,
-        "width": 2400,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/20200105021213_IMG_5028.jpg",
-        "height": 1600,
-        "orientation": 1,
-        "width": 2400,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/20200105051544_IMG_5039.jpg",
-        "height": 1600,
-        "orientation": 1,
-        "width": 1601,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/20200112112140_IMG_5099.jpg",
-        "height": 1600,
-        "orientation": 1,
-        "width": 2400,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/20200113_074756.jpg",
-        "height": 3024,
-        "orientation": 3,
-        "width": 4032,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/20200114_091118.jpg",
-        "height": 1666,
-        "orientation": 1,
-        "width": 1667,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/20200116_142517.jpg",
-        "height": 3024,
-        "orientation": 1,
-        "width": 4032,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/20200121_154448.jpg",
-        "height": 4032,
-        "orientation": 6,
-        "width": 3024,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/20200121_155006.jpg",
-        "height": 4032,
-        "orientation": 6,
-        "width": 3024,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/20200123_112710.jpg",
-        "height": 3024,
-        "orientation": 1,
-        "width": 4032,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/20200212_101448.jpg",
-        "height": 3024,
-        "orientation": 1,
-        "width": 4032,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/20200212_184901.jpg",
-        "height": 4032,
-        "orientation": 6,
-        "width": 3024,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/20200212_184904.jpg",
-        "height": 4032,
-        "orientation": 6,
-        "width": 3024,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/20200212_184905.jpg",
-        "height": 4032,
-        "orientation": 6,
-        "width": 3024,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/20200212_184907.jpg",
-        "height": 4032,
-        "orientation": 6,
-        "width": 3024,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/20200221_174939.jpg",
-        "height": 3024,
-        "orientation": 1,
-        "width": 4032,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/20200223_172102.jpg",
-        "height": 4032,
-        "orientation": 6,
-        "width": 3024,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/AAB_2275.jpg",
+        "src": "/ceramics/1-hands.jpg",
         "height": 4898,
         "width": 3265,
         "type": "jpg"
     },
     {
-        "src": "/ceramics/AAB_2355.jpg",
+        "src": "/ceramics/2-beaut-bowl.jpg",
+        "height": 4000,
+        "orientation": 1,
+        "width": 6000,
+        "type": "jpg"
+    },
+    {
+        "src": "/ceramics/2-chatter.jpg",
+        "height": 2560,
+        "width": 3840,
+        "type": "jpg"
+    },
+    {
+        "src": "/ceramics/3-wavy-bowl.jpg",
+        "height": 4000,
+        "orientation": 1,
+        "width": 6000,
+        "type": "jpg"
+    },
+    {
+        "src": "/ceramics/4-bowl-set.jpg",
+        "height": 4000,
+        "orientation": 1,
+        "width": 6000,
+        "type": "jpg"
+    },
+    {
+        "src": "/ceramics/5-trimming.jpg",
         "height": 3266,
         "width": 4899,
         "type": "jpg"
     },
     {
-        "src": "/ceramics/AID_0022.jpg",
-        "height": 4000,
+        "src": "/ceramics/6.jpg",
+        "height": 1600,
         "orientation": 1,
-        "width": 6000,
+        "width": 2400,
         "type": "jpg"
     },
     {
-        "src": "/ceramics/AID_0030.jpg",
-        "height": 4000,
-        "orientation": 1,
-        "width": 6000,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/AID_0038.jpg",
-        "height": 4000,
-        "orientation": 1,
-        "width": 6000,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/AID_0051.jpg",
-        "height": 3779,
-        "orientation": 1,
-        "width": 5668,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/AID_0055.jpg",
-        "height": 4000,
-        "orientation": 1,
-        "width": 6000,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/AID_0071.jpg",
-        "height": 4000,
-        "orientation": 1,
-        "width": 6000,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/AID_0079.jpg",
-        "height": 4000,
-        "orientation": 1,
-        "width": 6000,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/AID_0083.jpg",
-        "height": 4000,
-        "orientation": 1,
-        "width": 6000,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/AID_0099.jpg",
-        "height": 4000,
-        "orientation": 1,
-        "width": 6000,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/AID_0104.jpg",
-        "height": 4000,
-        "orientation": 1,
-        "width": 6000,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/AID_0113.jpg",
-        "height": 4000,
-        "orientation": 1,
-        "width": 6000,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/AID_0121.jpg",
-        "height": 4000,
-        "orientation": 1,
-        "width": 6000,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/AID_0123.jpg",
-        "height": 4000,
-        "orientation": 1,
-        "width": 6000,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/AID_0126.jpg",
-        "height": 4000,
-        "orientation": 1,
-        "width": 6000,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/DSC_0004.jpg",
-        "height": 4000,
-        "orientation": 1,
-        "width": 6000,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/DSC_0011.jpg",
-        "height": 3072,
-        "orientation": 1,
-        "width": 4608,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/DSC_0012.jpg",
-        "height": 4000,
-        "orientation": 1,
-        "width": 6000,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/DSC_0018.jpg",
-        "height": 3072,
-        "orientation": 1,
-        "width": 4608,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/DSC_0030.jpg",
+        "src": "/ceramics/7-bowl-on-wheel1.jpg",
         "height": 3915,
         "orientation": 1,
         "width": 5873,
         "type": "jpg"
     },
     {
-        "src": "/ceramics/DSC_0033.jpg",
-        "height": 3473,
-        "orientation": 1,
-        "width": 5210,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/DSC_0035.jpg",
-        "height": 3263,
-        "orientation": 1,
-        "width": 4902,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/DSC_0040.jpg",
-        "height": 4000,
-        "orientation": 1,
-        "width": 6000,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/DSC_0081.jpg",
-        "height": 4000,
-        "orientation": 1,
-        "width": 6000,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/DSC_0082.jpg",
-        "height": 4000,
-        "orientation": 1,
-        "width": 4002,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/DSC_0097.jpg",
-        "height": 4000,
-        "orientation": 1,
-        "width": 4002,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/DSC_0108.jpg",
-        "height": 4000,
-        "orientation": 1,
-        "width": 4002,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/DSC_0118.jpg",
-        "height": 2268,
-        "orientation": 1,
-        "width": 2269,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/DSC_0129.jpg",
-        "height": 4002,
-        "orientation": 1,
-        "width": 4000,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/DSC_0144.jpg",
-        "height": 4000,
-        "orientation": 1,
-        "width": 6000,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/DSC_0158.jpg",
-        "height": 4000,
-        "orientation": 1,
-        "width": 6000,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/DSC_0188.jpg",
-        "height": 4000,
-        "orientation": 1,
-        "width": 6000,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/DSC_0236.jpg",
-        "height": 4000,
-        "orientation": 1,
-        "width": 6000,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/DSC_0264.jpg",
-        "height": 4000,
-        "orientation": 1,
-        "width": 6000,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/DSC_0270.jpg",
-        "height": 4000,
-        "orientation": 1,
-        "width": 6000,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/DSC_0274.jpg",
-        "height": 4000,
-        "orientation": 1,
-        "width": 6000,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/DSC_0285.jpg",
-        "height": 4000,
-        "orientation": 1,
-        "width": 6000,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/DSC_0287.jpg",
-        "height": 4000,
-        "orientation": 1,
-        "width": 6000,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/DSC_0302.jpg",
-        "height": 3782,
-        "orientation": 1,
-        "width": 3785,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/DSC_0318.jpg",
-        "height": 4000,
-        "orientation": 1,
-        "width": 6000,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/DSC_0467.jpg",
-        "height": 4000,
-        "orientation": 1,
-        "width": 6000,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/DSC_0468.jpg",
-        "height": 3089,
-        "orientation": 1,
-        "width": 3091,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/EFFECTS.jpg",
-        "height": 3265,
-        "orientation": 1,
-        "width": 4898,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/IMG_3580.jpg",
-        "height": 3162,
-        "orientation": 1,
-        "width": 4743,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/IMG_3599.jpg",
+        "src": "/ceramics/8-donut.jpg",
         "height": 2659,
         "orientation": 1,
         "width": 3989,
         "type": "jpg"
     },
     {
-        "src": "/ceramics/IMG_3623.jpg",
-        "height": 2902,
+        "src": "/ceramics/a-his-hers-1.jpg",
+        "height": 1600,
         "orientation": 1,
-        "width": 4354,
+        "width": 2400,
         "type": "jpg"
     },
     {
-        "src": "/ceramics/IMG_3638.jpg",
-        "height": 3222,
+        "src": "/ceramics/c-bowl-on-wheel2.jpg",
+        "height": 4000,
         "orientation": 1,
-        "width": 4834,
+        "width": 6000,
         "type": "jpg"
     },
     {
-        "src": "/ceramics/IMG_4343.jpg",
-        "height": 3265,
-        "orientation": 1,
-        "width": 3267,
+        "src": "/ceramics/chatter-2.jpg",
+        "height": 3840,
+        "width": 3072,
         "type": "jpg"
     },
     {
-        "src": "/ceramics/IMG_4345.jpg",
-        "height": 3265,
-        "orientation": 1,
-        "width": 4898,
-        "type": "jpg"
-    },
-    {
-        "src": "/ceramics/IMG_4369.jpg",
-        "height": 3265,
-        "orientation": 1,
-        "width": 4898,
+        "src": "/ceramics/vase.jpg",
+        "height": 3840,
+        "width": 2560,
         "type": "jpg"
     }
 ]
