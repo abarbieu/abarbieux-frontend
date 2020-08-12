@@ -1,8 +1,68 @@
 [
     {
-        "src": "/photos/1-honey.jpg",
+        "src": "/photos/01-honey.jpg",
         "height": 3840,
         "width": 2560,
+        "type": "jpg"
+    },
+    {
+        "src": "/photos/02-fire-2.jpg",
+        "height": 2560,
+        "width": 3840,
+        "type": "jpg"
+    },
+    {
+        "src": "/photos/03-horses.jpg",
+        "height": 2560,
+        "width": 3840,
+        "type": "jpg"
+    },
+    {
+        "src": "/photos/03-moon.jpg",
+        "height": 3840,
+        "width": 2560,
+        "type": "jpg"
+    },
+    {
+        "src": "/photos/04-cerro.jpg",
+        "height": 3840,
+        "width": 2560,
+        "type": "jpg"
+    },
+    {
+        "src": "/photos/04-grass.jpg",
+        "height": 3840,
+        "width": 3072,
+        "type": "jpg"
+    },
+    {
+        "src": "/photos/04-sunrise-vines.jpg",
+        "height": 2560,
+        "width": 3840,
+        "type": "jpg"
+    },
+    {
+        "src": "/photos/05-hands.jpg",
+        "height": 3840,
+        "width": 2560,
+        "type": "jpg"
+    },
+    {
+        "src": "/photos/06-droplets.jpg",
+        "height": 3840,
+        "width": 3840,
+        "type": "jpg"
+    },
+    {
+        "src": "/photos/09-drops.jpg",
+        "height": 3840,
+        "width": 3072,
+        "type": "jpg"
+    },
+    {
+        "src": "/photos/09-exo.jpg",
+        "height": 2560,
+        "width": 3840,
         "type": "jpg"
     },
     {
@@ -49,12 +109,6 @@
     },
     {
         "src": "/photos/15-roadtrip.jpg",
-        "height": 2560,
-        "width": 3840,
-        "type": "jpg"
-    },
-    {
-        "src": "/photos/2-fire-2.jpg",
         "height": 2560,
         "width": 3840,
         "type": "jpg"
@@ -138,18 +192,6 @@
         "type": "jpg"
     },
     {
-        "src": "/photos/3-horses.jpg",
-        "height": 2560,
-        "width": 3840,
-        "type": "jpg"
-    },
-    {
-        "src": "/photos/3-moon.jpg",
-        "height": 3840,
-        "width": 2560,
-        "type": "jpg"
-    },
-    {
         "src": "/photos/30-drop.jpg",
         "height": 3840,
         "width": 3072,
@@ -169,24 +211,6 @@
     },
     {
         "src": "/photos/35-phoscheck.jpg",
-        "height": 2560,
-        "width": 3840,
-        "type": "jpg"
-    },
-    {
-        "src": "/photos/4-cerro.jpg",
-        "height": 3840,
-        "width": 2560,
-        "type": "jpg"
-    },
-    {
-        "src": "/photos/4-grass.jpg",
-        "height": 3840,
-        "width": 3072,
-        "type": "jpg"
-    },
-    {
-        "src": "/photos/4-sunrise-vines.jpg",
         "height": 2560,
         "width": 3840,
         "type": "jpg"
@@ -222,12 +246,6 @@
         "type": "jpg"
     },
     {
-        "src": "/photos/5-hands.jpg",
-        "height": 3840,
-        "width": 2560,
-        "type": "jpg"
-    },
-    {
         "src": "/photos/55-lament.jpg",
         "height": 3840,
         "width": 2560,
@@ -242,12 +260,6 @@
     {
         "src": "/photos/55-night.jpg",
         "height": 2560,
-        "width": 3840,
-        "type": "jpg"
-    },
-    {
-        "src": "/photos/6-droplets.jpg",
-        "height": 3840,
         "width": 3840,
         "type": "jpg"
     },
@@ -291,18 +303,6 @@
         "src": "/photos/88-beauty.jpg",
         "height": 3840,
         "width": 3072,
-        "type": "jpg"
-    },
-    {
-        "src": "/photos/9-drops.jpg",
-        "height": 3840,
-        "width": 3072,
-        "type": "jpg"
-    },
-    {
-        "src": "/photos/9-exo.jpg",
-        "height": 2560,
-        "width": 3840,
         "type": "jpg"
     },
     {

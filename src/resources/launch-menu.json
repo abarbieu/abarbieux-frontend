@@ -65,11 +65,11 @@
     "photography": {
       "title": "Photography",
       "background": "icons/droplet-o.png",
-      "route": "/art/photos"
+      "route": "/art/photos/"
     },
     "random": {
       "title": "Random",
-      "route": "/art/random"
+      "route": "/art/random/"
     }
   },
   {

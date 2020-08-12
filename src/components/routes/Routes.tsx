@@ -26,6 +26,9 @@ function Routes (props: MyProps) {
       <Route path='/art/photos'>
         <PhotoGallery />
       </Route>
+      <Route path='/art'>
+        <PhotoGallery />
+      </Route>
       <Route path='/explore'>
         <Cover fading={true} />
         <TreeMenu
