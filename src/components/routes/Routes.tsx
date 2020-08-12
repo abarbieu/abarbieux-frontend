@@ -3,9 +3,10 @@ import Header from '../todolist/Header';
 import TodoList from '../todolist/TodoList';
 import LaunchMenu from '../../resources/launch-menu.json';
 import TreeMenu from '../tree_menu/TreeMenu';
-import CeramicsGallery from '../ceramics/CeramicsGallery';
-import PhotoGallery from '../photos/PhotoGallery';
+import ImgGallery from '../gallery/ImgGallery';
 import Cover from '../cover/TreeMenuCover';
+import ceramicsPhotos from './ceramics-photos.json';
+import photos from './photos.json';
 
 import { Switch, Route, Redirect } from 'react-router-dom';
 
@@ -21,13 +22,13 @@ function Routes (props: MyProps) {
   return (
     <Switch>
       <Route path='/art/ceramics'>
-        <CeramicsGallery />
+        <ImgGallery photos={ceramicsPhotos} />
       </Route>
       <Route path='/art/photos'>
-        <PhotoGallery />
+        <ImgGallery photos={photos} />
       </Route>
       <Route path='/art'>
-        <PhotoGallery />
+        <ImgGallery photos={photos} />
       </Route>
       <Route path='/explore'>
         <Cover fading={true} />

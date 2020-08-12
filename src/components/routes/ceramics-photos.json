@@ -1,0 +1,88 @@
+[
+    {
+        "src": "/ceramics/01-hands.jpg",
+        "height": 4898,
+        "width": 3265,
+        "type": "jpg"
+    },
+    {
+        "src": "/ceramics/02-beaut-bowl.jpg",
+        "height": 4000,
+        "orientation": 1,
+        "width": 6000,
+        "type": "jpg"
+    },
+    {
+        "src": "/ceramics/02-chatter.jpg",
+        "height": 2560,
+        "width": 3840,
+        "type": "jpg"
+    },
+    {
+        "src": "/ceramics/03-wavy-bowl.jpg",
+        "height": 4000,
+        "orientation": 1,
+        "width": 6000,
+        "type": "jpg"
+    },
+    {
+        "src": "/ceramics/04-bowl-set.jpg",
+        "height": 4000,
+        "orientation": 1,
+        "width": 6000,
+        "type": "jpg"
+    },
+    {
+        "src": "/ceramics/05-trimming.jpg",
+        "height": 3266,
+        "width": 4899,
+        "type": "jpg"
+    },
+    {
+        "src": "/ceramics/06.jpg",
+        "height": 1600,
+        "orientation": 1,
+        "width": 2400,
+        "type": "jpg"
+    },
+    {
+        "src": "/ceramics/07-bowl-on-wheel1.jpg",
+        "height": 3915,
+        "orientation": 1,
+        "width": 5873,
+        "type": "jpg"
+    },
+    {
+        "src": "/ceramics/08-donut.jpg",
+        "height": 2659,
+        "orientation": 1,
+        "width": 3989,
+        "type": "jpg"
+    },
+    {
+        "src": "/ceramics/09-his-hers-1.jpg",
+        "height": 1600,
+        "orientation": 1,
+        "width": 2400,
+        "type": "jpg"
+    },
+    {
+        "src": "/ceramics/10-bowl-on-wheel2.jpg",
+        "height": 4000,
+        "orientation": 1,
+        "width": 6000,
+        "type": "jpg"
+    },
+    {
+        "src": "/ceramics/11-chatter-2.jpg",
+        "height": 3840,
+        "width": 3072,
+        "type": "jpg"
+    },
+    {
+        "src": "/ceramics/12-vase.jpg",
+        "height": 3840,
+        "width": 2560,
+        "type": "jpg"
+    }
+]
