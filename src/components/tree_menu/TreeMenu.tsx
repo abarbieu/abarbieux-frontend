@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { RouteComponentProps } from 'react-router';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 // keyframes,
 // Keyframes,
