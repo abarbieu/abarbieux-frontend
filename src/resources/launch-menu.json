@@ -9,6 +9,7 @@
     "projects": {
       "title": "Projects",
       "background": "icons/code.png",
+      "placeholder": "icons/code_thumb_.png",
       "children": [ "fun", "all-projects", "web", "school" ]
     },
     "resume": {
@@ -18,16 +19,19 @@
     "tools": {
       "title": "Tools",
       "background": "icons/notes.png",
+      "placeholder": "icons/notes_thumb_.png",
       "children": [ "notes", "timeline" ]
     },
     "art": {
       "title": "Arty Things",
       "background": "icons/sherbert.svg",
+      "placeholder": "icons/sherbert.svg",
       "children": [ "all-art", "ceramics", "photography" ]
     },
     "about": {
       "title": "About Me",
       "background": "icons/cookie-power.png",
+      "placeholder": "icons/cookie-power_thumb_.png",
       "route": "/about/"
     }
   },
@@ -39,11 +43,13 @@
     "web": {
       "title": "Web Dev",
       "background": "icons/internet.png",
+      "placeholder": "icons/internet_thumb_.png",
       "children": [ "frontend", "backend" ]
     },
     "fun": {
       "title": "Fun",
       "background": "icons/mzoom.gif",
+      "placeholder": "icons/mzoom_thumb_.gif",
       "children": [ "fractals", "data-vis" ]
     },
     "school": {
@@ -53,6 +59,7 @@
     "notes": {
       "title": "Notes",
       "background": "icons/notes.png",
+      "placeholder": "icons/notes_thumb_.png",
       "route": "/notes/"
     },
     "timeline": { "title": "TimeLine", "route": "/timeline/" },
@@ -60,11 +67,13 @@
     "ceramics": {
       "title": "Ceramics",
       "background": "icons/color-bowl.jpg",
+      "placeholder": "icons/color-bowl_thumb_.jpg",
       "route": "/art/ceramics/"
     },
     "photography": {
       "title": "Photography",
       "background": "icons/droplet-o.png",
+      "placeholder": "icons/droplet-o_thumb_.png",
       "route": "/art/photos/"
     },
     "random": {
@@ -76,16 +85,19 @@
     "frontend": {
       "title": "Front-End",
       "background": "icons/react.png",
+      "placeholder": "icons/react_thumb_.png",
       "link": "https://github.com/abarbieu/abarbieux-frontend"
     },
     "backend": {
       "title": "Back-End",
       "background": "icons/postgres.png",
+      "placeholder": "icons/postgres_thumb_.png",
       "link": "https://github.com/abarbieu/abarbieux-backend"
     },
     "database": {
       "title": "Postgres Fun",
       "background": "icons/postgres.png",
+      "placeholder": "icons/postgres_thumb_.png",
       "link": "https://github.com/abarbieu/postgreSQL-playground"
     },
     "thumbsim": {
@@ -99,11 +111,13 @@
     "fractals": {
       "title": "Fractals",
       "background": "icons/jzoom-o.gif",
+      "placeholder": "icons/jzoom-o_thumb_.gif",
       "link": "https://github.com/abarbieu/Mandelbrot"
     },
     "data-vis": {
       "title": "Data Visualization",
       "background": "icons/gpxdemo-o.gif",
+      "placeholder": "icons/gpxdemo-o_thumb_.gif",
       "link": "https://github.com/abarbieu/gpxVis"
     }
   },

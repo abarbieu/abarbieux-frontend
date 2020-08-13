@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { RouteComponentProps } from 'react-router';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 // keyframes,
 // Keyframes,
@@ -242,7 +243,7 @@ class TreeMenu extends React.Component<MyProps, MyState> {
     background-image: linear-gradient(
       rgba(0, 0, 0, 0.25),
       rgba(0, 0, 0, 0.25)
-    ), url(/${node.background || 'icons/default.png'});
+    ), url(/${node.placeholder || 'icons/default.png'});
     ${extra}
     `;
   };

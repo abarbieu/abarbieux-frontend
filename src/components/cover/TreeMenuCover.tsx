@@ -3,6 +3,7 @@ import { Point } from '../tree_menu/TreeMenuApi';
 import { Link, withRouter } from 'react-router-dom';
 import { RouteComponentProps } from 'react-router';
 import styled, { css, keyframes } from 'styled-components';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -104,7 +105,11 @@ class TreeMenuCover extends Component<MyProps, MyState> {
               >
                 <ImgButton>
                   <Col className='m-0 p-0'>
-                    <ImgBlock src='/icons/gpxdemo-o.gif' />
+                    <LazyLoadImage
+                      className='img-block'
+                      placeholderSrc='/icons/gpxdemo-o_thumb_.gif'
+                      src='/icons/gpxdemo-o.gif'
+                    />
                   </Col>
                 </ImgButton>
               </Link>
@@ -116,7 +121,11 @@ class TreeMenuCover extends Component<MyProps, MyState> {
               >
                 <ImgButton>
                   <Col className='m-0 p-0'>
-                    <ImgBlock src='/icons/sherbert.svg' />
+                    <LazyLoadImage
+                      className='img-block'
+                      placeholderSrc='icons/sherbert.svg'
+                      src='icons/sherbert.svg'
+                    />
                   </Col>
                 </ImgButton>
               </Link>
@@ -128,7 +137,11 @@ class TreeMenuCover extends Component<MyProps, MyState> {
               >
                 <ImgButton>
                   <Col className='m-0 p-0'>
-                    <ImgBlock src='/icons/mzoom.gif' />
+                    <LazyLoadImage
+                      className='img-block'
+                      placeholderSrc='icons/mzoom_thumb_.gif'
+                      src='icons/mzoom.gif'
+                    />
                   </Col>
                 </ImgButton>
               </Link>
@@ -177,7 +190,11 @@ class TreeMenuCover extends Component<MyProps, MyState> {
                 >
                   <ImgButton>
                     <Col className='m-0 p-0'>
-                      <ImgBlock src='/icons/raw-bowl.JPG' />
+                      <LazyLoadImage
+                        className='img-block'
+                        placeholderSrc='/icons/raw-bowl_thumb_.jpg'
+                        src='/icons/raw-bowl.jpg'
+                      />
                     </Col>
                   </ImgButton>
                 </Link>
@@ -189,7 +206,11 @@ class TreeMenuCover extends Component<MyProps, MyState> {
                 >
                   <ImgButton>
                     <Col className='m-0 p-0'>
-                      <ImgBlock src='/icons/jzoom.gif' />
+                      <LazyLoadImage
+                        className='img-block'
+                        placeholderSrc='/icons/jzoom_thumb_.gif'
+                        src='/icons/jzoom.gif'
+                      />
                     </Col>
                   </ImgButton>
                 </Link>
@@ -201,7 +222,11 @@ class TreeMenuCover extends Component<MyProps, MyState> {
                 >
                   <ImgButton>
                     <Col className='m-0 p-0'>
-                      <ImgBlock src='/icons/macro-drops.jpg' />
+                      <LazyLoadImage
+                        className='img-block'
+                        placeholderSrc='/icons/macro-drops_thumb_.jpg'
+                        src='/icons/macro-drops.jpg'
+                      />
                     </Col>
                   </ImgButton>
                 </Link>

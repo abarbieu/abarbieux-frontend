@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import Gallery from 'react-photo-gallery';
+import GalleryGrid from './GalleryGrid';
 import ImageGallery from 'react-image-gallery';
 import Modal from 'react-bootstrap/Modal';
 // import ImgsViewer from 'react-images-viewer';
@@ -20,12 +20,7 @@ export default function ImgGallery (props) {
 
   return (
     <div style={{ width: '85vw' }} className='mx-auto p-0'>
-      <Gallery
-        className='m-0 p-0'
-        direction='row'
-        photos={props.photos}
-        onClick={openLightbox}
-      />
+      <GalleryGrid photos={props.photos} onPhotoClick={openLightbox} />
 
       <Modal
         show={viewerIsOpen}
@@ -50,27 +45,37 @@ export default function ImgGallery (props) {
           ) : null}
         </Modal.Body>
       </Modal>
-      {/* <ImgsViewer
-        imgs={props.photos}
-        currImg={currentImage}
-        isOpen={viewerIsOpen}
-        onClickPrev={prevImage}
-        onClickNext={nextImage}
-        backdropCloseable={true}
-        onClose={closeLightbox}
-      /> */}
     </div>
   );
 }
 
-// type MyProps = {
-//   photos: Array<{
-//     src: string;
-//     height: number;
-//     width: number;
-//     caption?: string;
-//     alt?: string;
-//     type?: string;
-//     srcset?: Array<string>;
-//   }>;
+// import React, { useState, useCallback } from 'react';
+// import {
+//   LazyLoadImage,
+//   trackWindowScroll,
+// } from 'react-lazy-load-image-component';
+
+// const ImgGallery = ({ photos, scrollPosition }) => {
+//   console.log(scrollPosition);
+//   return (
+//     <div style={{ width: '85vw' }} className='mx-auto p-0'>
+//       {photos.map((image) => {
+//         const { src, placeholder, width, height } = image;
+//         return (
+//           <LazyLoadImage
+//             className='m-0 p-0'
+//             style={{ left: 0 }}
+//             key={src}
+//             alt={src}
+//             width={width > height ? 1024 : 512}
+//             height={'auto'}
+//             scrollPosition={scrollPosition}
+//             placeholderSrc={placeholder || null}
+//             src={src}
+//           />
+//         );
+//       })}
+//     </div>
+//   );
 // };
+// export default trackWindowScroll(ImgGallery);

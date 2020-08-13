@@ -48,6 +48,7 @@ class TreeMenuApi {
         const baseInfo = {
           title: menuInfo.title,
           background: menuInfo.background,
+          placeholder: menuInfo.placeholder,
           parent: id,
           hiding: false,
           willSpawn: true,
@@ -227,6 +228,7 @@ export interface Layer {
 interface MenuNodeBasics {
   title: string;
   background?: string;
+  placeholder?: string;
 }
 interface MenuNodeChildren extends MenuNodeBasics {
   children: Array<string>;
@@ -252,6 +254,7 @@ interface InfoNodeBasics {
   title: string;
   parent?: string;
   background?: string;
+  placeholder?: string;
   willSpawn?: boolean;
   hiding?: boolean;
   animation?: {

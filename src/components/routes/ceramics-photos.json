@@ -2,7 +2,8 @@
     {
         "src": "/ceramics/01-hands.jpg",
         "original": "/ceramics/01-hands.jpg",
-        "thumbnail": "/ceramics/01-hands.jpg",
+        "thumbnail": "/ceramics/01-hands_thumb_.jpg",
+        "placeholder": "/ceramics/01-hands_thumb_.jpg",
         "height": 4898,
         "width": 3265,
         "type": "jpg"
@@ -10,7 +11,8 @@
     {
         "src": "/ceramics/02-beaut-bowl.jpg",
         "original": "/ceramics/02-beaut-bowl.jpg",
-        "thumbnail": "/ceramics/02-beaut-bowl.jpg",
+        "thumbnail": "/ceramics/02-beaut-bowl_thumb_.jpg",
+        "placeholder": "/ceramics/02-beaut-bowl_thumb_.jpg",
         "height": 4000,
         "orientation": 1,
         "width": 6000,
@@ -19,7 +21,8 @@
     {
         "src": "/ceramics/02-chatter.jpg",
         "original": "/ceramics/02-chatter.jpg",
-        "thumbnail": "/ceramics/02-chatter.jpg",
+        "thumbnail": "/ceramics/02-chatter_thumb_.jpg",
+        "placeholder": "/ceramics/02-chatter_thumb_.jpg",
         "height": 2560,
         "width": 3840,
         "type": "jpg"
@@ -27,7 +30,8 @@
     {
         "src": "/ceramics/03-wavy-bowl.jpg",
         "original": "/ceramics/03-wavy-bowl.jpg",
-        "thumbnail": "/ceramics/03-wavy-bowl.jpg",
+        "thumbnail": "/ceramics/03-wavy-bowl_thumb_.jpg",
+        "placeholder": "/ceramics/03-wavy-bowl_thumb_.jpg",
         "height": 4000,
         "orientation": 1,
         "width": 6000,
@@ -36,7 +40,8 @@
     {
         "src": "/ceramics/04-bowl-set.jpg",
         "original": "/ceramics/04-bowl-set.jpg",
-        "thumbnail": "/ceramics/04-bowl-set.jpg",
+        "thumbnail": "/ceramics/04-bowl-set_thumb_.jpg",
+        "placeholder": "/ceramics/04-bowl-set_thumb_.jpg",
         "height": 4000,
         "orientation": 1,
         "width": 6000,
@@ -45,7 +50,8 @@
     {
         "src": "/ceramics/05-trimming.jpg",
         "original": "/ceramics/05-trimming.jpg",
-        "thumbnail": "/ceramics/05-trimming.jpg",
+        "thumbnail": "/ceramics/05-trimming_thumb_.jpg",
+        "placeholder": "/ceramics/05-trimming_thumb_.jpg",
         "height": 3266,
         "width": 4899,
         "type": "jpg"
@@ -53,7 +59,8 @@
     {
         "src": "/ceramics/06.jpg",
         "original": "/ceramics/06.jpg",
-        "thumbnail": "/ceramics/06.jpg",
+        "thumbnail": "/ceramics/06_thumb_.jpg",
+        "placeholder": "/ceramics/06_thumb_.jpg",
         "height": 1600,
         "orientation": 1,
         "width": 2400,
@@ -62,7 +69,8 @@
     {
         "src": "/ceramics/07-bowl-on-wheel1.jpg",
         "original": "/ceramics/07-bowl-on-wheel1.jpg",
-        "thumbnail": "/ceramics/07-bowl-on-wheel1.jpg",
+        "thumbnail": "/ceramics/07-bowl-on-wheel1_thumb_.jpg",
+        "placeholder": "/ceramics/07-bowl-on-wheel1_thumb_.jpg",
         "height": 3915,
         "orientation": 1,
         "width": 5873,
@@ -71,7 +79,8 @@
     {
         "src": "/ceramics/08-donut.jpg",
         "original": "/ceramics/08-donut.jpg",
-        "thumbnail": "/ceramics/08-donut.jpg",
+        "thumbnail": "/ceramics/08-donut_thumb_.jpg",
+        "placeholder": "/ceramics/08-donut_thumb_.jpg",
         "height": 2659,
         "orientation": 1,
         "width": 3989,
@@ -80,7 +89,8 @@
     {
         "src": "/ceramics/09-his-hers-1.jpg",
         "original": "/ceramics/09-his-hers-1.jpg",
-        "thumbnail": "/ceramics/09-his-hers-1.jpg",
+        "thumbnail": "/ceramics/09-his-hers-1_thumb_.jpg",
+        "placeholder": "/ceramics/09-his-hers-1_thumb_.jpg",
         "height": 1600,
         "orientation": 1,
         "width": 2400,
@@ -89,7 +99,8 @@
     {
         "src": "/ceramics/10-bowl-on-wheel2.jpg",
         "original": "/ceramics/10-bowl-on-wheel2.jpg",
-        "thumbnail": "/ceramics/10-bowl-on-wheel2.jpg",
+        "thumbnail": "/ceramics/10-bowl-on-wheel2_thumb_.jpg",
+        "placeholder": "/ceramics/10-bowl-on-wheel2_thumb_.jpg",
         "height": 4000,
         "orientation": 1,
         "width": 6000,
@@ -98,7 +109,8 @@
     {
         "src": "/ceramics/11-chatter-2.jpg",
         "original": "/ceramics/11-chatter-2.jpg",
-        "thumbnail": "/ceramics/11-chatter-2.jpg",
+        "thumbnail": "/ceramics/11-chatter-2_thumb_.jpg",
+        "placeholder": "/ceramics/11-chatter-2_thumb_.jpg",
         "height": 3840,
         "width": 3072,
         "type": "jpg"
@@ -106,7 +118,8 @@
     {
         "src": "/ceramics/12-vase.jpg",
         "original": "/ceramics/12-vase.jpg",
-        "thumbnail": "/ceramics/12-vase.jpg",
+        "thumbnail": "/ceramics/12-vase_thumb_.jpg",
+        "placeholder": "/ceramics/12-vase_thumb_.jpg",
         "height": 3840,
         "width": 2560,
         "type": "jpg"
