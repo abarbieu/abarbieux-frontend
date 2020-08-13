@@ -6,4 +6,4 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-image-gallery/styles/css/image-gallery.css';
 
 ReactDOM.render(<App />, document.getElementById('root'));
-serviceWorker.register();
+serviceWorker.unregister();

@@ -72,11 +72,6 @@ class TreeMenuCover extends Component<MyProps, MyState> {
         background-color: #227b99;
         ${this.props.fading ? this.getAnimation() : ''};
       `;
-      const ImgBlock = styled.img`
-        border-radius: 20px;
-        width: 98px;
-        height: 98px;
-      `;
       const ImgButton = styled.button`
         border-width: 1px;
         border-radius: 20px;
@@ -107,6 +102,8 @@ class TreeMenuCover extends Component<MyProps, MyState> {
                   <Col className='m-0 p-0'>
                     <LazyLoadImage
                       className='img-block'
+                      effect='black-and-white'
+                      alt='gpx visualizer demo'
                       placeholderSrc='/icons/gpxdemo-o_thumb_.gif'
                       src='/icons/gpxdemo-o.gif'
                     />
@@ -123,6 +120,8 @@ class TreeMenuCover extends Component<MyProps, MyState> {
                   <Col className='m-0 p-0'>
                     <LazyLoadImage
                       className='img-block'
+                      effect='black-and-white'
+                      alt='sherbert!'
                       placeholderSrc='icons/sherbert.svg'
                       src='icons/sherbert.svg'
                     />
@@ -139,6 +138,8 @@ class TreeMenuCover extends Component<MyProps, MyState> {
                   <Col className='m-0 p-0'>
                     <LazyLoadImage
                       className='img-block'
+                      effect='black-and-white'
+                      alt='madelbrot set zoom'
                       placeholderSrc='icons/mzoom_thumb_.gif'
                       src='icons/mzoom.gif'
                     />
@@ -192,6 +193,8 @@ class TreeMenuCover extends Component<MyProps, MyState> {
                     <Col className='m-0 p-0'>
                       <LazyLoadImage
                         className='img-block'
+                        effect='black-and-white'
+                        alt='raw bowl'
                         placeholderSrc='/icons/raw-bowl_thumb_.jpg'
                         src='/icons/raw-bowl.jpg'
                       />
@@ -208,6 +211,8 @@ class TreeMenuCover extends Component<MyProps, MyState> {
                     <Col className='m-0 p-0'>
                       <LazyLoadImage
                         className='img-block'
+                        effect='black-and-white'
+                        alt='julia set zoom'
                         placeholderSrc='/icons/jzoom_thumb_.gif'
                         src='/icons/jzoom.gif'
                       />
@@ -224,6 +229,8 @@ class TreeMenuCover extends Component<MyProps, MyState> {
                     <Col className='m-0 p-0'>
                       <LazyLoadImage
                         className='img-block'
+                        effect='black-and-white'
+                        alt='water droplets'
                         placeholderSrc='/icons/macro-drops_thumb_.jpg'
                         src='/icons/macro-drops.jpg'
                       />

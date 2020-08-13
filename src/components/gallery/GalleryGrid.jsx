@@ -20,6 +20,7 @@ function GalleryGrid (props) {
           style={{ margin: margin - 1, top, left }}
           key={key}
           alt={key}
+          effect='blur'
           height={height}
           width={width}
           placeholderSrc={placeholder || null}

@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import GalleryGrid from './GalleryGrid';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import ImageGallery from 'react-image-gallery';
 import Modal from 'react-bootstrap/Modal';
 // import ImgsViewer from 'react-images-viewer';
@@ -17,7 +18,25 @@ export default function ImgGallery (props) {
     setCurrentImage(0);
     setViewerIsOpen(false);
   };
-
+  const lazyRender = (item) => {
+    return (
+      <div>
+        <LazyLoadImage
+          className='image-gallery-image'
+          effect='blur'
+          key={item.src}
+          alt={item.src}
+          srcSet={item.srcSet}
+          sizes={item.sizes}
+          placeholderSrc={item.placeholder || null}
+          src={item.src}
+        />
+        {item.description && (
+          <span className='image-gallery-description'>{item.description}</span>
+        )}
+      </div>
+    );
+  };
   return (
     <div style={{ width: '85vw' }} className='mx-auto p-0'>
       <GalleryGrid photos={props.photos} onPhotoClick={openLightbox} />
@@ -35,10 +54,10 @@ export default function ImgGallery (props) {
         <Modal.Body>
           {viewerIsOpen ? (
             <ImageGallery
-              lazyLoad={true}
               thumbnailPosition={props.thumbPos || 'bottom'}
               startIndex={currentImage}
               onSlide={setCurrentImage}
+              renderItem={lazyRender}
               showIndex={true}
               items={props.photos}
             />
