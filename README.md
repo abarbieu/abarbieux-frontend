@@ -48,6 +48,18 @@ Creates a stylized photogallery with dynamically sized layouts, full modal carou
 
 # Additional info
 
+## Reference Guides
+
+[React Bootstrap docs](https://react-bootstrap.netlify.app/getting-started/introduction/)
+
+[Styled Components](https://styled-components.com/docs)
+
+[Gallery Grid](https://www.npmjs.com/package/react-photo-gallery)
+
+[Image Gallery (Carousel)](https://www.npmjs.com/package/react-image-gallery) 
+
+[Graphics Magick](https://aheckmann.github.io/gm/docs.html)
+
 <details>
  <summary>Reactjs details</summary>
 
