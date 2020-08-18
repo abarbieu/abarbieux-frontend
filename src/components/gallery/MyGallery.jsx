@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import GalleryGrid from './GalleryGrid';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+// import { LazyLoadImage } from 'react-lazy-load-image-component';
 import ImageGallery from 'react-image-gallery';
 import Modal from 'react-bootstrap/Modal';
 // import ImgsViewer from 'react-images-viewer';
@@ -23,19 +23,14 @@ export default function ImgGallery(props) {
   };
   // const lazyRender = (item) => {
   //   return (
-  //     <div className="m-0 p-0" style={{ width: item.width, height: item.height }}>
-  //       <LazyLoadImage
-  //         className="image-gallery-image m-0 p-0"
-  //         effect="blur"
-  //         key={item.src}
-  //         alt={item.src}
-  //         srcSet={item.srcSet}
-  //         sizes={item.sizes}
-  //         placeholderSrc={item.placeholder || null}
-  //         src={item.src}
-  //       />
-  //       {item.description && <span className="image-gallery-description">{item.description}</span>}
-  //     </div>
+  //     <LazyLoadImage
+  //       className="image-gallery-image"
+  //       key={item.src}
+  //       alt={item.src}
+  //       srcSet={item.srcSet}
+  //       placeholderSrc={item.placeholder || null}
+  //       src={item.src}
+  //     />
   //   );
   // };
   return (
