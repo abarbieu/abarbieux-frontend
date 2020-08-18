@@ -1,21 +1,52 @@
 # Portfolio Website Front End Interface
 
->### `Websites:` [abarbieux.com](https://www.abarbieux.com) || [barbieux.dev](https://barbieux.dev)
+The front end of a fully fledged portfolio website built with ReactJS (NodeJS) in Typescript. Includes scripts and components that automatically generate content from photo folders, JSON files, and a back end interface.
+
+### `Websites:`
+
+[abarbieux.com](https://www.abarbieux.com) || [barbieux.dev](https://barbieux.dev) Both currently point to the same source
+
 ---
+
 ## Related Repos
 
->### `Back End:` [portfolio-backend](https://github.com/abarbieu/portfolio-backend)
+### `Back End:`
 
->### `Production:` [portfolio-production](https://github.com/abarbieu/portfolio-production)
+[portfolio-backend](https://github.com/abarbieu/portfolio-backend) ~ A backend interface hosting RESTful APIs and logging middleware, built with NodeJS, Express, and 
+
+### `Production:`
+
+[portfolio-production](https://github.com/abarbieu/portfolio-production) ~ Where optimized frontend and backend projects are combined and served with different routes and middleware.
 
 ## Features/Components:
 
->### [`Dynamically Animated 'Tree Menu':`](#Tree-Menu) Automatically generates a menu system based on a provided JSON file
+### [`Dynamically Animated 'Tree Menu':`](#Tree-Menu) 
+
+Automatically generates an animated menu system of links, routes, and children based on a provided JSON file
   
->### `Auto Mailer:` Send email forms using nodemailer
+### [`Full Photo Gallery:`](#Photo-Gallery)
 
+Creates a stylized photogallery with dynamically sized layouts, full modal carousel viewer with fullscreen capability. Includes a script to generate a catalog JSON file with automatically shrinked thumbnails and src sets 
 
-## Additional info
+---
+
+## Tree Menu
+
+### `Features:`
+
+### `Purpose:`
+
+### `Considerations:`
+
+## Photo Gallery
+
+### `Features:`
+
+### `Purpose:`
+
+---
+
+# Additional info
 
 <details>
  <summary>Reactjs details</summary>
