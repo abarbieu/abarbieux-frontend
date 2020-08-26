@@ -24,6 +24,16 @@ button:hover {
   height: 100%;
 }
 */
+
+.dark-bg {
+  background-color: #222233bb;
+}
+.light-bg {
+  background-color: #336999bb;
+}
+.rounded-20 {
+  border-radius: 20px;
+}
 .img-btn {
   border-width: 1px;
   border-radius: 20px;
@@ -53,6 +63,10 @@ button:hover {
 }
 .modal-90w {
   max-width: 95vw !important;
+}
+.contact-modal .modal-content {
+  padding: 20px;
+  background-color: #336999ee;
 }
 .pic-modal .modal-content {
   background-color: #222233bb;
@@ -89,7 +103,6 @@ button:hover {
   margin-top: -42px; /* negative value of footer height */
   height: 42px;
   clear: both;
-  background-color: #222233bb;
 }
 
 .svg-link {
@@ -110,20 +123,28 @@ button:hover {
   color: #336999bb;
 }
 
-.shr-btn {
+.shr-btn,
+.shr-btn-l {
   transition: all 250ms;
 }
 
-.shr-btn:focus {
+.shr-btn:focus,
+.shr-btn-l:focus {
   outline: none;
 }
 
 .shr-btn:hover {
   animation: enlarge 150ms ease-in forwards;
 }
+.shr-btn-l:hover {
+  animation: enlarge-sm 150ms ease-in forwards;
+}
 
 .shr-btn:active {
   animation: shrink 150ms ease-in forwards;
+}
+.shr-btn-l:active {
+  animation: shrink-sm 150ms ease-in forwards;
 }
 
 .transparent-bg {
@@ -143,11 +164,28 @@ button:hover {
     transform: scale(1);
   }
   100% {
-    transform: scale(1.1);
+    transform: scale(1.2);
   }
 }
 
 @keyframes shrink {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.8);
+  }
+}
+@keyframes enlarge-sm {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes shrink-sm {
   0% {
     transform: scale(1);
   }
