@@ -8,7 +8,7 @@ else
   if [ "$#" -eq 2 ]; then
     node imageScraper.js
   fi
-  # npm run build
+  npm run build
   rm -rf ../prod-master/front-end
   cp -r ./build ../prod-master/front-end
   cd ../prod-master

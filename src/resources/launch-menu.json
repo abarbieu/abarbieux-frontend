@@ -2,7 +2,7 @@
   {
     "root": {
       "title": "Enter",
-      "children": [ "projects", "resume", "tools", "art", "about" ]
+      "children": [ "projects", "resume", "notes", "art", "about" ]
     }
   },
   {
@@ -33,6 +33,12 @@
       "background": "icons/cookie-power.png",
       "placeholder": "icons/cookie-power_thumb_.png",
       "route": "/about/"
+    },
+    "notes": {
+      "title": "Notes",
+      "background": "icons/notes.png",
+      "placeholder": "icons/notes_thumb_.png",
+      "route": "/notes/"
     }
   },
   {
@@ -55,12 +61,6 @@
     "school": {
       "title": "School Projects",
       "children": [ "highschool", "thumbsim" ]
-    },
-    "notes": {
-      "title": "Notes",
-      "background": "icons/notes.png",
-      "placeholder": "icons/notes_thumb_.png",
-      "route": "/notes/"
     },
     "timeline": { "title": "TimeLine", "route": "/timeline/" },
     "all-art": { "title": "View All", "route": "/art/" },

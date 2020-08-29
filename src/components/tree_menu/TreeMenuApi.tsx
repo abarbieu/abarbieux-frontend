@@ -5,7 +5,7 @@ class TreeMenuApi {
   scale: number;
   units: string;
   menu: Array<{ [key: string]: MenuNode }>;
-  constructor (props: MyProps) {
+  constructor(props: MyProps) {
     this.scale = props.scale;
     this.units = props.units;
     this.menu = props.menu;
@@ -17,8 +17,7 @@ class TreeMenuApi {
     let node: InfoNodeChildren = currElem[depth][id] as InfoNodeChildren;
     const from: number = node.spawnRange.from;
     let to: number = node.spawnRange.to;
-    const children: Array<string> = (this.menu[depth][id] as MenuNodeChildren)
-      .children;
+    const children: Array<string> = (this.menu[depth][id] as MenuNodeChildren).children;
     //* Handles root, or 360 spawn, prevents overlap
     if (from + 2 === to) {
       to = to - 2 / children.length;
@@ -53,24 +52,24 @@ class TreeMenuApi {
           hiding: false,
           willSpawn: true,
           pos: { x: diff.x + node.pos.x, y: diff.y + node.pos.y },
-          animation: { keyframes: this.getKeyframes(dir), startPos: node.pos },
+          animation: { keyframes: this.getKeyframes(dir), startPos: node.pos }
         };
 
         //* Populates new children based on type, inline typeguards
         if ((menuInfo as MenuNodeChildren).children) {
           currElem[depth + 1][child] = {
             ...baseInfo,
-            spawnRange: this.getSpawnRange(dir),
+            spawnRange: this.getSpawnRange(dir)
           };
         } else if ((menuInfo as MenuNodeRoute).route) {
           currElem[depth + 1][child] = {
             ...baseInfo,
-            route: (menuInfo as MenuNodeRoute).route,
+            route: (menuInfo as MenuNodeRoute).route
           };
         } else if ((menuInfo as MenuNodeLink).link) {
           currElem[depth + 1][child] = {
             ...baseInfo,
-            link: (menuInfo as MenuNodeLink).link,
+            link: (menuInfo as MenuNodeLink).link
           };
         }
       }
@@ -80,12 +79,7 @@ class TreeMenuApi {
 
   //! --------------------------------------------------------------------------
 
-  killKids = (
-    currElem: Array<Layer>,
-    depth: number,
-    id: string,
-    except?: string
-  ): number => {
+  killKids = (currElem: Array<Layer>, depth: number, id: string, except?: string): number => {
     let node: InfoNodeChildren = currElem[depth][id] as InfoNodeChildren;
 
     for (let i = depth + 1; i < currElem.length; i++) {
@@ -94,10 +88,7 @@ class TreeMenuApi {
           if (!child.hiding) {
             child.hiding = true;
             if (child.animation) {
-              child.animation.keyframes = this.getHidingKeyframes(
-                node.pos,
-                child.pos
-              );
+              child.animation.keyframes = this.getHidingKeyframes(node.pos, child.pos);
             }
           } else if (child.animation) {
             child.animation.keyframes = this.getHiddenKeyframes();
@@ -182,7 +173,7 @@ class TreeMenuApi {
     dir = Math.PI * dir;
     return {
       x: Math.trunc(Math.cos(dir) * this.scale),
-      y: Math.trunc(Math.sin(dir) * -this.scale),
+      y: Math.trunc(Math.sin(dir) * -this.scale)
     };
   };
 
@@ -193,7 +184,7 @@ class TreeMenuApi {
     // let i: number = Math.floor(((a < 1 ? a + 15 : a) - 1) / 2);
     return {
       from: 1.5 + a,
-      to: 2.5 + a,
+      to: 2.5 + a
       // from: Math.floor(i / 2) * 0.5,
       // to: Math.floor((i + 3) / 2) * 0.5,
     };

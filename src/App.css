@@ -26,13 +26,27 @@ button:hover {
 */
 
 .dark-bg {
-  background-color: #222233bb;
+  background-color: #222233ee;
 }
 .light-bg {
   background-color: #336999bb;
 }
+.dark-color {
+  color: #222233;
+}
+.grey-color {
+  color: #a0a0a5;
+}
 .rounded-20 {
   border-radius: 20px;
+}
+.gen-btn {
+  border-width: 1px;
+  border-radius: 20px;
+  background-color: #227b99;
+}
+.gen-btn:hover {
+  border-color: #fdb241;
 }
 .img-btn {
   border-width: 1px;
@@ -89,6 +103,9 @@ button:hover {
 .opacity-1 {
   opacity: 1;
 }
+.align-left {
+  text-align: left;
+}
 
 .Tiled-back {
   min-height: 100vh;
@@ -132,6 +149,9 @@ button:hover {
 .shr-btn-l:focus {
   outline: none;
 }
+.no-focus-outline:focus {
+  outline: none;
+}
 
 .shr-btn:hover {
   animation: enlarge 150ms ease-in forwards;
@@ -151,6 +171,22 @@ button:hover {
   background-color: transparent !important;
 }
 
+.shrinkFade {
+  animation: shrinkFade 1000ms ease-in forwards;
+}
+.pos-relative {
+  position: relative;
+}
+.pos-absolute {
+  position: absolute;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 #collasible-nav-dropdown {
   transition: all 250ms;
 }
@@ -159,6 +195,33 @@ button:hover {
   min-height: 100vh;
 }
 
+#tree-cover {
+  border-radius: 20px;
+  border-width: 100px;
+  border-color: #227b99;
+
+  z-index: 100;
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  margin: -150px;
+  left: 50vw;
+  top: 50vh;
+  background-color: #227b99;
+}
+@keyframes shrinkFade {
+  0% {
+    visibility: visible;
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(0);
+    visibility: hidden;
+    opacity: 0;
+  }
+}
 @keyframes enlarge {
   0% {
     transform: scale(1);

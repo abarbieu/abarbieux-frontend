@@ -8,18 +8,29 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
 function MainNavbar(props: { toggleContact: Function }) {
-  const [ show, setShow ] = useState(false);
+  const [ expanded, setExpanded ] = useState(false);
+  const [ copied, setCopied ] = useState(false);
+  const [ copyHover, setCopyHover ] = useState(false);
   return (
-    <Navbar className="dark-bg" collapseOnSelect fixed="top" expand="md" variant="dark">
+    <Navbar
+      expanded={expanded}
+      onToggle={setExpanded}
+      className="dark-bg"
+      collapseOnSelect
+      fixed="top"
+      expand="md"
+      variant="dark"
+    >
       <Container fluid="lg">
         <Navbar.Brand style={{ color: '#60aaf0' }} className="shr-btn-l" href="/">
           <img alt="" src="/icons/sherbert.svg" width="32" height="32" /> {'Aidan Barbieux'}
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="mr-auto">
+          <Nav className={expanded ? 'mr-10' : 'mr-auto'}>
             <Nav.Link className="nav-link shr-btn" eventKey="home" href="/home/">
-              <img alt="Home" src="/icons/home.svg" width="32" height="32" />
+              {/* <img alt="Home" src="/icons/home.svg" width="32" height="32" /> */}
+              Home
             </Nav.Link>
             <Nav.Link
               as={Link}
@@ -31,8 +42,59 @@ function MainNavbar(props: { toggleContact: Function }) {
                 state: { openPath: [ 'root' ] }
               }}
             >
-              <img alt="Explore" src="/icons/explore.svg" width="32" height="32" />
+              {/* <img alt="Explore" src="/icons/explore.svg" width="32" height="32" /> */}
+              Explore
             </Nav.Link>
+            <NavDropdown title="Contact" id="collasible-nav-dropdown">
+              <Nav.Link eventKey="contact" className="shr-btn" onSelect={props.toggleContact.bind(true)}>
+                {/* <img alt="Contact" src="/icons/contact.svg" width="32" height="32" /> */}
+                <p className="dark-color">Send a Note</p>
+              </Nav.Link>
+
+              <Nav.Link as={'div'}>
+                <OverlayTrigger
+                  placement="top"
+                  trigger="click"
+                  onToggle={() => {
+                    setCopied(!copied);
+                    setTimeout(() => {
+                      setCopied(false);
+                    }, 800);
+                  }}
+                  show={copied}
+                  overlay={<Tooltip id="copied">Copied!</Tooltip>}
+                >
+                  <span className="d-inline">
+                    <button
+                      style={{ backgroundColor: 'transparent' }}
+                      className="d-inline border-0 no-focus-outline"
+                      onClick={() => {
+                        navigator.clipboard.writeText('aidan@barbieux.dev');
+                      }}
+                    >
+                      <OverlayTrigger
+                        show={!copied && copyHover}
+                        placement="top"
+                        delay={{ show: 550, hide: 400 }}
+                        onToggle={(toggledTo) => {
+                          setCopyHover(toggledTo);
+                        }}
+                        overlay={<Tooltip id="copy-email">Copy Email?</Tooltip>}
+                      >
+                        <div className="border-0">
+                          <img width="15" height="15" id="copyIcon" src="/icons/copy.svg" alt="" />
+                          <p style={{ fontSize: 11 }} className="ml-1 d-inline dark-color">
+                            aidan@barbieux.dev
+                          </p>
+                        </div>
+                      </OverlayTrigger>
+                    </button>
+                  </span>
+                </OverlayTrigger>
+              </Nav.Link>
+            </NavDropdown>
+          </Nav>
+          <Nav className={expanded ? 'mr-0' : 'mr-0'}>
             <Nav.Link
               as={Link}
               eventKey="ceramics"
@@ -43,7 +105,8 @@ function MainNavbar(props: { toggleContact: Function }) {
                 // state: { openPath: [ 'root', 'art' ] }
               }}
             >
-              <img alt="Ceramics" src="/icons/art.svg" width="32" height="32" />
+              {/* <img alt="Ceramics" src="/icons/art.svg" width="32" height="32" /> */}
+              Ceramics
             </Nav.Link>
             <Nav.Link
               as={Link}
@@ -55,7 +118,8 @@ function MainNavbar(props: { toggleContact: Function }) {
                 // state: { openPath: [ 'root', 'art' ] }
               }}
             >
-              <img alt="Photos" src="/icons/photos.svg" width="32" height="32" />
+              {/* <img alt="Photos" src="/icons/photos.svg" width="32" height="32" /> */}
+              Photos
             </Nav.Link>
             <Nav.Link
               as={Link}
@@ -67,57 +131,8 @@ function MainNavbar(props: { toggleContact: Function }) {
                 state: { openPath: [ 'root', 'projects' ] }
               }}
             >
-              <img alt="Projects" src="/icons/code.svg" width="32" height="32" />
-            </Nav.Link>
-          </Nav>
-          <Nav className="mr-3">
-            <NavDropdown
-              className="my-auto"
-              title={
-                <div className=" ml-4 d-inline">
-                  <img className="shr-btn" alt="Email" src="/icons/email.svg" width="32" height="32" />
-                </div>
-              }
-              id="collasible-nav-dropdown"
-            >
-              <Container className="w-100 mx-auto p-0">
-                <Navbar.Text style={{ fontSize: 12, color: 'black' }} className=" d-inline m-1 font-weight-bold">
-                  <OverlayTrigger
-                    placement="left"
-                    trigger="click"
-                    onToggle={() => {
-                      setShow(!show);
-                      setTimeout(() => {
-                        setShow(false);
-                      }, 800);
-                    }}
-                    show={show}
-                    overlay={<Tooltip id="copied">Copied!</Tooltip>}
-                  >
-                    <span className="d-inline-block">
-                      <button
-                        style={{ backgroundColor: 'transparent' }}
-                        className="d-inline border-0 mr-1 shr-btn"
-                        onClick={() => {
-                          navigator.clipboard.writeText('aidan@barbieux.dev');
-                        }}
-                      >
-                        <OverlayTrigger
-                          placement="top"
-                          delay={{ show: 550, hide: 400 }}
-                          overlay={<Tooltip id="copy-email">Copy Email?</Tooltip>}
-                        >
-                          <img width="15" height="15" id="copyIcon" src="/icons/copy.svg" alt="" />
-                        </OverlayTrigger>
-                      </button>
-                    </span>
-                  </OverlayTrigger>
-                  aidan@barbieux.dev
-                </Navbar.Text>
-              </Container>
-            </NavDropdown>
-            <Nav.Link eventKey="contact" className="nav-link shr-btn" onSelect={props.toggleContact.bind(true)}>
-              <img alt="Contact" src="/icons/contact.svg" width="32" height="32" />
+              {/* <img alt="Projects" src="/icons/code.svg" width="32" height="32" /> */}
+              Projects
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

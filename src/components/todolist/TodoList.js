@@ -2,36 +2,32 @@ import React from 'react';
 import { TodoItem } from './TodoItem';
 import AddTodo from './AddTodo';
 import axios from 'axios';
-import PropTypes from 'prop-types';
 
 class TodoList extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
-
     this.state = {
-      todos : [],
+      todos: []
     };
-    this.apiUrl = props.apiUrl;
+    this.apiUrl = 'https://barbieux.dev/api/';
+    if (process.env.NODE_ENV === 'development') {
+      this.apiUrl = 'http://localhost:54321/api/';
+    }
   }
 
-  componentDidMount () {
+  componentDidMount() {
     axios.get(this.apiUrl).then((res) => {
       console.log(res.data);
     });
     this.getAllTodos();
   }
 
-  render () {
+  render() {
     return (
       <div>
         <AddTodo addTodo={this.addTodo} />
         {this.state.todos.map((todo) => (
-          <TodoItem
-            key={todo.id}
-            todo={todo}
-            markComplete={this.markComplete}
-            deleteTodo={this.deleteTodo}
-          />
+          <TodoItem key={todo.id} todo={todo} markComplete={this.markComplete} deleteTodo={this.deleteTodo} />
         ))}
       </div>
     );
@@ -41,7 +37,7 @@ class TodoList extends React.Component {
   getAllTodos = () => {
     axios.get(this.apiUrl + 'todos').then((res) => {
       this.setState({
-        todos : res.data,
+        todos: res.data
       });
     });
   };
@@ -52,12 +48,12 @@ class TodoList extends React.Component {
       console.log('toggled data: ' + res.data);
     });
     this.setState({
-      todos : this.state.todos.map((todo) => {
+      todos: this.state.todos.map((todo) => {
         if (todo.id === id) {
           todo.completed = !todo.completed;
         }
         return todo;
-      }),
+      })
     });
   };
 
@@ -67,7 +63,7 @@ class TodoList extends React.Component {
       console.log('deleted data: ' + res.data);
     });
     this.setState({
-      todos : [ ...this.state.todos.filter((todo) => todo.id !== id) ],
+      todos: [ ...this.state.todos.filter((todo) => todo.id !== id) ]
     });
   };
 
@@ -76,8 +72,8 @@ class TodoList extends React.Component {
     let newTodo = {};
     axios
       .post(this.apiUrl + 'todos/', {
-        title    : title,
-        complete : false,
+        title: title,
+        complete: false
       })
       .then((res) => {
         newTodo = res.data;
@@ -87,9 +83,5 @@ class TodoList extends React.Component {
       });
   };
 }
-
-TodoList.propTypes = {
-  apiUrl : PropTypes.string.isRequired,
-};
 
 export default TodoList;

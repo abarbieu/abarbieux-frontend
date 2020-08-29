@@ -3,6 +3,7 @@ import Header from '../todolist/Header';
 import TodoList from '../todolist/TodoList';
 import LaunchMenu from '../../resources/launch-menu.json';
 import TreeMenu from '../tree_menu/TreeMenu';
+import { MenuNode } from '../tree_menu/TreeMenuApi';
 import MyGallery from '../gallery/MyGallery';
 import Cover from '../cover/TreeMenuCover';
 import ceramicsPhotos from './ceramics-photos.json';
@@ -14,12 +15,7 @@ type MyProps = { rootPos: { x: number; y: number } };
 
 function Routes(props: MyProps) {
   const thumbPos = props.rootPos.x > props.rootPos.y ? 'left' : 'bottom';
-  let apiUrl: String;
-  if (process.env.NODE_ENV === 'development') {
-    apiUrl = 'http://127.0.0.1:54321/api/';
-  } else {
-    apiUrl = 'https://abarbieux.com/api/';
-  }
+
   return (
     <Switch>
       <Route path="/art/ceramics">
@@ -33,11 +29,15 @@ function Routes(props: MyProps) {
       </Route>
       <Route path="/explore">
         <Cover fading={true} />
-        <TreeMenu rootPos={props.rootPos} spawnRange={{ from: 0.5, to: 2.5 }} menu={LaunchMenu} />
+        <TreeMenu
+          rootPos={props.rootPos}
+          spawnRange={{ from: 0.5, to: 2.5 }}
+          menu={(LaunchMenu as unknown) as Array<{ [key: string]: MenuNode }>}
+        />
       </Route>
       <Route path="/notes/">
         <Header />
-        <TodoList apiUrl={apiUrl} />
+        <TodoList />
       </Route>
       <Route path="/home/">
         <Cover fading={false} />

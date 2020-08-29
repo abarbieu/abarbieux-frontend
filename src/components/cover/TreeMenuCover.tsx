@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Point } from '../tree_menu/TreeMenuApi';
 import { Link, withRouter } from 'react-router-dom';
 import { RouteComponentProps } from 'react-router';
-import styled, { css, keyframes } from 'styled-components';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -24,25 +23,6 @@ class TreeMenuCover extends Component<MyProps, MyState> {
   renderable = true;
   timeouts: Array<number> = [];
 
-  getAnimation = () => {
-    const frames = keyframes`
-    0% {
-      visibility: visible;
-      transform: scale(1);
-      opacity: 1;
-    }
-    
-    100% {
-      transform: scale(0);
-      visibility: hidden;
-      opacity: 0;
-    }
-    `;
-    return css`
-      animation: ${frames} 1000ms ease-in forwards;
-    `;
-  };
-
   render() {
     if (!this.props.fading || (this.props.location.state && this.renderable)) {
       if (this.props.fading) {
@@ -57,39 +37,8 @@ class TreeMenuCover extends Component<MyProps, MyState> {
           }, 400)
         );
       }
-      const Boat = styled.div`
-        border-radius: 20px;
-        border-width: 100px;
-        border-color: #227b99;
-
-        z-index: 100;
-        position: absolute;
-        width: 300px;
-        height: 300px;
-        margin: -150px;
-        left: 50vw;
-        top: 50vh;
-        background-color: #227b99;
-        ${this.props.fading ? this.getAnimation() : ''};
-      `;
-      const ImgButton = styled.button`
-        border-width: 1px;
-        border-radius: 20px;
-        background-color: #227b99;
-        &:hover {
-          border-color: #fdb241;
-        }
-      `;
-      const BigButton = styled.button`
-        border-width: 1px;
-        border-radius: 20px;
-        background-color: #227b99;
-        &:hover {
-          border-color: #fdb241;
-        }
-      `;
       return (
-        <Boat>
+        <div id="tree-cover" className={this.props.fading ? 'shrinkFade' : undefined}>
           <Container className="justify-content-center m-0 p-0">
             <Row className="m-0 p-0">
               <Link
@@ -98,8 +47,8 @@ class TreeMenuCover extends Component<MyProps, MyState> {
                   state: { openPath: [ 'root', 'projects', 'fun' ] }
                 }}
               >
-                <ImgButton>
-                  <Col className="m-0 p-0">
+                <Col className="m-0 p-0 ">
+                  <button className="gen-btn pos-relative">
                     <LazyLoadImage
                       className="img-block"
                       effect="black-and-white"
@@ -107,8 +56,9 @@ class TreeMenuCover extends Component<MyProps, MyState> {
                       placeholderSrc="/icons/gpxdemo-o_thumb_.gif"
                       src="/icons/gpxdemo-o.gif"
                     />
-                  </Col>
-                </ImgButton>
+                    {/* <p className="light-bg rounded centered" /> */}
+                  </button>
+                </Col>
               </Link>
               <Link
                 to={{
@@ -116,7 +66,7 @@ class TreeMenuCover extends Component<MyProps, MyState> {
                   state: { openPath: [ 'root', 'art' ] }
                 }}
               >
-                <ImgButton>
+                <button className="gen-btn">
                   <Col className="m-0 p-0">
                     <LazyLoadImage
                       className="img-block"
@@ -126,7 +76,7 @@ class TreeMenuCover extends Component<MyProps, MyState> {
                       src="/icons/sherbert.svg"
                     />
                   </Col>
-                </ImgButton>
+                </button>
               </Link>
               <Link
                 to={{
@@ -134,7 +84,7 @@ class TreeMenuCover extends Component<MyProps, MyState> {
                   state: { openPath: [ 'root', 'projects', 'fun' ] }
                 }}
               >
-                <ImgButton>
+                <button className="gen-btn">
                   <Col className="m-0 p-0">
                     <LazyLoadImage
                       className="img-block"
@@ -144,7 +94,7 @@ class TreeMenuCover extends Component<MyProps, MyState> {
                       src="/icons/mzoom.gif"
                     />
                   </Col>
-                </ImgButton>
+                </button>
               </Link>
             </Row>
             <Link
@@ -153,7 +103,8 @@ class TreeMenuCover extends Component<MyProps, MyState> {
                 state: { openPath: [ 'root' ] }
               }}
             >
-              <BigButton
+              <button
+                className="gen-btn"
                 style={{
                   position: 'absolute',
                   textAlign: 'center',
@@ -173,7 +124,7 @@ class TreeMenuCover extends Component<MyProps, MyState> {
                 >
                   Explore
                 </h1>
-              </BigButton>
+              </button>
             </Link>
             <div
               style={{
@@ -189,7 +140,7 @@ class TreeMenuCover extends Component<MyProps, MyState> {
                     state: { openPath: [ 'root', 'art' ] }
                   }}
                 >
-                  <ImgButton>
+                  <button className="gen-btn">
                     <Col className="m-0 p-0">
                       <LazyLoadImage
                         className="img-block"
@@ -199,7 +150,7 @@ class TreeMenuCover extends Component<MyProps, MyState> {
                         src="/icons/raw-bowl.jpg"
                       />
                     </Col>
-                  </ImgButton>
+                  </button>
                 </Link>
                 <Link
                   to={{
@@ -207,7 +158,7 @@ class TreeMenuCover extends Component<MyProps, MyState> {
                     state: { openPath: [ 'root', 'projects', 'fun' ] }
                   }}
                 >
-                  <ImgButton>
+                  <button className="gen-btn">
                     <Col className="m-0 p-0">
                       <LazyLoadImage
                         className="img-block"
@@ -217,7 +168,7 @@ class TreeMenuCover extends Component<MyProps, MyState> {
                         src="/icons/jzoom.gif"
                       />
                     </Col>
-                  </ImgButton>
+                  </button>
                 </Link>
                 <Link
                   to={{
@@ -225,7 +176,7 @@ class TreeMenuCover extends Component<MyProps, MyState> {
                     state: { openPath: [ 'root', 'art' ] }
                   }}
                 >
-                  <ImgButton>
+                  <button className="gen-btn">
                     <Col className="m-0 p-0">
                       <LazyLoadImage
                         className="img-block"
@@ -235,12 +186,12 @@ class TreeMenuCover extends Component<MyProps, MyState> {
                         src="/icons/macro-drops.jpg"
                       />
                     </Col>
-                  </ImgButton>
+                  </button>
                 </Link>
               </Row>
             </div>
           </Container>
-        </Boat>
+        </div>
       );
     }
 
