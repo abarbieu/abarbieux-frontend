@@ -7,43 +7,94 @@ The front end of a fully fledged portfolio website built with ReactJS (NodeJS) i
 [abarbieux.com](https://www.abarbieux.com) || [barbieux.dev](https://barbieux.dev) Both currently point to the same source
 
 ---
+## Contents:
+
+  1. [Related Repos](#Related-Repos)
+  2. [Features and Components](#Features-and-Components)
+     1. [Tree Menu](#Tree-Menu)
+     2. [Photo Gallery](#Photo-Gallery)
+     3. [Contact Form](#Contact-Form)
+  3. [Additional Info](#additional-info)
+     1. [Reference Guides](#Reference-Guides)
+     2. [ReactJS](#React-JS)
+
+---
 
 ## Related Repos
 
-### `Back End:`
+* #### `Back End:`
 
-[portfolio-backend](https://github.com/abarbieu/portfolio-backend) ~ A backend interface hosting RESTful APIs and logging middleware, built with NodeJS, Express, and 
+  * [portfolio-backend](https://github.com/abarbieu/portfolio-backend) ~ A backend interface hosting RESTful APIs and logging middleware, built with NodeJS, Express, and 
 
-### `Production:`
+* #### `Production:`
 
-[portfolio-production](https://github.com/abarbieu/portfolio-production) ~ Where optimized frontend and backend projects are combined and served with different routes and middleware.
+  * [portfolio-production](https://github.com/abarbieu/portfolio-production) ~ Where optimized frontend and backend projects are combined and served with different routes and middleware.
 
-## Features/Components:
+## Features and Components:
 
-### [`Dynamically Animated 'Tree Menu':`](#Tree-Menu) 
+* #### [`Dynamically Animated 'Tree Menu':`](#Tree-Menu) 
 
-Automatically generates an animated menu system of links, routes, and children based on a provided JSON file
+  * Automatically generates an animated menu system of links, routes, and children based on a provided JSON file
   
-### [`Full Photo Gallery:`](#Photo-Gallery)
+* #### [`Full Photo Gallery:`](#Photo-Gallery)
 
-Creates a stylized photogallery with dynamically sized layouts, full modal carousel viewer with fullscreen capability. Includes a script to generate a catalog JSON file with automatically shrinked thumbnails and src sets 
+  * Creates a stylized photogallery with dynamically sized layouts, full modal carousel viewer with fullscreen capability. Includes a script to generate a catalog JSON file with automatically shrinked thumbnails and src sets 
 
 ---
 
 ## Tree Menu
+---
+#### `Features:`
 
-### `Features:`
+Generated from a JSON file provided in `project-dir/src/resources/` in the form:
+
+```JSON
+[
+  {
+    "root": {
+      "title": "Enter",
+      "children": [ "childa", "childb" ]
+    }
+  },
+  {
+    "childa": {
+      "title": "Child A",
+      "background": "https://imgur.com/c1.png",
+      "children": [ "childa1" ]
+    },
+    "childa": {
+      "title": "Child B",
+      "background": "icons/pic.png",
+      "placeholder": "icons/thumbnail.png",
+      "children": [ "childb1" ]
+    },
+  },
+  {
+    "childa1": {
+      "title": "Child A One",
+      "background": "pic.png",
+      "placeholder": "thumb.png",
+      "link": "https://github.com/abarbieu/portfolio-frontend"
+    },
+    "childb1": {
+      "title": "Child B One",
+      "background": "icons/postgres.png",
+      "placeholder": "icons/postgres_thumb_.png",
+      "route": "/childb1-page/
+    },
+  },
+]
+
+```
 
 ### `Purpose:`
-
-### `Considerations:`
-
+---
 ## Photo Gallery
-
+---
 ### `Features:`
 
 ### `Purpose:`
-
+---
 ---
 
 # Additional info
@@ -59,6 +110,8 @@ Creates a stylized photogallery with dynamically sized layouts, full modal carou
 [Image Gallery (Carousel)](https://www.npmjs.com/package/react-image-gallery) 
 
 [Graphics Magick](https://aheckmann.github.io/gm/docs.html)
+
+## React JS
 
 <details>
  <summary>Reactjs details</summary>
