@@ -37,6 +37,9 @@ button:hover {
 .grey-color {
   color: #a0a0a5;
 }
+.white-color {
+  color: #fff;
+}
 .rounded-20 {
   border-radius: 20px;
 }
@@ -80,7 +83,26 @@ button:hover {
 }
 .contact-modal .modal-content {
   padding: 20px;
-  background-color: #336999ee;
+  /* background-color: #313150f2; */
+  background: url('./resources/background-patterns/bg-pblue-str.png');
+  background-size: 128px;
+}
+.form-obj {
+  margin: 8px 0;
+  display: inline-block;
+  border-radius: 4px;
+}
+.form-file {
+  color: #fff;
+}
+.form-text {
+  background-color: #1118 !important;
+  color: #fff !important;
+  border: 1px solid #ccc;
+  padding: 12px 20px;
+}
+.form-text:hover {
+  border: 1px solid #20556f;
 }
 .pic-modal .modal-content {
   background-color: #222233bb;
