@@ -4,6 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+import Alert from 'react-bootstrap/esm/Alert';
 
 export default function ContactMe (props) {
   const [ email, setEmail ] = useState('');
@@ -11,8 +12,9 @@ export default function ContactMe (props) {
   const [ name, setName ] = useState('');
   const [ subject, setSubject ] = useState('');
   const [ validated, setValidated ] = useState(false);
-  const [ attachments, setAttachments ] = useState({});
-
+  const [ attachments, setAttachments ] = useState([]);
+  const [ mailErrors, setMailErrors ] = useState([]);
+  const [ loaded, setLoaded ] = useState(true);
   let apiUrl = 'https://barbieux.dev/api/mail';
   if (process.env.NODE_ENV === 'development') {
     apiUrl = 'http://localhost:54321/api/mail';
@@ -33,48 +35,83 @@ export default function ContactMe (props) {
     event.preventDefault();
     setName(event.target.value);
   };
+
   const handleFiles = (event) => {
     event.preventDefault();
-    console.log(event.target.files.length);
-    let files = [];
-    for (let i = 0; i < event.target.files.length; i++) {
-      const file = event.target.files[i];
+    const files = event.target.files;
+    let addedFiles = [];
+    for (let i = 0; i < files.length; i++) {
+      setLoaded(false);
+      const file = files[i];
       let f = {};
       f.filename = file.name;
       f.contentType = file.type;
       const reader = new FileReader();
       reader.addEventListener('load', (e) => {
         f.content = e.target.result;
-        console.log(f);
+        addedFiles.push(f);
+        setAttachments(addedFiles);
+        if (i === files.length - 1) {
+          setLoaded(true);
+        }
       });
       reader.readAsDataURL(file);
     }
-    setAttachments(files);
+    // console.log('added files: ', addedFiles);
+    // attchs = addedFiles;
   };
+
   const handleSend = (event) => {
     const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
     setValidated(true);
     event.preventDefault();
-    axios
-      .post(apiUrl, { replyto: email, name, subject, content, attachments })
-      .then((res) => {
-        console.log(res);
-        props.toggleContact.bind(false);
-      });
+    console.log(attachments);
+    if (form.checkValidity() === false) {
+      event.stopPropagation();
+    } else {
+      if (!loaded) {
+        console.error('Attachments not loaded yet, not sending');
+        setMailErrors([
+          ...mailErrors,
+          { msg: 'Attachments not loaded yet, not sending', show: true },
+        ]);
+      }
+      axios
+        .post(apiUrl, { replyto: email, name, subject, content, attachments })
+        .catch((err) => {
+          console.error(err);
+          // setError(true);
+          setMailErrors([
+            ...mailErrors,
+            { msg: 'Mailer API not responding...', show: true },
+          ]);
+          throw err;
+        })
+        .then((res) => {
+          console.log(res);
+          props.toggleContact(false);
+        });
+    }
+  };
+
+  const dismissErr = (index) => {
+    if (index < mailErrors.length) {
+      const old = mailErrors[index];
+      if (old) {
+        const tmpErrs = [ ...mailErrors ];
+        tmpErrs[index] = { msg: old.msg || 'Unknown Error', show: false };
+        setMailErrors(tmpErrs);
+      }
+    }
   };
 
   return (
-    <Modal
-      show={props.show}
-      onHide={props.toggleContact.bind(false)}
-      className='contact-modal'
-      centered
-    >
-      <Modal.Header className='pic-modal-header' closeButton>
+    <Modal show={props.show} className='contact-modal' centered>
+      <Modal.Header
+        className='pic-modal-header'
+        closeButton
+        onHide={props.toggleContact.bind(false)}
+      >
         <Modal.Title className='white-color'>Send Me an Email</Modal.Title>
       </Modal.Header>
       <div className='p-2'>
@@ -89,7 +126,9 @@ export default function ContactMe (props) {
                 onChange={handleChangeEmail}
                 placeholder='Your email address'
               />
-              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              <Form.Control.Feedback>
+                I'll Respond to {email}!
+              </Form.Control.Feedback>
               <Form.Control.Feedback type='invalid'>
                 Please provide a response email
               </Form.Control.Feedback>
@@ -99,10 +138,11 @@ export default function ContactMe (props) {
                 required
                 className='align-left form-text form-obj'
                 type='text'
+                value={name}
                 onChange={handleChangeName}
                 placeholder='Your Name'
               />
-              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              <Form.Control.Feedback>Thanks {name}!</Form.Control.Feedback>
               <Form.Control.Feedback type='invalid'>
                 Please provide your name
               </Form.Control.Feedback>
@@ -113,13 +153,13 @@ export default function ContactMe (props) {
               <Form.Control
                 className='align-left form-text form-obj'
                 type='text'
+                value={subject}
                 onChange={handleChangeSubject}
                 placeholder='Subject'
               />
             </Form.Group>
             <Form.Group as={Col} sm='6'>
               <Form.File
-                id='exampleFormControlFile1'
                 multiple
                 onChange={handleFiles}
                 className='form-obj form-file'
@@ -131,6 +171,7 @@ export default function ContactMe (props) {
               className='align-left form-text form-obj'
               type='text'
               onChange={handleChangeContent}
+              value={content}
               as='textarea'
               placeholder='Message'
             />
@@ -140,6 +181,23 @@ export default function ContactMe (props) {
           </Button>
         </Form>
       </div>
+      {mailErrors.map((err, idx) => (
+        <Alert
+          show={err.show}
+          key={idx}
+          onClose={dismissErr.bind(this, idx)}
+          variant='danger'
+          dismissible
+        >
+          {err.msg}
+        </Alert>
+      ))}
     </Modal>
   );
 }
+
+//
+// {serverError ? (
+//   <Alert variant='danger'>Mailer API not responding..</Alert>
+// ) : null}{' '}
+// }
