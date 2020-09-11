@@ -1,5 +1,5 @@
 * {
-  /* box-sizing: border-box; */
+  box-sizing: border-box;
   margin: 0;
   text-align: center;
   padding: 0;
@@ -24,12 +24,84 @@ button:hover {
   height: 100%;
 }
 */
+.vh-100 {
+  height: 100vh;
+}
+.vh-75 {
+  height: 75vh;
+}
+.vh-50 {
+  height: 50vh;
+}
+.vh-25 {
+  height: 25vh;
+}
+.vw-100 {
+  width: 100vw;
+}
+.border-box {
+  box-sizing: border-box;
+}
+.margin-0 {
+  margin: 0px;
+}
+.padding-0 {
+  padding: 0px;
+}
+div.no-padding {
+  padding-left: 0;
+  padding-right: 0;
+}
 
+div.no-margin {
+  margin-left: 0;
+  margin-right: 0;
+}
 .dark-bg {
   background-color: #222233ee;
 }
 .light-bg {
-  background-color: #336999bb;
+  background-color: #20556fbb;
+}
+.white-bg {
+  background-color: white;
+}
+.black-bg {
+  background-color: black;
+}
+.red-bg {
+  background-color: red;
+}
+.pattern-bg {
+  background: url('./resources/background-patterns/bg-pblue-str.png');
+  background-size: 128px;
+}
+
+.txt-bg {
+  width: auto;
+  height: auto;
+}
+.txt-bg::after {
+  content: "";
+  background: url('./resources/background-patterns/bg-pblue-str.png');
+  background-size: 64px;
+  opacity: 1;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+  border-radius: 10px;
+}
+
+.honey-bg {
+  background: url('/photos/01-honey.jpg');
+  background-size: 100%;
+}
+.hands-bg {
+  background: url('/photos/05-hands.jpg');
+  background-size: 100%;
 }
 .dark-color {
   color: #222233;
@@ -110,6 +182,10 @@ button:hover {
 .pic-modal-header .modal-content {
   background-color: 'white';
 }
+
+.bg-op-05:before {
+  opacity: 0.5;
+}
 .opacity-0 {
   opacity: 0;
 }
@@ -127,6 +203,9 @@ button:hover {
 }
 .align-left {
   text-align: left;
+}
+.align-center {
+  text-align: center;
 }
 
 .Tiled-back {
@@ -196,10 +275,10 @@ button:hover {
 .shrinkFade {
   animation: shrinkFade 1000ms ease-in forwards;
 }
-.pos-relative {
+.pos-rel {
   position: relative;
 }
-.pos-absolute {
+.pos-abs {
   position: absolute;
 }
 
@@ -212,7 +291,16 @@ button:hover {
 #collasible-nav-dropdown {
   transition: all 250ms;
 }
-
+#parallax-div-connector {
+  background: url('./resources/background-patterns/bg-pblue-str.png');
+  background-size: 64px;
+  position: absolute;
+  height: 34vh;
+  width: 25px;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0%);
+}
 #wrap {
   min-height: 100vh;
 }

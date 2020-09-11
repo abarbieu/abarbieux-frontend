@@ -48,7 +48,7 @@ export default function ContactMe (props) {
       f.contentType = file.type;
       const reader = new FileReader();
       reader.addEventListener('load', (e) => {
-        f.content = e.target.result;
+        f.raw = e.target.result;
         addedFiles.push(f);
         setAttachments(addedFiles);
         if (i === files.length - 1) {
@@ -57,15 +57,12 @@ export default function ContactMe (props) {
       });
       reader.readAsDataURL(file);
     }
-    // console.log('added files: ', addedFiles);
-    // attchs = addedFiles;
   };
 
   const handleSend = (event) => {
     const form = event.currentTarget;
     setValidated(true);
     event.preventDefault();
-    console.log(attachments);
     if (form.checkValidity() === false) {
       event.stopPropagation();
     } else {
@@ -79,16 +76,11 @@ export default function ContactMe (props) {
       axios
         .post(apiUrl, { replyto: email, name, subject, content, attachments })
         .catch((err) => {
-          console.error(err);
-          // setError(true);
-          setMailErrors([
-            ...mailErrors,
-            { msg: 'Mailer API not responding...', show: true },
-          ]);
+          console.log(err);
+          setMailErrors([ ...mailErrors, { msg: err.message, show: true } ]);
           throw err;
         })
         .then((res) => {
-          console.log(res);
           props.toggleContact(false);
         });
     }
@@ -106,7 +98,12 @@ export default function ContactMe (props) {
   };
 
   return (
-    <Modal show={props.show} className='contact-modal' centered>
+    <Modal
+      onHide={props.toggleContact.bind(false)}
+      show={props.show}
+      className='contact-modal'
+      centered
+    >
       <Modal.Header
         className='pic-modal-header'
         closeButton

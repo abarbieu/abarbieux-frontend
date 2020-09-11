@@ -45,7 +45,7 @@ class App extends React.Component<MyProps, MyState> {
           <div id='wrap'>
             <Router>
               <MainNavbar toggleContact={this.toggleContact} />
-              <div style={{ paddingTop: '65px', paddingBottom: '42px' }}>
+              <div style={{ paddingTop: '60px', paddingBottom: '42px' }}>
                 <Routes rootPos={this.state.mid} />
               </div>
             </Router>
