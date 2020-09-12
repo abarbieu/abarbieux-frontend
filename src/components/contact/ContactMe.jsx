@@ -13,86 +13,138 @@ export default function ContactMe (props) {
   const [ subject, setSubject ] = useState('');
   const [ validated, setValidated ] = useState(false);
   const [ attachments, setAttachments ] = useState([]);
-  const [ mailErrors, setMailErrors ] = useState([]);
-  const [ loaded, setLoaded ] = useState(true);
+  const [ mailAlerts, setMailAlerts ] = useState([]);
+  const [ attLoaded, setAttLoaded ] = useState(true);
+
+  //! <0 means sending, 0 means not sent, 1 means sent
+  const [ sendState, setSendState ] = useState(0);
+
   let apiUrl = 'https://barbieux.dev/api/mail';
   if (process.env.NODE_ENV === 'development') {
     apiUrl = 'http://localhost:54321/api/mail';
   }
+
+  const checkSendState = (onFire) => {
+    if (sendState >= 0) {
+      setSendState(0);
+      onFire();
+    } else {
+      setMailAlerts([
+        ...mailAlerts,
+        { msg: 'Cannot edit yet, sending...', show: true },
+      ]);
+    }
+  };
+
+  const addMailAlert = (alert) => {
+    setMailAlerts([ ...mailAlerts, alert ]);
+  };
+
   const handleChangeEmail = (event) => {
     event.preventDefault();
-    setEmail(event.target.value);
+    checkSendState(setEmail.bind(this, event.target.value));
   };
   const handleChangeContent = (event) => {
     event.preventDefault();
-    setContent(event.target.value);
+    checkSendState(setContent.bind(this, event.target.value));
   };
   const handleChangeSubject = (event) => {
     event.preventDefault();
-    setSubject(event.target.value);
+    checkSendState(setSubject.bind(this, event.target.value));
   };
   const handleChangeName = (event) => {
     event.preventDefault();
-    setName(event.target.value);
+    checkSendState(setName.bind(this, event.target.value));
   };
 
   const handleFiles = (event) => {
     event.preventDefault();
-    const files = event.target.files;
-    let addedFiles = [];
-    for (let i = 0; i < files.length; i++) {
-      setLoaded(false);
-      const file = files[i];
-      let f = {};
-      f.filename = file.name;
-      f.contentType = file.type;
-      const reader = new FileReader();
-      reader.addEventListener('load', (e) => {
-        f.raw = e.target.result;
-        addedFiles.push(f);
-        setAttachments(addedFiles);
-        if (i === files.length - 1) {
-          setLoaded(true);
+    checkSendState(
+      ((event) => {
+        const files = event.target.files;
+        let addedFiles = [];
+        for (let i = 0; i < files.length; i++) {
+          setAttLoaded(false);
+          const file = files[i];
+          let f = {};
+          f.filename = file.name;
+          f.contentType = file.type;
+          const reader = new FileReader();
+          reader.addEventListener('load', (e) => {
+            f.raw = e.target.result;
+            addedFiles.push(f);
+            setAttachments(addedFiles);
+            if (i === files.length - 1) {
+              setAttLoaded(true);
+            }
+          });
+          reader.readAsDataURL(file);
         }
-      });
-      reader.readAsDataURL(file);
-    }
+      }).bind(this, event)
+    );
   };
 
   const handleSend = (event) => {
-    const form = event.currentTarget;
-    setValidated(true);
-    event.preventDefault();
-    if (form.checkValidity() === false) {
-      event.stopPropagation();
-    } else {
-      if (!loaded) {
-        console.error('Attachments not loaded yet, not sending');
-        setMailErrors([
-          ...mailErrors,
-          { msg: 'Attachments not loaded yet, not sending', show: true },
-        ]);
-      }
-      axios
-        .post(apiUrl, { replyto: email, name, subject, content, attachments })
-        .catch((err) => {
-          console.log(err);
-          setMailErrors([ ...mailErrors, { msg: err.message, show: true } ]);
-          throw err;
-        })
-        .then((res) => {
-          props.toggleContact(false);
-        });
-    }
+    checkSendState(
+      ((event) => {
+        setSendState(-1);
+        const form = event.currentTarget;
+        setValidated(true);
+        event.preventDefault();
+        if (form.checkValidity() === false) {
+          setSendState(0);
+          event.stopPropagation();
+        } else {
+          setSendState(-1);
+          if (!attLoaded) {
+            setSendState(0);
+            console.error('Attachments not loaded yet, not sending');
+            addMailAlert({
+              msg  : 'Attachments not loaded yet, not sending',
+              show : true,
+            });
+          }
+          axios
+            .post(apiUrl, {
+              replyto     : email,
+              name,
+              subject,
+              content,
+              attachments,
+            })
+            .catch((err) => {
+              console.log(err);
+              setSendState(0);
+              addMailAlert({ msg: err.message, show: true });
+              throw err;
+            })
+            .then((res) => {
+              setSendState(1);
+              addMailAlert({
+                msg     : `Mail Sent! Thanks ${name}`,
+                show    : true,
+                variant : 'success',
+              });
+              setTimeout(() => {
+                props.toggleContact(false);
+              }, 1000);
+            });
+        }
+      }).bind(this, event)
+    );
   };
 
-  const dismissErr = (index) => {
-    if (index < mailErrors.length) {
-      const old = mailErrors[index];
+  const dismissMailAlert = (index) => {
+    if (index < mailAlerts.length) {
+      const old = mailAlerts[index];
       if (old) {
-        const tmpErrs = [ ...mailErrors ];
-        tmpErrs[index] = { msg: old.msg || 'Unknown Error', show: false };
-        setMailErrors(tmpErrs);
+        const tmpAlerts = [ ...mailAlerts ];
+        tmpAlerts[index].show = false;
+        setMailAlerts(tmpAlerts);
+        setTimeout(() => {
+          tmpAlerts.splice(index, 1);
+          setMailAlerts(tmpAlerts);
+        }, 500);
       }
     }
   };
@@ -160,6 +212,7 @@ export default function ContactMe (props) {
                 multiple
                 onChange={handleFiles}
                 className='form-obj form-file'
+                disabled={sendState < 0 ? true : false}
               />
             </Form.Group>
           </Form.Row>
@@ -173,20 +226,24 @@ export default function ContactMe (props) {
               placeholder='Message'
             />
           </Form.Group>
-          <Button type='submit' variant='dark'>
-            Send
+          <Button
+            type='submit'
+            variant='dark'
+            disabled={sendState !== 0 ? true : false}
+          >
+            {'Sen' + (sendState < 0 ? 'ding...' : sendState > 0 ? 't!' : 'd')}
           </Button>
         </Form>
       </div>
-      {mailErrors.map((err, idx) => (
+      {mailAlerts.map((alert, idx) => (
         <Alert
-          show={err.show}
+          show={alert.show}
           key={idx}
-          onClose={dismissErr.bind(this, idx)}
-          variant='danger'
+          onClose={dismissMailAlert.bind(this, idx)}
+          variant={alert.variant ? alert.variant : 'danger'}
           dismissible
         >
-          {err.msg}
+          {alert.msg}
         </Alert>
       ))}
     </Modal>

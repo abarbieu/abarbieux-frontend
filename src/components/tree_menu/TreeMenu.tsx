@@ -4,7 +4,13 @@ import { RouteComponentProps } from 'react-router';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 // keyframes,
 // Keyframes,
-import TreeMenuApi, { InfoNode, Point, SpawnRange, MenuNode, Layer } from './TreeMenuApi';
+import TreeMenuApi, {
+  InfoNode,
+  Point,
+  SpawnRange,
+  MenuNode,
+  Layer,
+} from './TreeMenuApi';
 import uuid from 'uuid';
 
 //* Types and stuff
@@ -32,31 +38,33 @@ class TreeMenu extends React.Component<MyProps, MyState> {
   animatedLayer = 1;
   timeouts: Array<number> = [];
   locState: LocationState = {};
-  constructor(props: MyProps) {
+  constructor (props: MyProps) {
     super(props);
 
     this.state = {
-      elements: [
-        {
-          root: {
-            pos: { x: 0, y: 0 },
-            title: props.menu[0].root.title,
-            willSpawn: true,
-            spawnRange: props.spawnRange
-          }
-        }
-      ]
+      elements:
+        [
+          {
+            root:
+              {
+                pos: { x: 0, y: 0 },
+                title: props.menu[0].root.title,
+                willSpawn: true,
+                spawnRange: props.spawnRange,
+              },
+          },
+        ],
     };
     this.menuApi = new TreeMenuApi({
       menu: props.menu,
       scale: 75,
-      units: 'px'
+      units: 'px',
     });
   }
 
   //! --------------------------------------------------------------------------
 
-  render(): Array<JSX.Element> {
+  render (): Array<JSX.Element> {
     let jsxArr: Array<JSX.Element> = [];
     for (let i = 0; i < this.state.elements.length; i++) {
       Object.entries(this.state.elements[i]).forEach(([ id, node ]) => {
@@ -69,30 +77,34 @@ class TreeMenu extends React.Component<MyProps, MyState> {
 
   //! --------------------------------------------------------------------------
 
-  componentDidMount() {
-    this.handleLoc();
+  componentDidMount () {
+    this.handleLocState();
   }
 
-  handleLoc = () => {
+  handleLocState = () => {
     if (this.props.location.state !== this.locState) {
       if (this.props.location.state) {
         this.locState = this.props.location.state;
-        console.log(this.locState);
+        // console.log(this.locState);
         if (this.locState.openPath) {
           this.openPath(this.locState.openPath);
         }
       }
     }
   };
+
   openPath = (openPath: Array<string>) => {
     this.timeouts.push(
       setTimeout(() => {
         for (let i = 0; i < openPath.length; i++) {
-          let part = openPath[i];
+          let pathPartID = openPath[i];
           this.timeouts.push(
             setTimeout(() => {
-              if (this.state.elements.length > i && this.state.elements[i][part]) {
-                this.nodeClicked(i, part);
+              if (
+                this.state.elements.length > i &&
+                this.state.elements[i][pathPartID]
+              ) {
+                this.nodeClicked(i, pathPartID);
               }
             }, i * 700)
           );
@@ -101,13 +113,13 @@ class TreeMenu extends React.Component<MyProps, MyState> {
     );
   };
 
-  componentDidUpdate() {
-    this.handleLoc();
+  componentDidUpdate () {
+    this.handleLocState();
   }
 
   //! --------------------------------------------------------------------------
 
-  componentWillUnmount() {
+  componentWillUnmount () {
     this.timeouts.forEach((timeoutId) => clearTimeout(timeoutId));
   }
 
@@ -126,14 +138,17 @@ class TreeMenu extends React.Component<MyProps, MyState> {
       );
     } else if (node.spawnRange) {
       return (
-        <MenuButton key={uuid.v4()} onClick={this.nodeClicked.bind(this, depth, id)}>
+        <MenuButton
+          key={uuid.v4()}
+          onClick={this.nodeClicked.bind(this, depth, id)}
+        >
           {node.title}
         </MenuButton>
       );
     } else if (node.link) {
       return (
-        <a href={node.link}>
-          <MenuButton key={uuid.v4()}>{node.title}</MenuButton>
+        <a href={node.link} key={uuid.v4()}>
+          <MenuButton>{node.title}</MenuButton>
         </a>
       );
     }
@@ -146,10 +161,18 @@ class TreeMenu extends React.Component<MyProps, MyState> {
     this.setState((prevState: MyState) => {
       if (prevState.elements[depth][id].willSpawn) {
         prevState.elements[depth][id].willSpawn = false;
-        this.animatedLayer = this.menuApi.handleSpawn(prevState.elements, depth, id);
+        this.animatedLayer = this.menuApi.handleSpawn(
+          prevState.elements,
+          depth,
+          id
+        );
       } else {
         prevState.elements[depth][id].willSpawn = true;
-        this.animatedLayer = this.menuApi.killKids(prevState.elements, depth, id);
+        this.animatedLayer = this.menuApi.killKids(
+          prevState.elements,
+          depth,
+          id
+        );
         setTimeout(() => {
           this.nodeClicked(depth, id);
         }, 350);
@@ -199,11 +222,15 @@ class TreeMenu extends React.Component<MyProps, MyState> {
     let posy = node.pos.y;
     let extra: FlattenSimpleInterpolation = css``;
     if (node.hiding && node.animation) {
-      extra = css`animation: ${node.animation.keyframes} 350ms ease-in forwards;`;
+      extra = css`
+        animation: ${node.animation.keyframes} 350ms ease-in forwards;
+      `;
     } else if (node.animation && this.animatedLayer === depth) {
       posx = -3 * node.animation.startPos.x + 4 * posx;
       posy = -3 * node.animation.startPos.y + 4 * posy;
-      extra = css`animation: ${node.animation.keyframes} 500ms ease-in forwards;`;
+      extra = css`
+        animation: ${node.animation.keyframes} 500ms ease-in forwards;
+      `;
     }
     // background: ${node.background || '#404040'};
     return styled(this.baseStyle())`

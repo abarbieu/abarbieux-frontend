@@ -6,7 +6,6 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import ImgGallery from '../gallery/MyGallery';
 
 export default function AboutMe () {
   return (
