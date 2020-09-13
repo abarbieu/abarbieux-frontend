@@ -8,7 +8,7 @@ else
   if [ "$#" -eq 2 ]; then
     node imageScraper.js
   fi
-  git add *
+  git add ./src/
   git commit -m "$1"
   npm run build
   rm -rf ../prod-master/front-end

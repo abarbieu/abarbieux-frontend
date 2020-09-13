@@ -1,5 +1,4 @@
 import React from 'react';
-import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
@@ -10,31 +9,49 @@ import Logos from './Logos';
 
 export default function Footer () {
   return (
-    <div style={{ width: '100vw' }}>
+    <div
+      className='dark-bg'
+      style={{ position: 'fixed', bottom: 0, width: '100vw' }}
+    >
       <Container fluid='lg'>
         <Row xs={3} sm={3} md={3}>
           <Col>
-            <DropdownButton
+            <Dropdown
               as={ButtonGroup}
               key='up'
               id={'dropdown-button-drop-up'}
               drop='up'
-              variant='btn-transparent'
-              title={<div className='link'>{Logos.ig}</div>}
             >
-              <Dropdown.Item href='https://www.instagram.com/aidan_barbieux/'>
-                {Logos.ig}
-                <span>{'   '}Ceramics</span>
-              </Dropdown.Item>
-              <Dropdown.Item href='https://www.instagram.com/bbq_photos/'>
-                {Logos.ig}
-                <span>{'   '}Photography</span>
-              </Dropdown.Item>
-              <Dropdown.Item href='https://www.instagram.com/aidan.bbq/'>
-                {Logos.ig}
-                <span>{'   '}Personal</span>
-              </Dropdown.Item>
-            </DropdownButton>
+              <Dropdown.Toggle
+                id='dropdown-basic'
+                style={{ backgroundColor: '#0000', borderColor: '#0000' }}
+              >
+                <div className='link not-a'>{Logos.ig}</div>
+              </Dropdown.Toggle>
+              <Dropdown.Menu className='dropdown'>
+                <Dropdown.Item
+                  className='dropdown-item'
+                  href='https://www.instagram.com/aidan_barbieux/'
+                >
+                  {Logos.ig}
+                  <span>{'   '}Ceramics</span>
+                </Dropdown.Item>
+                <Dropdown.Item
+                  className='dropdown-item'
+                  href='https://www.instagram.com/bbq_photos/'
+                >
+                  {Logos.ig}
+                  <span>{'   '}Photography</span>
+                </Dropdown.Item>
+                <Dropdown.Item
+                  className='dropdown-item'
+                  href='https://www.instagram.com/aidan.bbq/'
+                >
+                  {Logos.ig}
+                  <span>{'   '}Personal</span>
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
           </Col>
           <Col>
             <Button className='link' variant='btn-transparent'>

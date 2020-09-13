@@ -47,7 +47,7 @@ function Routes (props: MyProps) {
         <Cover fading={false} />
       </Route>
       <Route path='/'>
-        <Redirect to='/home/' />
+        <Redirect to='/about/' />
       </Route>
     </Switch>
   );

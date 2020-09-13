@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import Dropdown from 'react-bootstrap/Dropdown';
 import Container from 'react-bootstrap/Container';
 import Tooltip from 'react-bootstrap/Tooltip';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
@@ -28,7 +28,9 @@ function MainNavbar (props: { toggleContact: Function }) {
           href='/'
         >
           <img alt='' src='/icons/sherbert.svg' width='32' height='32' />{' '}
-          {'Aidan Barbieux'}
+          <span className='accent-color-hover brand-color-1'>
+            {'Aidan Barbieux'}
+          </span>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls='responsive-navbar-nav' />
         <Navbar.Collapse id='responsive-navbar-nav'>
@@ -52,67 +54,84 @@ function MainNavbar (props: { toggleContact: Function }) {
               {/* <img alt="Explore" src="/icons/explore.svg" width="32" height="32" /> */}
               About
             </Nav.Link>
-            <NavDropdown title='Contact' id='collasible-nav-dropdown'>
-              <Nav.Link
-                eventKey='contact'
-                className='shr-btn'
-                onSelect={props.toggleContact.bind(true)}
+            <Dropdown id='collasible-nav-dropdown'>
+              <Dropdown.Toggle
+                id='dropdown-basic'
+                style={{ backgroundColor: '#0000', borderColor: '#0000' }}
+                className='link'
               >
-                {/* <img alt="Contact" src="/icons/contact.svg" width="32" height="32" /> */}
-                <p className='dark-color'>Send a Note</p>
-              </Nav.Link>
-
-              <Nav.Link as={'div'}>
-                <OverlayTrigger
-                  placement='top'
-                  trigger='click'
-                  onToggle={() => {
-                    setCopied(!copied);
-                    setTimeout(() => {
-                      setCopied(false);
-                    }, 800);
-                  }}
-                  show={copied}
-                  overlay={<Tooltip id='copied'>Copied!</Tooltip>}
-                >
-                  <span className='d-inline'>
-                    <button
-                      style={{ backgroundColor: 'transparent' }}
-                      className='d-inline border-0 no-focus-outline'
-                      onClick={() => {
-                        navigator.clipboard.writeText('aidan@barbieux.dev');
-                      }}
-                    >
-                      <OverlayTrigger
-                        show={!copied && copyHover}
-                        placement='top'
-                        delay={{ show: 550, hide: 400 }}
-                        onToggle={(toggledTo) => {
-                          setCopyHover(toggledTo);
+                <div className='link not-a'>Contact Me</div>
+              </Dropdown.Toggle>
+              <Dropdown.Menu className='dropdown'>
+                <Dropdown.Item className='dropdown-item' as='div'>
+                  <Nav.Link
+                    as='div'
+                    eventKey='contact'
+                    className='shr-btn'
+                    onSelect={props.toggleContact.bind(true)}
+                  >
+                    {/* <img alt="Contact" src="/icons/contact.svg" width="32" height="32" /> */}
+                    <div className='not-a'>Send a Note</div>
+                  </Nav.Link>
+                </Dropdown.Item>
+                <Nav.Link as='div' className='dropdown-item'>
+                  <OverlayTrigger
+                    placement='top'
+                    trigger='click'
+                    onToggle={() => {
+                      setCopied(!copied);
+                      setTimeout(() => {
+                        setCopied(false);
+                      }, 800);
+                    }}
+                    show={copied}
+                    overlay={<Tooltip id='copied'>Copied!</Tooltip>}
+                  >
+                    <span className='d-inline'>
+                      <button
+                        style={{ backgroundColor: 'transparent' }}
+                        className='d-inline border-0 no-focus-outline'
+                        onClick={() => {
+                          navigator.clipboard.writeText('aidan@barbieux.dev');
                         }}
-                        overlay={<Tooltip id='copy-email'>Copy Email?</Tooltip>}
                       >
-                        <div className='border-0'>
-                          <img
-                            width='15'
-                            height='15'
-                            id='copyIcon'
-                            src='/icons/copy.svg'
-                            alt=''
-                          />
-                          <p
-                            style={{ fontSize: 11 }}
-                            className='ml-1 d-inline dark-color'
-                          >
-                            aidan@barbieux.dev
-                          </p>
-                        </div>
-                      </OverlayTrigger>
-                    </button>
-                  </span>
-                </OverlayTrigger>
-              </Nav.Link>
-            </NavDropdown>
+                        <OverlayTrigger
+                          show={!copied && copyHover}
+                          placement='top'
+                          delay={{ show: 550, hide: 400 }}
+                          onToggle={(toggledTo) => {
+                            setCopyHover(toggledTo);
+                          }}
+                          overlay={
+                            <Tooltip id='copy-email'>Copy Email?</Tooltip>
+                          }
+                        >
+                          <div className='border-0'>
+                            <img
+                              style={{
+                                fill: 'var(--light-shade)',
+                                stroke: 'var(--light-shade)',
+                              }}
+                              width='15'
+                              height='15'
+                              id='copyIcon'
+                              src='/icons/stacks.svg'
+                              alt=''
+                            />
+                            <div
+                              style={{ fontSize: 13 }}
+                              className='ml-1 d-inline light-color-1'
+                            >
+                              aidan@barbieux.dev
+                            </div>
+                          </div>
+                        </OverlayTrigger>
+                      </button>
+                    </span>
+                  </OverlayTrigger>
+                </Nav.Link>
+              </Dropdown.Menu>
+            </Dropdown>
           </Nav>
           <Nav className={expanded ? 'mr-0' : 'mr-0'}>
             <Nav.Link

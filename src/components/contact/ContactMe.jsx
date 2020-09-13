@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import Spinner from 'react-bootstrap/Spinner';
 import axios from 'axios';
 import Alert from 'react-bootstrap/esm/Alert';
 
@@ -231,6 +232,9 @@ export default function ContactMe (props) {
             variant='dark'
             disabled={sendState !== 0 ? true : false}
           >
+            {sendState < 0 ? (
+              <Spinner animation='border' size='sm' variant='info' />
+            ) : null}{' '}
             {'Sen' + (sendState < 0 ? 'ding...' : sendState > 0 ? 't!' : 'd')}
           </Button>
         </Form>

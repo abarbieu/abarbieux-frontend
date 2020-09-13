@@ -42,24 +42,23 @@ class App extends React.Component<MyProps, MyState> {
     return (
       <ParallaxProvider>
         <div className='Tiled-back'>
-          <div id='wrap'>
-            <Router>
-              <MainNavbar toggleContact={this.toggleContact} />
-              <div style={{ paddingTop: '60px', paddingBottom: '42px' }}>
-                <Routes rootPos={this.state.mid} />
-              </div>
-            </Router>
-            <ContactMe
-              show={this.state.contactOpen}
-              toggleContact={this.toggleContact}
-            />
-          </div>
-          <footer className='footer dark-bg'>
-            <Footer />
-            {/* <small style={{ color: '#121314' }}>
+          <Router>
+            <MainNavbar toggleContact={this.toggleContact} />
+            <div style={{ paddingTop: '60px', paddingBottom: '42px' }}>
+              <Routes rootPos={this.state.mid} />
+            </div>
+          </Router>
+          <ContactMe
+            show={this.state.contactOpen}
+            toggleContact={this.toggleContact}
+          />
+          {/* <footer className='footer dark-bg'> */}
+
+          <Footer />
+          {/* <small style={{ color: '#121314' }}>
               &copy; 2020, Aidan Barbieux
             </small>{' '} */}
-          </footer>
+          {/* </footer> */}
         </div>
       </ParallaxProvider>
     );
