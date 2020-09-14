@@ -19,7 +19,10 @@
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans,
     Ubuntu, Cantarell, Helvetica Neue, sans-serif;
 }
-p {
+p,
+span.not-p {
+  display: block;
+  text-align: left;
   font-family: 'Times', sans-serif;
   -webkit-font-smoothing: antialiased;
   font-size: x-large;
@@ -44,7 +47,7 @@ h4 a,
 .not-a,
 .nav-link {
   text-decoration: none;
-  display: inline-block;
+  display: inline;
   color: var(--light-shade) !important;
 }
 
@@ -353,6 +356,10 @@ div.no-margin {
   transition: fill 0ms;
   width: 25px;
   height: 25px;
+  fill: currentColor;
+}
+.svg-link-1 {
+  display: inline;
   fill: currentColor;
 }
 
