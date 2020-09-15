@@ -91,7 +91,6 @@ export default class NotesPage extends Component {
         archive[note.id] = note;
       }
     });
-    console.log(archive);
     return archive;
   };
   getActive = () => {
