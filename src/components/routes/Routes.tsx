@@ -1,5 +1,5 @@
 import React from 'react';
-import Notes, { AddNote, NotesHeader } from '../notes/Notes';
+import NotesPage from '../notes/NotesPage';
 import LaunchMenu from '../../resources/launch-menu.json';
 import TreeMenu from '../tree_menu/TreeMenu';
 import { MenuNode } from '../tree_menu/TreeMenuApi';
@@ -39,9 +39,7 @@ function Routes (props: MyProps) {
         />
       </Route>
       <Route path='/notes/'>
-        <NotesHeader />
-        <AddNote />
-        <Notes />
+        <NotesPage />
       </Route>
       <Route path='/home/'>
         <Cover fading={false} />

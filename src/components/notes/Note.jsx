@@ -2,11 +2,9 @@ import React from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import moment from 'moment';
 
 export default function Note (props) {
-  // const maxLen = 40;
-  // let trimmed = props.content.substr(0, maxLen);
-  // trimmed += '....';
   return (
     <div className={props.className}>
       <Accordion
@@ -15,11 +13,7 @@ export default function Note (props) {
         <Card
           className={'dark-bg-i fade-in' + (props.fadeOut ? ' fade-out' : '')}
         >
-          <Accordion.Toggle
-            as={Card.Header}
-            eventKey={props.id + props.title}
-            onClick={props.onExpand.bind(this, props.id)}
-          >
+          <Accordion.Toggle as={Card.Header} eventKey={props.id + props.title}>
             <h4 className='accent-color'>{props.title || 'No Title'}</h4>
             <div className='light-color txt-sm truncated'>{props.content}</div>
             <div style={{ height: 10 }}>
@@ -52,15 +46,29 @@ export default function Note (props) {
               </div>
               <div style={{ float: 'right' }} className='m-2'>
                 <span className='txt-sm light-color-1 m-2'>
-                  Last Edited: {' ' + props.date + ' '}
+                  Last Edited:{' '}
+                  {' ' +
+                    moment.unix(props.date).format('MMMM Do YYYY, h:mm:ss a') +
+                    ' '}
                 </span>
                 <Button
-                  variant='danger'
+                  className='m-1'
+                  variant={props.archived ? 'success' : 'warning'}
                   size='sm'
                   onClick={props.onArchive.bind(this, props.id)}
                 >
                   {props.archived ? 'Unarchive' : 'Archive'}
                 </Button>
+                {props.archived ? (
+                  <Button
+                    className='m-1'
+                    variant='danger'
+                    size='sm'
+                    onClick={props.onDelete.bind(this, props.id)}
+                  >
+                    Delete
+                  </Button>
+                ) : null}
               </div>
             </Card.Body>
           </Accordion.Collapse>
