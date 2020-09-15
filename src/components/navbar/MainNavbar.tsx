@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Container from 'react-bootstrap/Container';
@@ -10,13 +9,10 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
 function MainNavbar (props: { toggleContact: Function }) {
-  const [ expanded, setExpanded ] = useState(false);
   const [ copied, setCopied ] = useState(false);
   const [ copyHover, setCopyHover ] = useState(false);
   return (
     <Navbar
-      expanded={expanded}
-      onToggle={setExpanded}
       className='dark-bg'
       collapseOnSelect
       fixed='top'
@@ -36,7 +32,7 @@ function MainNavbar (props: { toggleContact: Function }) {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls='responsive-navbar-nav' />
         <Navbar.Collapse id='responsive-navbar-nav'>
-          <Nav className={expanded ? 'mr-10' : 'mr-auto'}>
+          <Nav className='mr-auto'>
             <Nav.Link
               className='nav-link shr-btn'
               eventKey='home'
@@ -74,13 +70,12 @@ function MainNavbar (props: { toggleContact: Function }) {
               </Dropdown.Toggle>
               <Container className='p-0 justify-content-center'>
                 <Row
-                  className='justify-content-center'
+                  className='justify-content-center dark-bg-1'
                   style={{ width: '100%' }}
                 >
                   <Dropdown.Menu
-                    as={Col}
                     id='navbar-dropdown'
-                    className='dark-bg-i'
+                    className='dark-bg-1-i justify-content-center'
                   >
                     <Dropdown.Item className='dropdown-item'>
                       <Nav.Link
@@ -157,7 +152,7 @@ function MainNavbar (props: { toggleContact: Function }) {
               </Container>
             </Dropdown>
           </Nav>
-          <Nav className={expanded ? 'mr-0' : 'mr-0'}>
+          <Nav>
             <Nav.Link
               as={Link}
               eventKey='ceramics'
