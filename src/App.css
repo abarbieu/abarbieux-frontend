@@ -67,6 +67,9 @@ a div {
 }
 
 .brand-bg {
+  background-color: var(--brand);
+}
+.brand-bg-i {
   background-color: var(--brand) !important;
 }
 .dark-bg-i {
@@ -181,9 +184,7 @@ a div {
   background: url('/photos/05-hands.jpg');
   background-size: 100%;
 }
-.dropdown {
-  background-color: var(--dark-shade) !important;
-}
+
 .dropdown-item:hover {
   background-color: var(--dark-shade-1) !important;
 }
@@ -365,6 +366,9 @@ div.no-margin {
 .align-center {
   text-align: center;
 }
+.mw-100 {
+  max-width: 50px !important;
+}
 
 .Tiled-back {
   min-height: 100vh;
@@ -428,8 +432,8 @@ div.no-margin {
 .shr-btn-l:active {
   animation: shrink-sm 150ms ease-in forwards;
 }
-#dropdown-button-drop-up div div {
-  background-color: var(--dark-shade-1);
+#dropdown-button-drop-up div {
+  background-color: var(--dark-shade) !important;
 }
 .transparent-bg {
   background-color: transparent !important;
@@ -470,7 +474,16 @@ div.no-margin {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
+#navbar-dropdown {
+  max-width: 150px;
+  border: none;
+}
+#navbar-dropdown-toggle:focus {
+  box-shadow: none;
+}
+#collasible-nav-dropdown {
+  background-color: var(--dark-shade);
+}
 #parallax-div-connector {
   background: url('./resources/background-patterns/bg-pblue-str.png');
   background-size: 64px;

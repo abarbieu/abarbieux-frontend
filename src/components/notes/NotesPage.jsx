@@ -44,7 +44,7 @@ export default class NotesPage extends Component {
                 <Accordion>
                   <Card className='dark-bg-1-i'>
                     <Accordion.Toggle as={Card.Header} eventKey='archive'>
-                      <h4 className='light-color'>View Archive</h4>
+                      <h4 className='light-color'>Archive</h4>
                       <div style={{ height: 10 }}>
                         <div className='not-a'>
                           <svg

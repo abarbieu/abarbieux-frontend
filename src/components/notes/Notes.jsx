@@ -63,7 +63,11 @@ export function AddNote (props) {
   };
   return (
     <Accordion>
-      <Accordion.Toggle as={Button} variant='dark' eventKey='AddNew'>
+      <Accordion.Toggle
+        as={Button}
+        className='brand-bg-i mb-2'
+        eventKey='AddNew'
+      >
         Add New
       </Accordion.Toggle>
       <Accordion.Collapse eventKey='AddNew'>
