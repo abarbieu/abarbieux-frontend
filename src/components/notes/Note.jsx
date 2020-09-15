@@ -45,10 +45,10 @@ export default function Note (props) {
                 </p>
               </div>
               <div style={{ float: 'right' }} className='m-2'>
-                <span className='txt-sm light-color-1 m-2'>
-                  Last Edited:{' '}
+                <span className='txt-sm light-color m-2'>
+                  {' '}
                   {' ' +
-                    moment.unix(props.date).format('MMMM Do YYYY, h:mm:ss a') +
+                    moment.unix(props.date).format('MMM D YYYY, h:mma') +
                     ' '}
                 </span>
                 <Button
