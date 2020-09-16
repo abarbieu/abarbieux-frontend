@@ -198,6 +198,12 @@ a div {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+.f-right {
+  float: right;
+}
+.f-left {
+  float: left;
+}
 .txt-xs {
   font-size: x-small;
 }

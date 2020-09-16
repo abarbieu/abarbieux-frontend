@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import Accordion from 'react-bootstrap/Accordion';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -12,7 +15,6 @@ Note.propTypes = {
   id             : PropTypes.number,
   archived       : PropTypes.bool,
   expanded       : PropTypes.bool,
-  // onArchive : PropTypes.func.isRequired,
   onDelete       : PropTypes.func.isRequired,
   onChange       : PropTypes.func.isRequired,
   onToggleEdit   : PropTypes.func.isRequired,
@@ -23,7 +25,8 @@ export default function Note (props) {
   const [ content, setContent ] = useState(props.content);
   const [ oTitle, setOTitle ] = useState(props.title);
   const [ oContent, setOContent ] = useState(props.content);
-
+  const headerBG = props.archived ? 'dark-bg-1-i' : 'dark-bg-i';
+  const bodyBG = props.archived ? 'dark-bg-i' : 'dark-bg-1-i';
   const handleSubmit = (event) => {
     event.preventDefault();
     setOTitle(title);
@@ -46,11 +49,13 @@ export default function Note (props) {
     setContent(oContent);
     setTitle(oTitle);
   };
-
   return (
     <div className={props.className}>
-      <Accordion defaultActiveKey={props.expanded ? props.id : null}>
-        <Card className='dark-bg-i'>
+      <Accordion
+        className='p-1'
+        defaultActiveKey={props.expanded ? props.id : null}
+      >
+        <Card className={headerBG + ' p-1'}>
           <Accordion.Toggle
             as={Card.Header}
             eventKey={props.id}
@@ -58,6 +63,7 @@ export default function Note (props) {
           >
             <h4 className='accent-color'>{title || 'No Title'}</h4>
             <div className='light-color txt-sm truncated'>{content}</div>
+
             <div style={{ height: 10 }}>
               <div className='not-a'>
                 <svg
@@ -76,87 +82,107 @@ export default function Note (props) {
               </div>
             </div>
           </Accordion.Toggle>
-          <Accordion.Collapse className='dark-bg-1-i' eventKey={props.id}>
-            <Card.Body className='align-left'>
-              {!props.archived && !props.editing ? (
-                <div style={{ float: 'right' }} className='mr-2'>
+          <Accordion.Collapse eventKey={props.id}>
+            <Card.Body className='align-left p-0'>
+              <Card className={'m-0 ' + bodyBG}>
+                <Card.Header>
+                  <Container className='p-0 m-0'>
+                    <Row>
+                      <Col xs={9} className='p-0'>
+                        <span className='txt-sm accent-color-1 f-left'>
+                          {moment.unix(props.date).format('ddd h:mma, M/D/YY')}
+                        </span>
+                      </Col>
+                      <Col xs={3} className='p-0'>
+                        <div className='f-right'>
+                          {!props.archived && !props.editing ? (
+                            <div>
+                              <Button
+                                variant='info'
+                                size='sm'
+                                onClick={props.onToggleEdit.bind(
+                                  this,
+                                  props.id
+                                )}
+                              >
+                                Edit
+                              </Button>
+                            </div>
+                          ) : props.editing ? (
+                            <div>
+                              <Button
+                                variant='danger'
+                                size='sm'
+                                onClick={handleCancel}
+                              >
+                                Cancel
+                              </Button>
+                            </div>
+                          ) : null}
+                        </div>
+                      </Col>
+                    </Row>
+                  </Container>
+                </Card.Header>
+                <Card.Body>
+                  <div>
+                    {props.editing ? (
+                      <Form onSubmit={handleSubmit}>
+                        <Form.Group>
+                          <Form.Control
+                            className='align-left form-text form-obj'
+                            type='text'
+                            value={title}
+                            onChange={handleChangeTitle}
+                            placeholder='Title'
+                          />
+                          <Form.Control
+                            className='align-left form-text form-obj'
+                            type='text'
+                            value={content}
+                            onChange={handleChangeContent}
+                            as='textarea'
+                            placeholder='Content'
+                          />
+                        </Form.Group>
+                        <div className='m-0'>
+                          <Button type='submit' variant='success' size='sm'>
+                            Submit
+                          </Button>
+                        </div>
+                      </Form>
+                    ) : (
+                      <Card.Text className='p-0'>
+                        <span className='not-p light-color sans-serif txt-md'>
+                          {props.content || 'No Content'}
+                        </span>
+                      </Card.Text>
+                    )}
+                  </div>
+                </Card.Body>
+                <div>
                   <Button
-                    variant='info'
+                    className='m-1 f-right'
+                    variant={props.archived ? 'success' : 'warning'}
                     size='sm'
-                    onClick={props.onToggleEdit.bind(this, props.id)}
+                    onClick={props.onChange.bind(this, props.id, {
+                      archived : !props.archived,
+                    })}
                   >
-                    Edit
+                    {props.archived ? 'Unarchive' : 'Archive'}
                   </Button>
+                  {props.archived ? (
+                    <Button
+                      className='m-1 f-right'
+                      variant='danger'
+                      size='sm'
+                      onClick={props.onDelete.bind(this, props.id)}
+                    >
+                      Delete
+                    </Button>
+                  ) : null}
                 </div>
-              ) : props.editing ? (
-                <div style={{ float: 'right' }} className='mr-2 mb-1'>
-                  <Button variant='danger' size='sm' onClick={handleCancel}>
-                    Cancel
-                  </Button>
-                </div>
-              ) : null}
-
-              <div>
-                {props.editing ? (
-                  <Form onSubmit={handleSubmit}>
-                    <div style={{ float: 'right' }} className='mr-2 mb-1'>
-                      <Button type='submit' variant='success' size='sm'>
-                        Submit
-                      </Button>
-                    </div>
-
-                    <Form.Group>
-                      <Form.Control
-                        className='align-left form-text form-obj'
-                        type='text'
-                        value={title}
-                        onChange={handleChangeTitle}
-                        placeholder='Title'
-                      />
-                      <Form.Control
-                        className='align-left form-text form-obj'
-                        type='text'
-                        value={content}
-                        onChange={handleChangeContent}
-                        as='textarea'
-                        placeholder='Content'
-                      />
-                    </Form.Group>
-                  </Form>
-                ) : (
-                  <p className='light-color sans-serif txt-md'>
-                    {props.content || 'No Content'}
-                  </p>
-                )}
-              </div>
-              <div style={{ float: 'right' }} className='m-2'>
-                <span className='txt-sm light-color m-2'>
-                  {' '}
-                  {' ' +
-                    moment.unix(props.date).format('MMM D YYYY, h:mma') +
-                    ' '}
-                </span>
-                <Button
-                  className='m-1'
-                  variant={props.archived ? 'success' : 'warning'}
-                  size='sm'
-                  onClick={props.onChange.bind(this, props.id, {
-                    archived : !props.archived,
-                  })}
-                >
-                  {props.archived ? 'Unarchive' : 'Archive'}
-                </Button>
-                {props.archived ? (
-                  <Button
-                    className='m-1'
-                    variant='danger'
-                    size='sm'
-                    onClick={props.onDelete.bind(this, props.id)}
-                  >
-                    Delete
-                  </Button>
-                ) : null}
-              </div>
+              </Card>
             </Card.Body>
           </Accordion.Collapse>
         </Card>

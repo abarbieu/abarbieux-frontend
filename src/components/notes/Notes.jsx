@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Accordion from 'react-bootstrap/Accordion';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import Note from './Note';
 import PropTypes from 'prop-types';
-import uuid from 'uuid';
 
 Notes.propTypes = {
   onDelete       : PropTypes.func.isRequired,
@@ -17,24 +19,30 @@ Notes.propTypes = {
 export default function Notes (props) {
   return (
     <div>
-      {props.notes.map((note) => {
-        return (
-          <Note
-            key={note.id}
-            id={note.id}
-            title={note.title}
-            content={note.content}
-            archived={note.archived}
-            date={note.date}
-            expanded={note.expanded}
-            editing={note.editing}
-            onDelete={props.onDelete}
-            onChange={props.onChange}
-            onToggleExpand={props.onToggleExpand}
-            onToggleEdit={props.onToggleEdit}
-          />
-        );
-      })}
+      <Container className='rounded'>
+        <Row className='p-0'>
+          {props.notes.map((note) => {
+            return (
+              <Col key={note.id} className='m-0 p-0'>
+                <Note
+                  key={note.id}
+                  id={note.id}
+                  title={note.title}
+                  content={note.content}
+                  archived={note.archived}
+                  date={note.date}
+                  expanded={note.expanded}
+                  editing={note.editing}
+                  onDelete={props.onDelete}
+                  onChange={props.onChange}
+                  onToggleExpand={props.onToggleExpand}
+                  onToggleEdit={props.onToggleEdit}
+                />
+              </Col>
+            );
+          })}
+        </Row>
+      </Container>
     </div>
   );
 }
@@ -53,10 +61,13 @@ AddNote.propTypes = {
 export function AddNote (props) {
   const [ title, setTitle ] = useState('');
   const [ content, setContent ] = useState('');
+  const [ editing, setEditing ] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     props.onSubmit(title, content);
+    setContent('');
+    setTitle('');
   };
   const handleChangeTitle = (event) => {
     event.preventDefault();
@@ -70,10 +81,12 @@ export function AddNote (props) {
     <Accordion>
       <Accordion.Toggle
         as={Button}
-        className='brand-bg-i mb-2'
+        className={'mb-2'}
+        variant={editing ? 'danger' : 'info'}
         eventKey='AddNew'
+        onClick={setEditing.bind(this, !editing)}
       >
-        Add New
+        {editing ? 'Cancel' : 'Add New'}
       </Accordion.Toggle>
       <Accordion.Collapse eventKey='AddNew'>
         <Form onSubmit={handleSubmit}>
