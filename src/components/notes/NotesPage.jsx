@@ -20,7 +20,9 @@ export default class NotesPage extends Component {
       this.apiUrl = 'http://localhost:54321/api/';
     }
   }
-
+  componentDidMount () {
+    this.getNotes();
+  }
   render () {
     return (
       <div>
@@ -95,9 +97,6 @@ export default class NotesPage extends Component {
         </div>
       </div>
     );
-  }
-  componentDidMount () {
-    // this.getNotes();
   }
 
   addError = (err, msg) => {
