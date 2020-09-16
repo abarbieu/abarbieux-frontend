@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import axios from 'axios';
+import Alert from 'react-bootstrap/esm/Alert';
 
 import moment from 'moment';
 
@@ -11,7 +12,8 @@ export default class NotesPage extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      notes : [],
+      alerts : [],
+      notes  : [],
     };
     this.apiUrl = 'https://barbieux.dev/api/';
     if (process.env.NODE_ENV === 'development') {
@@ -19,11 +21,45 @@ export default class NotesPage extends Component {
     }
   }
   componentDidMount () {
-    axios.get(this.apiUrl + 'notes').then((res) => {
-      this.setState({ notes: res.data });
-    });
     this.getNotes();
   }
+  addError = (err, msg) => {
+    console.error(err);
+    this.setState((prevState) => {
+      prevState.alerts = [
+        ...prevState.alerts,
+        {
+          msg  : { name: err.name, message: err.message + ' : ' + msg },
+          show : true,
+        },
+      ];
+      return prevState;
+    });
+  };
+  addAlert = (msg) => {
+    this.setState((prevState) => {
+      prevState.alerts = [ ...prevState.alerts, { msg, show: true } ];
+      return prevState;
+    });
+  };
+  dismissAlert = (idx) => {
+    if (idx < this.state.alerts.length) {
+      this.setState(
+        (prevState) => {
+          prevState.alerts[idx].show = false;
+          return prevState;
+        },
+        () => {
+          this.setState((prevState) => {
+            setTimeout(() => {
+              prevState.alerts.splice(idx, 1);
+              return prevState;
+            }, 5000);
+          });
+        }
+      );
+    }
+  };
 
   render () {
     return (
@@ -79,73 +115,87 @@ export default class NotesPage extends Component {
                 </Accordion>
               </div>
             ) : null}
+            {this.state.alerts.map((alert, idx) => (
+              <Alert
+                show={alert.show}
+                key={idx}
+                onClose={this.dismissAlert.bind(this, idx)}
+                variant={alert.variant ? alert.variant : 'danger'}
+                dismissible
+              >
+                <Alert.Heading>{alert.msg.name}</Alert.Heading>
+                {alert.msg.message}
+              </Alert>
+            ))}
           </Container>
         </div>
       </div>
     );
   }
   getArchive = () => {
-    let archive = {};
-    Object.values(this.state.notes).forEach((note) => {
-      if (note.archived) {
-        archive[note.id] = note;
-      }
-    });
-    return archive;
+    return this.state.notes.filter((note) => note.archived);
   };
   getActive = () => {
-    let active = {};
-    Object.values(this.state.notes).forEach((note) => {
-      if (!note.archived) {
-        active[note.id] = note;
-      }
-    });
-    return active;
+    return this.state.notes.filter((note) => !note.archived);
   };
   getNotes = () => {
-    axios.get(this.apiUrl + 'notes').then((res) => {
-      let notes = {};
-      res.data.forEach((note) => {
-        notes[note.id] = note;
+    axios
+      .get(this.apiUrl + 'notes')
+      .then((res) => {
+        if (res.err) {
+          throw res.err;
+        }
+        this.setState({ notes: res.data });
+      })
+      .catch((err) => {
+        this.addError(err, 'While Getting Notes From API');
       });
-      this.setState({ notes: notes });
-    });
   };
 
   archiveNote = (id) => {
-    this.setState((prevState) => {
-      prevState.notes[id].fadeOut = true;
-      return prevState;
-    });
-    setTimeout(() => {
-      axios.put(this.apiUrl + `notes/${id}`, {
-        ...this.state.notes[id],
+    axios
+      .put(this.apiUrl + `notes/${id}`, {
         archived : true,
+      })
+      .then((res) => {
+        if (res.err) {
+          throw res.err;
+        }
+        this.setState((prevState) => {
+          this.state.notes.forEach((note, idx) => {
+            if (note.id === id) {
+              prevState.notes[idx].archived = true;
+            }
+          });
+          return prevState;
+        });
+      })
+      .catch((err) => {
+        this.addError(err, `While Archiving Note In API With ID: ${id}`);
       });
-      this.setState((prevState) => {
-        prevState.notes[id].archived = true;
-        prevState.notes[id].fadeOut = false;
-        return prevState;
-      });
-    }, 700);
   };
 
   unArchiveNote = (id) => {
-    this.setState((prevState) => {
-      prevState.notes[id].fadeOut = true;
-      return prevState;
-    });
-    setTimeout(() => {
-      axios.put(this.apiUrl + `notes/${id}`, {
-        ...this.state.notes[id],
+    axios
+      .put(this.apiUrl + `notes/${id}`, {
         archived : false,
+      })
+      .then((res) => {
+        if (res.err) {
+          throw res.err;
+        }
+        this.setState((prevState) => {
+          this.state.notes.forEach((note, idx) => {
+            if (note.id === id) {
+              prevState.notes[idx].archived = false;
+            }
+          });
+          return prevState;
+        });
+      })
+      .catch((err) => {
+        this.addError(err, `While Unarchiving Note In API With ID: ${id}`);
       });
-      this.setState((prevState) => {
-        prevState.notes[id].archived = false;
-        prevState.notes[id].fadeOut = false;
-        return prevState;
-      });
-    }, 700);
   };
 
   addNote = (title, content) => {
@@ -156,23 +206,38 @@ export default class NotesPage extends Component {
         date    : moment().unix(),
       })
       .then((res) => {
+        if (res.err) {
+          throw res.err;
+        }
         this.setState((prevState) => {
           prevState.notes[res.data.id] = res.data;
           return prevState;
         });
+      })
+      .catch((err) => {
+        this.addError(err, `While Adding Note In API With Title: ${title}`);
       });
   };
   deleteNote = (id) => {
-    axios.delete(this.apiUrl + `notes/${id}`);
-    this.setState((prevState) => {
-      let newState = { notes: {} };
-      Object.values(prevState.notes).forEach((note) => {
-        if (note.id !== id) {
-          newState.notes[id] = note;
+    axios
+      .delete(this.apiUrl + `notes/${id}`)
+      .then((res) => {
+        if (res.err) {
+          throw res.err;
         }
+        this.setState((prevState) => {
+          let newNotes = [];
+          prevState.notes.forEach((note) => {
+            if (note.id !== id) {
+              newNotes.push(note);
+            }
+          });
+          prevState.notes = newNotes;
+          return prevState;
+        });
+      })
+      .catch((err) => {
+        this.addError(err, `While Deleting Note In API With ID: ${id}`);
       });
-
-      return newState;
-    });
   };
 }

@@ -9,13 +9,13 @@ import uuid from 'uuid';
 Notes.propTypes = {
   onArchive : PropTypes.func.isRequired,
   onDelete  : PropTypes.func.isRequired,
-  notes     : PropTypes.object.isRequired,
+  notes     : PropTypes.array.isRequired,
 };
 
 export default function Notes (props) {
   return (
     <div>
-      {Object.values(props.notes).map((note) => {
+      {props.notes.map((note) => {
         return (
           <Note
             key={uuid.v4()}
@@ -24,7 +24,6 @@ export default function Notes (props) {
             content={note.content}
             archived={note.archived}
             date={note.date}
-            fadeOut={note.fadeOut}
             onArchive={props.onArchive}
             onDelete={props.onDelete}
           />

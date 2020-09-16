@@ -88,10 +88,7 @@ function MainNavbar (props: { toggleContact: Function }) {
                         <div className='not-a'>Send a Note</div>
                       </Nav.Link>
                     </Dropdown.Item>
-                    <Dropdown.Item
-                      className='dropdown-item'
-                      style={{ marginLeft: -12 }}
-                    >
+                    <div className='dropdown-item' style={{ marginLeft: -12 }}>
                       <OverlayTrigger
                         placement='top'
                         trigger='click'
@@ -146,7 +143,7 @@ function MainNavbar (props: { toggleContact: Function }) {
                           </OverlayTrigger>
                         </button>
                       </OverlayTrigger>
-                    </Dropdown.Item>
+                    </div>
                   </Dropdown.Menu>
                 </Row>
               </Container>

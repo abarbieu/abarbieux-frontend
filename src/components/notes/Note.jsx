@@ -10,9 +10,7 @@ export default function Note (props) {
       <Accordion
         defaultActiveKey={props.expanded ? props.id + props.title : undefined}
       >
-        <Card
-          className={'dark-bg-i fade-in' + (props.fadeOut ? ' fade-out' : '')}
-        >
+        <Card className='dark-bg-i'>
           <Accordion.Toggle as={Card.Header} eventKey={props.id + props.title}>
             <h4 className='accent-color'>{props.title || 'No Title'}</h4>
             <div className='light-color txt-sm truncated'>{props.content}</div>
