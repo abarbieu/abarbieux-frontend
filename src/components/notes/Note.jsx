@@ -7,16 +7,18 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 
 Note.propTypes = {
-  title    : PropTypes.string,
-  content  : PropTypes.string,
-  id       : PropTypes.number,
-  archived : PropTypes.bool,
+  title          : PropTypes.string,
+  content        : PropTypes.string,
+  id             : PropTypes.number,
+  archived       : PropTypes.bool,
+  expanded       : PropTypes.bool,
   // onArchive : PropTypes.func.isRequired,
-  onDelete : PropTypes.func.isRequired,
-  onChange : PropTypes.func.isRequired,
+  onDelete       : PropTypes.func.isRequired,
+  onChange       : PropTypes.func.isRequired,
+  onToggleEdit   : PropTypes.func.isRequired,
+  onToggleExpand : PropTypes.func.isRequired,
 };
 export default function Note (props) {
-  const [ editing, setEditing ] = useState(false);
   const [ title, setTitle ] = useState(props.title);
   const [ content, setContent ] = useState(props.content);
   const [ oTitle, setOTitle ] = useState(props.title);
@@ -40,16 +42,20 @@ export default function Note (props) {
   };
 
   const handleCancel = () => {
-    setEditing(false);
+    props.onToggleEdit(props.id);
     setContent(oContent);
     setTitle(oTitle);
   };
 
   return (
     <div className={props.className}>
-      <Accordion>
+      <Accordion defaultActiveKey={props.expanded ? props.id : null}>
         <Card className='dark-bg-i'>
-          <Accordion.Toggle as={Card.Header} eventKey={props.id}>
+          <Accordion.Toggle
+            as={Card.Header}
+            eventKey={props.id}
+            onClick={props.onToggleExpand.bind(this, props.id)}
+          >
             <h4 className='accent-color'>{title || 'No Title'}</h4>
             <div className='light-color txt-sm truncated'>{content}</div>
             <div style={{ height: 10 }}>
@@ -72,17 +78,17 @@ export default function Note (props) {
           </Accordion.Toggle>
           <Accordion.Collapse className='dark-bg-1-i' eventKey={props.id}>
             <Card.Body className='align-left'>
-              {!props.archived && !editing ? (
+              {!props.archived && !props.editing ? (
                 <div style={{ float: 'right' }} className='mr-2'>
                   <Button
                     variant='info'
                     size='sm'
-                    onClick={setEditing.bind(this, true)}
+                    onClick={props.onToggleEdit.bind(this, props.id)}
                   >
                     Edit
                   </Button>
                 </div>
-              ) : editing ? (
+              ) : props.editing ? (
                 <div style={{ float: 'right' }} className='mr-2 mb-1'>
                   <Button variant='danger' size='sm' onClick={handleCancel}>
                     Cancel
@@ -91,7 +97,7 @@ export default function Note (props) {
               ) : null}
 
               <div>
-                {editing ? (
+                {props.editing ? (
                   <Form onSubmit={handleSubmit}>
                     <div style={{ float: 'right' }} className='mr-2 mb-1'>
                       <Button type='submit' variant='success' size='sm'>

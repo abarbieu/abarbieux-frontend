@@ -7,10 +7,11 @@ import PropTypes from 'prop-types';
 import uuid from 'uuid';
 
 Notes.propTypes = {
-  // onArchive : PropTypes.func.isRequired,
-  onDelete : PropTypes.func.isRequired,
-  onChange : PropTypes.func.isRequired,
-  notes    : PropTypes.array.isRequired,
+  onDelete       : PropTypes.func.isRequired,
+  onChange       : PropTypes.func.isRequired,
+  onToggleExpand : PropTypes.func.isRequired,
+  onToggleEdit   : PropTypes.func.isRequired,
+  notes          : PropTypes.array.isRequired,
 };
 
 export default function Notes (props) {
@@ -19,15 +20,18 @@ export default function Notes (props) {
       {props.notes.map((note) => {
         return (
           <Note
-            key={uuid.v4()}
+            key={note.id}
             id={note.id}
             title={note.title}
             content={note.content}
             archived={note.archived}
             date={note.date}
-            // onArchive={props.onArchive}
+            expanded={note.expanded}
+            editing={note.editing}
             onDelete={props.onDelete}
             onChange={props.onChange}
+            onToggleExpand={props.onToggleExpand}
+            onToggleEdit={props.onToggleEdit}
           />
         );
       })}

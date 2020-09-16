@@ -32,6 +32,8 @@ export default class NotesPage extends Component {
               notes={this.getActive()}
               onDelete={this.deleteNote}
               onChange={this.updateNote}
+              onToggleExpand={this.toggleExpandNote}
+              onToggleEdit={this.toggleEditNote}
             />
             {Object.keys(this.getArchive()).length > 0 ? (
               <div>
@@ -68,6 +70,8 @@ export default class NotesPage extends Component {
                           notes={this.getArchive()}
                           onDelete={this.deleteNote}
                           onChange={this.updateNote}
+                          onToggleExpand={this.toggleExpandNote}
+                          onToggleEdit={this.toggleEditNote}
                         />
                       </Card.Body>
                     </Accordion.Collapse>
@@ -80,7 +84,7 @@ export default class NotesPage extends Component {
                 show={alert.show}
                 key={idx}
                 onClose={this.dismissAlert.bind(this, idx)}
-                variant={alert.variant ? alert.variant : 'danger'}
+                variant={alert.msg.variant ? alert.msg.variant : 'danger'}
                 dismissible
               >
                 <Alert.Heading>{alert.msg.name}</Alert.Heading>
@@ -93,7 +97,7 @@ export default class NotesPage extends Component {
     );
   }
   componentDidMount () {
-    this.getNotes();
+    // this.getNotes();
   }
 
   addError = (err, msg) => {
@@ -136,6 +140,30 @@ export default class NotesPage extends Component {
     }
   };
 
+  toggleExpandNote = (id) => {
+    setTimeout(() => {
+      this.setState((prevState) => {
+        prevState.notes.forEach((note) => {
+          if (note.id === id) {
+            note.expanded = !note.expanded ? true : false;
+          }
+        });
+        return prevState;
+      });
+    }, 350);
+  };
+  toggleEditNote = (id) => {
+    setTimeout(() => {
+      this.setState((prevState) => {
+        prevState.notes.forEach((note) => {
+          if (note.id === id) {
+            note.editing = !note.editing ? true : false;
+          }
+        });
+        return prevState;
+      });
+    }, 250);
+  };
   getArchive = () => {
     return this.state.notes.filter((note) => note.archived);
   };
