@@ -7,9 +7,10 @@ import PropTypes from 'prop-types';
 import uuid from 'uuid';
 
 Notes.propTypes = {
-  onArchive : PropTypes.func.isRequired,
-  onDelete  : PropTypes.func.isRequired,
-  notes     : PropTypes.array.isRequired,
+  // onArchive : PropTypes.func.isRequired,
+  onDelete : PropTypes.func.isRequired,
+  onChange : PropTypes.func.isRequired,
+  notes    : PropTypes.array.isRequired,
 };
 
 export default function Notes (props) {
@@ -24,8 +25,9 @@ export default function Notes (props) {
             content={note.content}
             archived={note.archived}
             date={note.date}
-            onArchive={props.onArchive}
+            // onArchive={props.onArchive}
             onDelete={props.onDelete}
+            onChange={props.onChange}
           />
         );
       })}

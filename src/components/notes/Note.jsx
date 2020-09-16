@@ -1,19 +1,57 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 
+Note.propTypes = {
+  title    : PropTypes.string,
+  content  : PropTypes.string,
+  id       : PropTypes.number,
+  archived : PropTypes.bool,
+  // onArchive : PropTypes.func.isRequired,
+  onDelete : PropTypes.func.isRequired,
+  onChange : PropTypes.func.isRequired,
+};
 export default function Note (props) {
+  const [ editing, setEditing ] = useState(false);
+  const [ title, setTitle ] = useState(props.title);
+  const [ content, setContent ] = useState(props.content);
+  const [ oTitle, setOTitle ] = useState(props.title);
+  const [ oContent, setOContent ] = useState(props.content);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setOTitle(title);
+    setOContent(content);
+    props.onChange(props.id, { title, content });
+  };
+
+  const handleChangeTitle = (event) => {
+    event.preventDefault();
+    setTitle(event.target.value);
+  };
+
+  const handleChangeContent = (event) => {
+    event.preventDefault();
+    setContent(event.target.value);
+  };
+
+  const handleCancel = () => {
+    setEditing(false);
+    setContent(oContent);
+    setTitle(oTitle);
+  };
+
   return (
     <div className={props.className}>
-      <Accordion
-        defaultActiveKey={props.expanded ? props.id + props.title : undefined}
-      >
+      <Accordion>
         <Card className='dark-bg-i'>
-          <Accordion.Toggle as={Card.Header} eventKey={props.id + props.title}>
-            <h4 className='accent-color'>{props.title || 'No Title'}</h4>
-            <div className='light-color txt-sm truncated'>{props.content}</div>
+          <Accordion.Toggle as={Card.Header} eventKey={props.id}>
+            <h4 className='accent-color'>{title || 'No Title'}</h4>
+            <div className='light-color txt-sm truncated'>{content}</div>
             <div style={{ height: 10 }}>
               <div className='not-a'>
                 <svg
@@ -32,15 +70,58 @@ export default function Note (props) {
               </div>
             </div>
           </Accordion.Toggle>
-          <Accordion.Collapse
-            className='dark-bg-1-i'
-            eventKey={props.id + props.title}
-          >
+          <Accordion.Collapse className='dark-bg-1-i' eventKey={props.id}>
             <Card.Body className='align-left'>
+              {!props.archived && !editing ? (
+                <div style={{ float: 'right' }} className='mr-2'>
+                  <Button
+                    variant='info'
+                    size='sm'
+                    onClick={setEditing.bind(this, true)}
+                  >
+                    Edit
+                  </Button>
+                </div>
+              ) : editing ? (
+                <div style={{ float: 'right' }} className='mr-2 mb-1'>
+                  <Button variant='danger' size='sm' onClick={handleCancel}>
+                    Cancel
+                  </Button>
+                </div>
+              ) : null}
+
               <div>
-                <p className='light-color sans-serif txt-md'>
-                  {props.content || 'No Content'}
-                </p>
+                {editing ? (
+                  <Form onSubmit={handleSubmit}>
+                    <div style={{ float: 'right' }} className='mr-2 mb-1'>
+                      <Button type='submit' variant='success' size='sm'>
+                        Submit
+                      </Button>
+                    </div>
+
+                    <Form.Group>
+                      <Form.Control
+                        className='align-left form-text form-obj'
+                        type='text'
+                        value={title}
+                        onChange={handleChangeTitle}
+                        placeholder='Title'
+                      />
+                      <Form.Control
+                        className='align-left form-text form-obj'
+                        type='text'
+                        value={content}
+                        onChange={handleChangeContent}
+                        as='textarea'
+                        placeholder='Content'
+                      />
+                    </Form.Group>
+                  </Form>
+                ) : (
+                  <p className='light-color sans-serif txt-md'>
+                    {props.content || 'No Content'}
+                  </p>
+                )}
               </div>
               <div style={{ float: 'right' }} className='m-2'>
                 <span className='txt-sm light-color m-2'>
@@ -53,7 +134,9 @@ export default function Note (props) {
                   className='m-1'
                   variant={props.archived ? 'success' : 'warning'}
                   size='sm'
-                  onClick={props.onArchive.bind(this, props.id)}
+                  onClick={props.onChange.bind(this, props.id, {
+                    archived : !props.archived,
+                  })}
                 >
                   {props.archived ? 'Unarchive' : 'Archive'}
                 </Button>

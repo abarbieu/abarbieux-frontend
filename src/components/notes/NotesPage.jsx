@@ -20,46 +20,6 @@ export default class NotesPage extends Component {
       this.apiUrl = 'http://localhost:54321/api/';
     }
   }
-  componentDidMount () {
-    this.getNotes();
-  }
-  addError = (err, msg) => {
-    console.error(err);
-    this.setState((prevState) => {
-      prevState.alerts = [
-        ...prevState.alerts,
-        {
-          msg  : { name: err.name, message: err.message + ' : ' + msg },
-          show : true,
-        },
-      ];
-      return prevState;
-    });
-  };
-  addAlert = (msg) => {
-    this.setState((prevState) => {
-      prevState.alerts = [ ...prevState.alerts, { msg, show: true } ];
-      return prevState;
-    });
-  };
-  dismissAlert = (idx) => {
-    if (idx < this.state.alerts.length) {
-      this.setState(
-        (prevState) => {
-          prevState.alerts[idx].show = false;
-          return prevState;
-        },
-        () => {
-          this.setState((prevState) => {
-            setTimeout(() => {
-              prevState.alerts.splice(idx, 1);
-              return prevState;
-            }, 5000);
-          });
-        }
-      );
-    }
-  };
 
   render () {
     return (
@@ -70,8 +30,8 @@ export default class NotesPage extends Component {
             <AddNote onSubmit={this.addNote} />
             <Notes
               notes={this.getActive()}
-              onArchive={this.archiveNote}
               onDelete={this.deleteNote}
+              onChange={this.updateNote}
             />
             {Object.keys(this.getArchive()).length > 0 ? (
               <div>
@@ -106,8 +66,8 @@ export default class NotesPage extends Component {
                       <Card.Body>
                         <Notes
                           notes={this.getArchive()}
-                          onArchive={this.unArchiveNote}
                           onDelete={this.deleteNote}
+                          onChange={this.updateNote}
                         />
                       </Card.Body>
                     </Accordion.Collapse>
@@ -132,12 +92,58 @@ export default class NotesPage extends Component {
       </div>
     );
   }
+  componentDidMount () {
+    this.getNotes();
+  }
+
+  addError = (err, msg) => {
+    console.error(err);
+    this.setState((prevState) => {
+      prevState.alerts = [
+        ...prevState.alerts,
+        {
+          msg  : { name: err.name, message: err.message + ' : ' + msg },
+          show : true,
+        },
+      ];
+      return prevState;
+    });
+  };
+
+  addAlert = (msg) => {
+    this.setState((prevState) => {
+      prevState.alerts = [ ...prevState.alerts, { msg, show: true } ];
+      return prevState;
+    });
+  };
+
+  dismissAlert = (idx) => {
+    if (idx < this.state.alerts.length) {
+      this.setState(
+        (prevState) => {
+          prevState.alerts[idx].show = false;
+          return prevState;
+        },
+        () => {
+          this.setState((prevState) => {
+            setTimeout(() => {
+              prevState.alerts.splice(idx, 1);
+              return prevState;
+            }, 5000);
+          });
+        }
+      );
+    }
+  };
+
   getArchive = () => {
     return this.state.notes.filter((note) => note.archived);
   };
+
   getActive = () => {
     return this.state.notes.filter((note) => !note.archived);
   };
+
   getNotes = () => {
     axios
       .get(this.apiUrl + 'notes')
@@ -152,11 +158,9 @@ export default class NotesPage extends Component {
       });
   };
 
-  archiveNote = (id) => {
+  updateNote = (id, newData) => {
     axios
-      .put(this.apiUrl + `notes/${id}`, {
-        archived : true,
-      })
+      .put(this.apiUrl + `notes/${id}`, newData)
       .then((res) => {
         if (res.err) {
           throw res.err;
@@ -164,37 +168,17 @@ export default class NotesPage extends Component {
         this.setState((prevState) => {
           this.state.notes.forEach((note, idx) => {
             if (note.id === id) {
-              prevState.notes[idx].archived = true;
+              prevState.notes[idx] = res.data;
             }
           });
           return prevState;
         });
       })
       .catch((err) => {
-        this.addError(err, `While Archiving Note In API With ID: ${id}`);
-      });
-  };
-
-  unArchiveNote = (id) => {
-    axios
-      .put(this.apiUrl + `notes/${id}`, {
-        archived : false,
-      })
-      .then((res) => {
-        if (res.err) {
-          throw res.err;
-        }
-        this.setState((prevState) => {
-          this.state.notes.forEach((note, idx) => {
-            if (note.id === id) {
-              prevState.notes[idx].archived = false;
-            }
-          });
-          return prevState;
-        });
-      })
-      .catch((err) => {
-        this.addError(err, `While Unarchiving Note In API With ID: ${id}`);
+        this.addError(
+          err,
+          `While Updating Note In API With ID: ${id} And Content: ${newData}`
+        );
       });
   };
 
@@ -218,6 +202,7 @@ export default class NotesPage extends Component {
         this.addError(err, `While Adding Note In API With Title: ${title}`);
       });
   };
+
   deleteNote = (id) => {
     axios
       .delete(this.apiUrl + `notes/${id}`)

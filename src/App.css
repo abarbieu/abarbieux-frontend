@@ -374,7 +374,6 @@ div.no-margin {
   min-height: 100vh;
   background: url('./resources/background-patterns/bg-pblue-str.png');
   overflow-x: hidden;
-  background-repeat: round;
   background-size: 64px;
 }
 
