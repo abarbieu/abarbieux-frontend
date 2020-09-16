@@ -195,7 +195,8 @@ export default class NotesPage extends Component {
         this.setState((prevState) => {
           this.state.notes.forEach((note, idx) => {
             if (note.id === id) {
-              prevState.notes[idx] = res.data;
+              delete prevState.notes[idx];
+              prevState.notes.unshift(res.data);
             }
           });
           return prevState;
@@ -221,7 +222,7 @@ export default class NotesPage extends Component {
           throw res.err;
         }
         this.setState((prevState) => {
-          prevState.notes[res.data.id] = res.data;
+          prevState.notes.unshift(res.data);
           return prevState;
         });
       })
