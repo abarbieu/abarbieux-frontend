@@ -34,7 +34,7 @@ export default class NotesPage extends Component {
               notes={this.getActive()}
               onDelete={this.deleteNote}
               onChange={this.updateNote}
-              onToggleExpand={this.toggleExpandNote}
+              // onToggleExpand={this.toggleExpandNote}
               onToggleEdit={this.toggleEditNote}
             />
             {Object.keys(this.getArchive()).length > 0 ? (
@@ -72,7 +72,7 @@ export default class NotesPage extends Component {
                           notes={this.getArchive()}
                           onDelete={this.deleteNote}
                           onChange={this.updateNote}
-                          onToggleExpand={this.toggleExpandNote}
+                          // onToggleExpand={this.toggleExpandNote}
                           onToggleEdit={this.toggleEditNote}
                         />
                       </Card.Body>
@@ -139,18 +139,18 @@ export default class NotesPage extends Component {
     }
   };
 
-  toggleExpandNote = (id) => {
-    setTimeout(() => {
-      this.setState((prevState) => {
-        prevState.notes.forEach((note) => {
-          if (note.id === id) {
-            note.expanded = !note.expanded ? true : false;
-          }
-        });
-        return prevState;
-      });
-    }, 350);
-  };
+  // toggleExpandNote = (id) => {
+  // setTimeout(() => {
+  //   this.setState((prevState) => {
+  //     prevState.notes.forEach((note) => {
+  //       if (note.id === id) {
+  //         note.expanded = !note.expanded ? true : false;
+  //       }
+  //     });
+  //     return prevState;
+  //   });
+  // }, 350);
+  // };
   toggleEditNote = (id) => {
     setTimeout(() => {
       this.setState((prevState) => {

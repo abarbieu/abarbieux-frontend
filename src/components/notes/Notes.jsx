@@ -9,11 +9,11 @@ import Note from './Note';
 import PropTypes from 'prop-types';
 
 Notes.propTypes = {
-  onDelete       : PropTypes.func.isRequired,
-  onChange       : PropTypes.func.isRequired,
-  onToggleExpand : PropTypes.func.isRequired,
-  onToggleEdit   : PropTypes.func.isRequired,
-  notes          : PropTypes.array.isRequired,
+  onDelete     : PropTypes.func.isRequired,
+  onChange     : PropTypes.func.isRequired,
+  // onToggleExpand : PropTypes.func.isRequired,
+  onToggleEdit : PropTypes.func.isRequired,
+  notes        : PropTypes.array.isRequired,
 };
 
 export default function Notes (props) {
@@ -31,11 +31,11 @@ export default function Notes (props) {
                   content={note.content}
                   archived={note.archived}
                   date={note.date}
-                  expanded={note.expanded}
+                  // expanded={note.expanded}
                   editing={note.editing}
                   onDelete={props.onDelete}
                   onChange={props.onChange}
-                  onToggleExpand={props.onToggleExpand}
+                  // onToggleExpand={props.onToggleExpand}
                   onToggleEdit={props.onToggleEdit}
                 />
               </Col>
@@ -78,12 +78,11 @@ export function AddNote (props) {
     setContent(event.target.value);
   };
   return (
-    <Accordion>
+    <Accordion activeKey={editing ? 'AddNew' : null}>
       <Accordion.Toggle
         as={Button}
         className={'mb-2'}
         variant={editing ? 'danger' : 'info'}
-        eventKey='AddNew'
         onClick={setEditing.bind(this, !editing)}
       >
         {editing ? 'Cancel' : 'Add New'}

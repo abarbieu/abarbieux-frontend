@@ -10,15 +10,15 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 
 Note.propTypes = {
-  title          : PropTypes.string,
-  content        : PropTypes.string,
-  id             : PropTypes.number,
-  archived       : PropTypes.bool,
-  expanded       : PropTypes.bool,
-  onDelete       : PropTypes.func.isRequired,
-  onChange       : PropTypes.func.isRequired,
-  onToggleEdit   : PropTypes.func.isRequired,
-  onToggleExpand : PropTypes.func.isRequired,
+  title        : PropTypes.string,
+  content      : PropTypes.string,
+  id           : PropTypes.number,
+  archived     : PropTypes.bool,
+  // expanded       : PropTypes.bool,
+  onDelete     : PropTypes.func.isRequired,
+  onChange     : PropTypes.func.isRequired,
+  onToggleEdit : PropTypes.func.isRequired,
+  // onToggleExpand : PropTypes.func.isRequired,
 };
 export default function Note (props) {
   const [ title, setTitle ] = useState(props.title);
@@ -51,18 +51,17 @@ export default function Note (props) {
   };
   return (
     <div className={props.className}>
-      <Accordion
-        className='p-1'
-        defaultActiveKey={props.expanded ? props.id : null}
-      >
+      <Accordion className='p-1'>
         <Card className={headerBG + ' p-1'}>
           <Accordion.Toggle
             as={Card.Header}
             eventKey={props.id}
-            onClick={props.onToggleExpand.bind(this, props.id)}
+            // onClick={props.onToggleExpand.bind(this, props.id)}
           >
-            <h4 className='accent-color'>{title || 'No Title'}</h4>
-            <div className='light-color txt-sm truncated'>{content}</div>
+            <h4 className='accent-color nowrap'>{title || 'No Title'}</h4>
+            <div className='light-color txt-sm truncated'>
+              {content.slice(0, content.indexOf('\n'))}
+            </div>
 
             <div style={{ height: 10 }}>
               <div className='not-a'>

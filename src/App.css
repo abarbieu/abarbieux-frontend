@@ -207,6 +207,9 @@ a div {
 .newlines {
   white-space: pre-line;
 }
+.nowrap {
+  white-space: nowrap;
+}
 .txt-xs {
   font-size: x-small;
 }
