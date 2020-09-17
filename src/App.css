@@ -204,6 +204,9 @@ a div {
 .f-left {
   float: left;
 }
+.newlines {
+  white-space: pre-line;
+}
 .txt-xs {
   font-size: x-small;
 }

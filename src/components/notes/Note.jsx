@@ -153,7 +153,7 @@ export default function Note (props) {
                       </Form>
                     ) : (
                       <Card.Text className='p-0'>
-                        <span className='not-p light-color sans-serif txt-md'>
+                        <span className='newlines not-p light-color sans-serif txt-md'>
                           {props.content || 'No Content'}
                         </span>
                       </Card.Text>
