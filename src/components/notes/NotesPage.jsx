@@ -1,32 +1,32 @@
-import React, { Component } from 'react';
-import Notes, { AddNote, NotesHeader } from './Notes';
-import Container from 'react-bootstrap/Container';
-import Accordion from 'react-bootstrap/Accordion';
-import Card from 'react-bootstrap/Card';
-import axios from 'axios';
-import Alert from 'react-bootstrap/esm/Alert';
+import React, { Component } from "react";
+import Notes, { AddNote, NotesHeader } from "./Notes";
+import Container from "react-bootstrap/Container";
+import Accordion from "react-bootstrap/Accordion";
+import Card from "react-bootstrap/Card";
+import axios from "axios";
+import Alert from "react-bootstrap/esm/Alert";
 
-import moment from 'moment';
+import moment from "moment";
 
 export default class NotesPage extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
-      allowed : false,
-      updated : false,
-      alerts  : [],
-      notes   : [],
+      allowed: false,
+      updated: false,
+      alerts: [],
+      notes: [],
     };
-    this.apiUrl = 'https://barbieux.dev/api/';
-    if (process.env.NODE_ENV === 'development') {
-      this.apiUrl = 'http://localhost:54321/api/';
+    this.apiUrl = "https://barbieux.dev/api/";
+    if (process.env.NODE_ENV === "development") {
+      this.apiUrl = "http://localhost:54321/api/";
     }
     this.getAllowedIP();
   }
-  componentDidMount () {
+  componentDidMount() {
     this.getNotes();
   }
-  render () {
+  render() {
     if (this.state.allowed) {
       return (
         <div>
@@ -90,7 +90,7 @@ export default class NotesPage extends Component {
                   show={alert.show}
                   key={idx}
                   onClose={this.dismissAlert.bind(this, idx)}
-                  variant={alert.msg.variant ? alert.msg.variant : 'danger'}
+                  variant={alert.msg.variant ? alert.msg.variant : "danger"}
                   dismissible
                 >
                   <Alert.Heading>{alert.msg.name}</Alert.Heading>
@@ -109,7 +109,7 @@ export default class NotesPage extends Component {
               show={alert.show}
               key={idx}
               onClose={this.dismissAlert.bind(this, idx)}
-              variant={alert.msg.variant ? alert.msg.variant : 'danger'}
+              variant={alert.msg.variant ? alert.msg.variant : "danger"}
               dismissible
             >
               <Alert.Heading>{alert.msg.name}</Alert.Heading>
@@ -127,8 +127,8 @@ export default class NotesPage extends Component {
       prevState.alerts = [
         ...prevState.alerts,
         {
-          msg  : { name: err.name, message: err.message + ' : ' + msg },
-          show : true,
+          msg: { name: err.name, message: err.message + " : " + msg },
+          show: true,
         },
       ];
       return prevState;
@@ -137,7 +137,7 @@ export default class NotesPage extends Component {
 
   addAlert = (msg) => {
     this.setState((prevState) => {
-      prevState.alerts = [ ...prevState.alerts, { msg, show: true } ];
+      prevState.alerts = [...prevState.alerts, { msg, show: true }];
       return prevState;
     });
   };
@@ -181,7 +181,7 @@ export default class NotesPage extends Component {
   };
   getAllowedIP = (callback) => {
     axios
-      .get(this.apiUrl + 'notes/allowed')
+      .get(this.apiUrl + "notes/allowed")
       .then((res) => {
         if (res.err) {
           throw res.err;
@@ -192,12 +192,12 @@ export default class NotesPage extends Component {
       .catch((err) => {
         this.setState({ allowed: false });
         if (!this.state.updated) {
-          console.log('Not Allowed');
+          console.log("Not Allowed");
           this.setState({ updated: true });
           this.addAlert(
             {
-              message : 'This is a Personal Utility For Me',
-              name    : 'Access Denied',
+              message: "This is a Personal Utility For Me",
+              name: "Access Denied",
             },
             true
           );
@@ -206,7 +206,7 @@ export default class NotesPage extends Component {
   };
   getNotes = () => {
     axios
-      .get(this.apiUrl + 'notes')
+      .get(this.apiUrl + "notes")
       .then((res) => {
         if (res.err) {
           throw res.err;
@@ -214,7 +214,7 @@ export default class NotesPage extends Component {
         this.setState({ notes: res.data });
       })
       .catch((err) => {
-        this.addError(err, 'While Getting Notes From API');
+        this.addError(err, "While Getting Notes From API");
       });
   };
 
@@ -243,24 +243,21 @@ export default class NotesPage extends Component {
       });
   };
 
-  addNote = (title, content) => {
+  addNote = (data) => {
+    data.date = moment().unix();
     axios
-      .post(this.apiUrl + 'notes/', {
-        title,
-        content,
-        date    : moment().unix(),
-      })
+      .post(this.apiUrl + "notes/", data)
       .then((res) => {
         if (res.err) {
           throw res.err;
         }
         this.setState((prevState) => {
-          prevState.notes.unshift(res.data);
+          prevState.notes.push(res.data);
           return prevState;
         });
       })
       .catch((err) => {
-        this.addError(err, `While Adding Note In API With Title: ${title}`);
+        this.addError(err, `While Adding Note In API: ${data}`);
       });
   };
 

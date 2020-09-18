@@ -1,37 +1,35 @@
-import React, { useState } from 'react';
-import Accordion from 'react-bootstrap/Accordion';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import PropTypes from 'prop-types';
-import moment from 'moment';
+import React, { useState } from "react";
+import Accordion from "react-bootstrap/Accordion";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import PropTypes from "prop-types";
+import moment from "moment";
 
 Note.propTypes = {
-  title        : PropTypes.string,
-  content      : PropTypes.string,
-  id           : PropTypes.number,
-  archived     : PropTypes.bool,
-  // expanded       : PropTypes.bool,
-  onDelete     : PropTypes.func.isRequired,
-  onChange     : PropTypes.func.isRequired,
-  onToggleEdit : PropTypes.func.isRequired,
-  // onToggleExpand : PropTypes.func.isRequired,
+  id: PropTypes.number,
+  note: PropTypes.object.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onToggleEdit: PropTypes.func.isRequired,
 };
-export default function Note (props) {
-  const [ title, setTitle ] = useState(props.title);
-  const [ content, setContent ] = useState(props.content);
-  const [ oTitle, setOTitle ] = useState(props.title);
-  const [ oContent, setOContent ] = useState(props.content);
-  const headerBG = props.archived ? 'dark-bg-1-i' : 'dark-bg-i';
-  const bodyBG = props.archived ? 'dark-bg-i' : 'dark-bg-1-i';
+export default function Note(props) {
+  const note = props.note;
+  const [title, setTitle] = useState(note.title);
+  const [content, setContent] = useState(note.content);
+  const [severity, setSeverity] = useState(note.severity || 50);
+  const [oTitle, setOTitle] = useState(note.title);
+  const [oContent, setOContent] = useState(note.content);
+  const headerBG = note.archived ? "dark-bg-1-i" : "dark-bg-i";
+  const bodyBG = note.archived ? "dark-bg-i" : "dark-bg-1-i";
   const handleSubmit = (event) => {
     event.preventDefault();
     setOTitle(title);
     setOContent(content);
-    props.onChange(props.id, { title, content });
+    props.onChange(note.id, { title, content });
   };
 
   const handleChangeTitle = (event) => {
@@ -45,22 +43,48 @@ export default function Note (props) {
   };
 
   const handleCancel = () => {
-    props.onToggleEdit(props.id);
+    props.onToggleEdit(note.id);
     setContent(oContent);
     setTitle(oTitle);
   };
+  const handleSeverity = (event) => {
+    event.preventDefault();
+    let sev = event.target.value;
+    setSeverity(sev);
+    // if (sev >= 37.5 && sev < 62.5) {
+    //   sev = -1;
+    // }
+    props.onChange(note.id, {
+      date: moment().unix(),
+      severity: sev,
+    });
+  };
+  const getSeverityColor = () => {
+    if (severity < 12.5) {
+      return "var(--good)";
+    } else if (severity < 37.5) {
+      return "var(--neutral)";
+    } else if (severity < 62.5) {
+      return "var(--clear)";
+    } else if (severity < 87.5) {
+      return "var(--warning)";
+    } else {
+      return "var(--bad)";
+    }
+  };
   return (
     <div className={props.className}>
-      <Accordion className='p-1'>
-        <Card className={headerBG + ' p-1'}>
-          <Accordion.Toggle
-            as={Card.Header}
-            eventKey={props.id}
-            // onClick={props.onToggleExpand.bind(this, props.id)}
-          >
-            <h4 className='accent-color nowrap'>{title || 'No Title'}</h4>
+      <Accordion
+        style={{ border: "solid 3px " + getSeverityColor() }}
+        className='p-0 m-1 rounded-10'
+      >
+        <Card style={{ minWidth: "12rem" }} className={headerBG + " p-1"}>
+          <Accordion.Toggle as={Card.Header} eventKey={props.id}>
+            <h4 className='accent-color nowrap'>{title || "No Title"}</h4>
             <div className='light-color txt-sm truncated'>
-              {content.slice(0, content.indexOf('\n'))}
+              {content.indexOf("\n") > 0
+                ? content.slice(0, content.indexOf("\n"))
+                : content}
             </div>
 
             <div style={{ height: 10 }}>
@@ -83,18 +107,18 @@ export default function Note (props) {
           </Accordion.Toggle>
           <Accordion.Collapse eventKey={props.id}>
             <Card.Body className='align-left p-0'>
-              <Card className={'m-0 ' + bodyBG}>
+              <Card className={"m-0 " + bodyBG}>
                 <Card.Header>
                   <Container className='p-0 m-0'>
                     <Row>
                       <Col xs={9} className='p-0'>
                         <span className='txt-sm accent-color-1 f-left'>
-                          {moment.unix(props.date).format('ddd h:mma, M/D/YY')}
+                          {moment.unix(note.date).format("ddd h:mma, M/D/YY")}
                         </span>
                       </Col>
                       <Col xs={3} className='p-0'>
                         <div className='f-right'>
-                          {!props.archived && !props.editing ? (
+                          {!note.archived && !note.editing ? (
                             <div>
                               <Button
                                 variant='info'
@@ -107,7 +131,7 @@ export default function Note (props) {
                                 Edit
                               </Button>
                             </div>
-                          ) : props.editing ? (
+                          ) : note.editing ? (
                             <div>
                               <Button
                                 variant='danger'
@@ -125,7 +149,7 @@ export default function Note (props) {
                 </Card.Header>
                 <Card.Body>
                   <div>
-                    {props.editing ? (
+                    {note.editing ? (
                       <Form onSubmit={handleSubmit}>
                         <Form.Group>
                           <Form.Control
@@ -153,7 +177,7 @@ export default function Note (props) {
                     ) : (
                       <Card.Text className='p-0'>
                         <span className='newlines not-p light-color sans-serif txt-md'>
-                          {props.content || 'No Content'}
+                          {note.content || "No Content"}
                         </span>
                       </Card.Text>
                     )}
@@ -162,15 +186,15 @@ export default function Note (props) {
                 <div>
                   <Button
                     className='m-1 f-right'
-                    variant={props.archived ? 'success' : 'warning'}
+                    variant={note.archived ? "success" : "warning"}
                     size='sm'
                     onClick={props.onChange.bind(this, props.id, {
-                      archived : !props.archived,
+                      archived: !props.archived,
                     })}
                   >
-                    {props.archived ? 'Unarchive' : 'Archive'}
+                    {note.archived ? "Unarchive" : "Archive"}
                   </Button>
-                  {props.archived ? (
+                  {note.archived ? (
                     <Button
                       className='m-1 f-right'
                       variant='danger'
@@ -180,6 +204,16 @@ export default function Note (props) {
                       Delete
                     </Button>
                   ) : null}
+                  <Form className='ml-4 mt-2 f-left'>
+                    <Form.Group as={Row}>
+                      <Form.Control
+                        onMouseUp={handleSeverity}
+                        custom
+                        type='range'
+                        size='sm'
+                      />
+                    </Form.Group>
+                  </Form>
                 </div>
               </Card>
             </Card.Body>

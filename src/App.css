@@ -8,6 +8,11 @@
   --light-accent: #fdb241;
   --light-shade: #a0a0a0;
   --light-shade-1: #dfdfdf;
+  --bad: #994731;
+  --warning: #997512;
+  --good: #1a9973;
+  --neutral: #294299;
+  --clear: #0000;
 }
 * {
   transition: color 250ms;
@@ -23,7 +28,7 @@ p,
 span.not-p {
   display: block;
   text-align: left;
-  font-family: 'Times', sans-serif;
+  font-family: "Times", sans-serif;
   -webkit-font-smoothing: antialiased;
   font-size: x-large;
   color: var(--light-shade-1);
@@ -153,8 +158,27 @@ a div {
 .black-color {
   color: black;
 }
+.bad-border {
+  border: solid 3px var(--bad);
+}
+.good-border {
+  border: solid 3px var(--good);
+}
+.warning-border {
+  border: solid 3px var(--warning);
+}
+.neutral-border {
+  border: solid 3px var(--neutral);
+}
+.no-border {
+  border: 0px;
+}
+.dark-border {
+  border: solid 3px var(--dark-shade);
+}
+
 .pattern-bg {
-  background: url('./resources/background-patterns/bg-pblue-str.png');
+  background: url("./resources/background-patterns/bg-pblue-str.png");
   background-size: 128px;
 }
 
@@ -164,9 +188,9 @@ a div {
 }
 .txt-bg::after {
   content: "";
-  background: url('./resources/background-patterns/bg-pblue-str.png');
+  background: url("./resources/background-patterns/bg-pblue-str.png");
   background-size: 64px;
-  opacity: .75;
+  opacity: 0.75;
   top: 0;
   left: 0;
   bottom: 0;
@@ -177,11 +201,11 @@ a div {
 }
 
 .honey-bg {
-  background: url('/photos/01-honey.jpg');
+  background: url("/photos/01-honey.jpg");
   background-size: 100%;
 }
 .hands-bg {
-  background: url('/photos/05-hands.jpg');
+  background: url("/photos/05-hands.jpg");
   background-size: 100%;
 }
 
@@ -327,7 +351,7 @@ div.no-margin {
 .contact-modal .modal-content {
   padding: 20px;
   /* background-color: #313150f2; */
-  background: url('./resources/background-patterns/bg-pblue-str.png');
+  background: url("./resources/background-patterns/bg-pblue-str.png");
   background-size: 128px;
 }
 .form-obj {
@@ -384,7 +408,7 @@ div.no-margin {
 
 .Tiled-back {
   min-height: 100vh;
-  background: url('./resources/background-patterns/bg-pblue-str.png');
+  background: url("./resources/background-patterns/bg-pblue-str.png");
   overflow-x: hidden;
   background-size: 64px;
 }
@@ -496,7 +520,7 @@ div.no-margin {
   background-color: var(--dark-shade);
 }
 #parallax-div-connector {
-  background: url('./resources/background-patterns/bg-pblue-str.png');
+  background: url("./resources/background-patterns/bg-pblue-str.png");
   background-size: 64px;
   position: absolute;
   height: 34vh;
