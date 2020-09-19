@@ -9,7 +9,6 @@ import Modal from "react-bootstrap/Modal";
 import Alert from "react-bootstrap/esm/Alert";
 import moment from "moment";
 import demoNotes from "./demo-notes.json";
-
 export default class NotesPage extends Component {
   constructor(props) {
     super(props);
@@ -26,6 +25,7 @@ export default class NotesPage extends Component {
     }
     this.getAllowedIP((allowed) => {
       if (allowed) {
+        console.log("allowed!");
         this.getNotes();
       } else {
         console.log("Loading demo");
@@ -251,83 +251,125 @@ export default class NotesPage extends Component {
       });
   };
   getNotes = () => {
-    axios
-      .get(this.apiUrl + "notes")
-      .then((res) => {
-        if (res.err) {
-          throw res.err;
-        }
-        this.setState({ notes: res.data });
-      })
-      .catch((err) => {
-        this.addError(err, "While Getting Notes From API");
-      });
+    if (this.state.allowed) {
+      axios
+        .get(this.apiUrl + "notes")
+        .then((res) => {
+          if (res.err) {
+            throw res.err;
+          }
+          this.setState({ notes: res.data });
+        })
+        .catch((err) => {
+          this.addError(err, "While Getting Notes From API");
+        });
+    } else {
+      this.setState({ notes: demoNotes });
+    }
   };
 
   updateNote = (id, newData) => {
-    console.log(newData);
-    axios
-      .put(this.apiUrl + `notes/${id}`, newData)
-      .then((res) => {
-        if (res.err) {
-          throw res.err;
-        }
-        this.setState((prevState) => {
-          this.state.notes.forEach((note, idx) => {
-            if (note.id === id) {
-              delete prevState.notes[idx];
-              prevState.notes.unshift(res.data);
-            }
+    if (this.state.allowed) {
+      axios
+        .put(this.apiUrl + `notes/${id}`, newData)
+        .then((res) => {
+          if (res.err) {
+            throw res.err;
+          }
+          this.setState((prevState) => {
+            this.state.notes.forEach((note, idx) => {
+              if (note.id === id) {
+                prevState.notes[idx] = {
+                  ...prevState.notes[idx],
+                  ...res.data,
+                };
+              }
+            });
+            return prevState;
           });
-          return prevState;
+        })
+        .catch((err) => {
+          this.addError(
+            err,
+            `While Updating Note In API With ID: ${id} And Content: ${newData}`
+          );
         });
-      })
-      .catch((err) => {
-        this.addError(
-          err,
-          `While Updating Note In API With ID: ${id} And Content: ${newData}`
-        );
+    } else {
+      this.setState((prevState) => {
+        this.state.notes.forEach((note, idx) => {
+          if (note.id === id) {
+            console.log(newData, prevState.notes[idx]);
+            prevState.notes[idx] = {
+              ...prevState.notes[idx],
+              ...newData,
+            };
+            console.log(prevState.notes[idx]);
+          }
+        });
+        return prevState;
       });
+    }
   };
 
   addNote = (data) => {
     data.date = moment().unix();
-    axios
-      .post(this.apiUrl + "notes/", data)
-      .then((res) => {
-        if (res.err) {
-          throw res.err;
-        }
-        this.setState((prevState) => {
-          prevState.notes.push(res.data);
-          return prevState;
+    if (this.state.allowed) {
+      axios
+        .post(this.apiUrl + "notes/", data)
+        .then((res) => {
+          if (res.err) {
+            throw res.err;
+          }
+          this.setState((prevState) => {
+            prevState.notes.push(res.data);
+            return prevState;
+          });
+        })
+        .catch((err) => {
+          this.addError(err, `While Adding Note In API: ${data}`);
         });
-      })
-      .catch((err) => {
-        this.addError(err, `While Adding Note In API: ${data}`);
+    } else {
+      this.setState((prevState) => {
+        data.id = prevState.notes.length + 54321;
+        prevState.notes.push(data);
+        return prevState;
       });
+    }
   };
 
   deleteNote = (id) => {
-    axios
-      .delete(this.apiUrl + `notes/${id}`)
-      .then((res) => {
-        if (res.err) {
-          throw res.err;
-        }
-        this.setState((prevState) => {
-          let newNotes = [];
-          prevState.notes.forEach((note) => {
-            if (note.id !== id) {
-              newNotes.push(note);
-            }
+    if (this.state.allowed) {
+      axios
+        .delete(this.apiUrl + `notes/${id}`)
+        .then((res) => {
+          if (res.err) {
+            throw res.err;
+          }
+          this.setState((prevState) => {
+            let newNotes = [];
+            prevState.notes.forEach((note) => {
+              if (note.id !== id) {
+                newNotes.push(note);
+              }
+            });
+            prevState.notes = newNotes;
+            return prevState;
           });
-          prevState.notes = newNotes;
-          return prevState;
+        })
+        .catch((err) => {
+          this.addError(err, `While Deleting Note In API With ID: ${id}`);
         });
-      })
-      .catch((err) => {
-        this.addError(err, `While Deleting Note In API With ID: ${id}`);
+    } else {
+      this.setState((prevState) => {
+        let newNotes = [];
+        prevState.notes.forEach((note) => {
+          if (note.id !== id) {
+            newNotes.push(note);
+          }
+        });
+        prevState.notes = newNotes;
+        return prevState;
       });
+    }
   };
 }
