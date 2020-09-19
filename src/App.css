@@ -460,7 +460,12 @@ div.no-margin {
 .no-focus-outline:focus {
   outline: none;
 }
-
+.d-inline {
+  display: inline;
+}
+.d-inline-block {
+  display: inline-block;
+}
 .shr-btn:hover {
   animation: enlarge 150ms ease-in forwards;
 }

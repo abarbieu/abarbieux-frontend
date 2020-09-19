@@ -25,7 +25,7 @@ export default class NotesPage extends Component {
     }
     this.getAllowedIP((allowed) => {
       if (allowed) {
-        console.log("allowed!");
+        console.log("Allowed IP!");
         this.getNotes();
       } else {
         console.log("Loading demo");

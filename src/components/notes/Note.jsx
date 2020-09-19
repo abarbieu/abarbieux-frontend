@@ -51,13 +51,9 @@ export default function Note(props) {
     setContent(oContent);
     setTitle(oTitle);
   };
-  const handleSeverity = (event) => {
-    event.preventDefault();
-    let sev = event.target.value;
-    setSeverity(sev);
+  const handleSeverity = () => {
     props.onChange(note.id, {
-      date: moment().unix(),
-      severity: sev,
+      severity,
     });
   };
   const getSeverityColor = () => {
@@ -80,7 +76,11 @@ export default function Note(props) {
         className='p-0 m-1 rounded-10'
       >
         <Card style={{ minWidth: "12rem" }} className={headerBG + " p-1"}>
-          <Accordion.Toggle as={Card.Header} eventKey={props.id}>
+          <Accordion.Toggle
+            as={Card.Header}
+            eventKey={props.id}
+            onClick={handleSeverity}
+          >
             <h4 className='accent-color nowrap'>{title || "No Title"}</h4>
             <div className='light-color txt-sm truncated'>
               {content.indexOf("\n") > 0
@@ -205,18 +205,34 @@ export default function Note(props) {
                       Delete
                     </Button>
                   ) : (
-                    <Form className='ml-4 mt-2 f-left'>
-                      <Form.Group as={Row}>
-                        <Form.Control
-                          onChange={(e) => {
-                            setSeverity(e.target.value);
-                          }}
-                          onMouseUp={handleSeverity}
-                          value={severity}
-                          custom
-                          type='range'
-                          size='sm'
-                        />
+                    <Form className='ml-4 pt-1 f-left'>
+                      <Form.Group as={Row} className='pr-0'>
+                        <Col sm={7} className='pt-1 mr-0 pr-1'>
+                          <Form.Control
+                            onChange={(e) => {
+                              setSeverity(e.target.value);
+                            }}
+                            value={severity}
+                            custom
+                            type='range'
+                            size='sm'
+                          />
+                        </Col>
+                        <Col sm={5} className='ml-0 pl-0'>
+                          <Button
+                            size='sm'
+                            variant='success'
+                            onClick={handleSeverity}
+                          >
+                            ✓
+                          </Button>
+                          <div
+                            style={{ width: "2em" }}
+                            className='d-inline-block light-color-1 mr-0 ml-1'
+                          >
+                            {severity}
+                          </div>
+                        </Col>
                       </Form.Group>
                     </Form>
                   )}
