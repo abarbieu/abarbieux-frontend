@@ -27,8 +27,10 @@ export default function Note(props) {
   const [oContent, setOContent] = useState(note.content);
   const headerBG = note.archived ? "dark-bg-1-i" : "dark-bg-i";
   const bodyBG = note.archived ? "dark-bg-i" : "dark-bg-1-i";
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    props.onToggleEdit(note.id);
     setOTitle(title);
     setOContent(content);
     props.onChange(note.id, { title, content });

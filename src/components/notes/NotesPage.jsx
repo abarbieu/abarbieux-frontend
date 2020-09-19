@@ -45,7 +45,6 @@ export default class NotesPage extends Component {
               notes={this.getActive()}
               onDelete={this.deleteNote}
               onChange={this.updateNote}
-              // onToggleExpand={this.toggleExpandNote}
               onToggleEdit={this.toggleEditNote}
             />
             {Object.keys(this.getArchive()).length > 0 ? (
@@ -83,7 +82,6 @@ export default class NotesPage extends Component {
                           notes={this.getArchive()}
                           onDelete={this.deleteNote}
                           onChange={this.updateNote}
-                          // onToggleExpand={this.toggleExpandNote}
                           onToggleEdit={this.toggleEditNote}
                         />
                         <Button
@@ -298,12 +296,12 @@ export default class NotesPage extends Component {
       this.setState((prevState) => {
         this.state.notes.forEach((note, idx) => {
           if (note.id === id) {
-            console.log(newData, prevState.notes[idx]);
+            // console.log(newData, prevState.notes[idx]);
             prevState.notes[idx] = {
               ...prevState.notes[idx],
               ...newData,
             };
-            console.log(prevState.notes[idx]);
+            // console.log(prevState.notes[idx]);
           }
         });
         return prevState;
