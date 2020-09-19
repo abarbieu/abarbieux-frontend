@@ -9,6 +9,8 @@
   --light-shade: #a0a0a0;
   --light-shade-1: #dfdfdf;
   --bad: #994731;
+  --bad-light: #e66b49;
+  --bad-dark: #592a1d;
   --warning: #997512;
   --good: #1a9973;
   --neutral: #294299;
@@ -353,6 +355,11 @@ div.no-margin {
   /* background-color: #313150f2; */
   background: url("./resources/background-patterns/bg-pblue-str.png");
   background-size: 128px;
+}
+.warning-modal .modal-content {
+  padding: 20px;
+  /* background-color: #313150f2; */
+  background-color: var(--bad-dark);
 }
 .form-obj {
   margin: 8px 0;

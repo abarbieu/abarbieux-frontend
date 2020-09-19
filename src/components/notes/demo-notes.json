@@ -1,0 +1,66 @@
+[
+  {
+    "archived": true,
+    "content": "Thanks for checking this out....",
+    "date": "1600472412",
+    "expanded": null,
+    "id": 100,
+    "severity": 50,
+    "title": "This is the archive, pretty useful for me"
+  },
+  {
+    "archived": false,
+    "content": "song:\nhttps://open.spotify.com/track/3bPlMzfHJMYqdAC80NLPTb?si=daIx_V9HQ_Gt6bbgwI_fLg",
+    "date": "1600472377",
+    "expanded": null,
+    "id": 99,
+    "severity": 50,
+    "title": "Remember the rain!"
+  },
+  {
+    "archived": null,
+    "content": "Call here:\nfake #\nLink:\nyou get the idea",
+    "date": "1600472314",
+    "expanded": null,
+    "id": 98,
+    "severity": 90,
+    "title": "DR APPT TOMORROW"
+  },
+  {
+    "archived": null,
+    "content": "Not too bad",
+    "date": "1600472276",
+    "expanded": null,
+    "id": 97,
+    "severity": 12,
+    "title": "Due this week: CSC homework"
+  },
+  {
+    "archived": null,
+    "content": "Currently I use this page to organize events and todos, though it also serves as a place for reminders etc.",
+    "date": "1600472234",
+    "expanded": null,
+    "id": 96,
+    "severity": 31,
+    "title": "Purpose"
+  },
+  {
+    "archived": null,
+    "content": "Click a note to edit, changes won't be saved as this is a demo\nSlide the slider to order the notes based on severity",
+    "date": "1600472190",
+    "expanded": null,
+    "id": 95,
+    "severity": 78,
+    "title": "Usage:"
+  },
+
+  {
+    "archived": null,
+    "content": "This is my personal notes page..\nEventually I might implement a user system, but for now it is locked",
+    "date": "1600472127",
+    "expanded": null,
+    "id": 94,
+    "severity": 100,
+    "title": "Hello!"
+  }
+]

@@ -207,7 +207,11 @@ export default function Note(props) {
                   <Form className='ml-4 mt-2 f-left'>
                     <Form.Group as={Row}>
                       <Form.Control
+                        onChange={(e) => {
+                          setSeverity(e.target.value);
+                        }}
                         onMouseUp={handleSeverity}
+                        value={severity}
                         custom
                         type='range'
                         size='sm'
