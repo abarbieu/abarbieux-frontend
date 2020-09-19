@@ -265,6 +265,7 @@ export default class NotesPage extends Component {
   };
 
   updateNote = (id, newData) => {
+    console.log(newData);
     axios
       .put(this.apiUrl + `notes/${id}`, newData)
       .then((res) => {

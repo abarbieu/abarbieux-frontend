@@ -188,7 +188,7 @@ export default function Note(props) {
                     variant={note.archived ? "success" : "warning"}
                     size='sm'
                     onClick={props.onChange.bind(this, props.id, {
-                      archived: !props.archived,
+                      archived: !note.archived,
                     })}
                   >
                     {note.archived ? "Unarchive" : "Archive"}
@@ -202,21 +202,22 @@ export default function Note(props) {
                     >
                       Delete
                     </Button>
-                  ) : null}
-                  <Form className='ml-4 mt-2 f-left'>
-                    <Form.Group as={Row}>
-                      <Form.Control
-                        onChange={(e) => {
-                          setSeverity(e.target.value);
-                        }}
-                        onMouseUp={handleSeverity}
-                        value={severity}
-                        custom
-                        type='range'
-                        size='sm'
-                      />
-                    </Form.Group>
-                  </Form>
+                  ) : (
+                    <Form className='ml-4 mt-2 f-left'>
+                      <Form.Group as={Row}>
+                        <Form.Control
+                          onChange={(e) => {
+                            setSeverity(e.target.value);
+                          }}
+                          onMouseUp={handleSeverity}
+                          value={severity}
+                          custom
+                          type='range'
+                          size='sm'
+                        />
+                      </Form.Group>
+                    </Form>
+                  )}
                 </div>
               </Card>
             </Card.Body>
