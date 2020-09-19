@@ -17,6 +17,7 @@ Notes.propTypes = {
 
 export default function Notes(props) {
   const notes = props.notes.sort((note1, note2) => {
+    console.log(note1.severity, note2.severity);
     if (note1.severity) {
       if (note2.severity) {
         if (note1.severity === note2.severity) {

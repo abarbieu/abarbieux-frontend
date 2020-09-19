@@ -20,7 +20,9 @@ export default function Note(props) {
   const note = props.note;
   const [title, setTitle] = useState(note.title);
   const [content, setContent] = useState(note.content);
-  const [severity, setSeverity] = useState(note.severity || 50);
+  const [severity, setSeverity] = useState(
+    note.severity === null ? 50 : note.severity
+  );
   const [oTitle, setOTitle] = useState(note.title);
   const [oContent, setOContent] = useState(note.content);
   const headerBG = note.archived ? "dark-bg-1-i" : "dark-bg-i";
@@ -51,9 +53,6 @@ export default function Note(props) {
     event.preventDefault();
     let sev = event.target.value;
     setSeverity(sev);
-    // if (sev >= 37.5 && sev < 62.5) {
-    //   sev = -1;
-    // }
     props.onChange(note.id, {
       date: moment().unix(),
       severity: sev,

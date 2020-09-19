@@ -257,7 +257,6 @@ export default class NotesPage extends Component {
         if (res.err) {
           throw res.err;
         }
-        console.log(res.data);
         this.setState({ notes: res.data });
       })
       .catch((err) => {
