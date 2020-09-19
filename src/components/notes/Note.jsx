@@ -206,8 +206,12 @@ export default function Note(props) {
                     </Button>
                   ) : (
                     <Form className='ml-4 pt-1 f-left'>
-                      <Form.Group as={Row} className='pr-0'>
-                        <Col sm={7} className='pt-1 mr-0 pr-1'>
+                      <Form.Group as={Row} className='pr-0 '>
+                        <Col
+                          sm={7}
+                          className='pt-1 mr-0 pr-1'
+                          style={{ width: "8em" }}
+                        >
                           <Form.Control
                             onChange={(e) => {
                               setSeverity(e.target.value);
@@ -215,10 +219,15 @@ export default function Note(props) {
                             value={severity}
                             custom
                             type='range'
+                            className='f-left'
                             size='sm'
                           />
                         </Col>
-                        <Col sm={5} className='ml-0 pl-0'>
+                        <Col
+                          sm={5}
+                          className='ml-0 pl-0'
+                          style={{ width: "5em" }}
+                        >
                           <Button
                             size='sm'
                             variant='success'

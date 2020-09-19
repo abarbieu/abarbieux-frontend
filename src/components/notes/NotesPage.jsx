@@ -289,7 +289,7 @@ export default class NotesPage extends Component {
         .catch((err) => {
           this.addError(
             err,
-            `While Updating Note In API With ID: ${id} And Content: ${newData}`
+            `While Updating Note In API With ID: ${id} And Title: ${newData.title}`
           );
         });
     } else {
