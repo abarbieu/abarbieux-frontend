@@ -7,43 +7,46 @@ The front end of a fully fledged portfolio website built with ReactJS (NodeJS) i
 [abarbieux.com](https://www.abarbieux.com) || [barbieux.dev](https://barbieux.dev) Both currently point to the same source
 
 ---
+
 ## Contents:
 
-  1. [Related Repos](#Related-Repos)
-  2. [Features and Components](#Features-and-Components)
-     1. [Tree Menu](#Tree-Menu)
-     2. [Photo Gallery](#Photo-Gallery)
-     3. [Contact Form](#Contact-Form)
-  3. [Additional Info](#additional-info)
-     1. [Reference Guides](#Reference-Guides)
-     2. [ReactJS](#React-JS)
+1. [Related Repos](#Related-Repos)
+2. [Features and Components](#Features-and-Components)
+   1. [Tree Menu](#Tree-Menu)
+   2. [Photo Gallery](#Photo-Gallery)
+   3. [Contact Form](#Contact-Form)
+3. [Additional Info](#additional-info)
+   1. [Reference Guides](#Reference-Guides)
+   2. [ReactJS](#React-JS)
 
 ---
 
 ## Related Repos
 
-* #### `Back End:`
+- #### `Back End:`
 
-  * [portfolio-backend](https://github.com/abarbieu/portfolio-backend) ~ A backend interface hosting RESTful APIs and logging middleware, built with NodeJS, Express, and 
+  - [portfolio-backend](https://github.com/abarbieu/portfolio-backend) ~ A backend interface hosting RESTful APIs and logging middleware, built with NodeJS, Express, and
 
-* #### `Production:`
+- #### `Production:`
 
-  * [portfolio-production](https://github.com/abarbieu/portfolio-production) ~ Where optimized frontend and backend projects are combined and served with different routes and middleware.
+  - [portfolio-production](https://github.com/abarbieu/portfolio-production) ~ Where optimized frontend and backend projects are combined and served with different routes and middleware.
 
 ## Features and Components:
 
-* #### [`Dynamically Animated 'Tree Menu':`](#Tree-Menu) 
+- #### [`Dynamically Animated 'Tree Menu':`](#Tree-Menu)
 
-  * Automatically generates an animated menu system of links, routes, and children based on a provided JSON file
-  
-* #### [`Full Photo Gallery:`](#Photo-Gallery)
+  - Automatically generates an animated menu system of links, routes, and children based on a provided JSON file
 
-  * Creates a stylized photogallery with dynamically sized layouts, full modal carousel viewer with fullscreen capability. Includes a script to generate a catalog JSON file with automatically shrinked thumbnails and src sets 
+- #### [`Full Photo Gallery:`](#Photo-Gallery)
+
+  - Creates a stylized photogallery with dynamically sized layouts, full modal carousel viewer with fullscreen capability. Includes a script to generate a catalog JSON file with automatically shrinked thumbnails and src sets
 
 ---
 
 ## Tree Menu
+
 ---
+
 #### `Features:`
 
 Generated from a JSON file provided in `project-dir/src/resources/` in the form:
@@ -84,17 +87,32 @@ Generated from a JSON file provided in `project-dir/src/resources/` in the form:
     },
   },
 ]
-
 ```
 
 ### `Purpose:`
+
+For deep/tall tree structures that don't do well in traditional list menus. Largely just for animation and beautification.
+
+#### `Todos:`
+
+Scale and modify paths with screen dimensions.
+
 ---
+
 ## Photo Gallery
+
 ---
+
 ### `Features:`
 
+Auto-scaled and layed out using *React Image Gallery*. Lazy loaded with *React Lazy Load Image*. When an image 
+
 ### `Purpose:`
+
+
+
 ---
+
 ---
 
 # Additional info
@@ -107,7 +125,7 @@ Generated from a JSON file provided in `project-dir/src/resources/` in the form:
 
 [Gallery Grid](https://www.npmjs.com/package/react-photo-gallery)
 
-[Image Gallery (Carousel)](https://www.npmjs.com/package/react-image-gallery) 
+[Image Gallery (Carousel)](https://www.npmjs.com/package/react-image-gallery)
 
 [Graphics Magick](https://aheckmann.github.io/gm/docs.html)
 
@@ -160,4 +178,5 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
 </details>
