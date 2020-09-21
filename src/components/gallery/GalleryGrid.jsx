@@ -30,7 +30,6 @@ function GalleryGrid (props) {
       </button>
     );
   };
-  console.log('rendering gallery');
   return (
     <Gallery
       className='m-0 p-0'

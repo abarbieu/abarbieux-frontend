@@ -23,7 +23,7 @@ class TreeMenuCover extends Component<MyProps, MyState> {
   renderable = true;
   timeouts: Array<number> = [];
 
-  render() {
+  render () {
     if (!this.props.fading || (this.props.location.state && this.renderable)) {
       if (this.props.fading) {
         this.timeouts.push(
@@ -38,23 +38,26 @@ class TreeMenuCover extends Component<MyProps, MyState> {
         );
       }
       return (
-        <div id="tree-cover" className={this.props.fading ? 'shrinkFade' : undefined}>
-          <Container className="justify-content-center m-0 p-0">
-            <Row className="m-0 p-0">
+        <div
+          id='tree-cover'
+          className={this.props.fading ? 'shrinkFade' : undefined}
+        >
+          <Container className='justify-content-center m-0 p-0'>
+            <Row className='m-0 p-0'>
               <Link
                 to={{
                   pathname: '/explore',
-                  state: { openPath: [ 'root', 'projects', 'fun' ] }
+                  state: { openPath: [ 'root', 'projects', 'fun' ] },
                 }}
               >
-                <Col className="m-0 p-0 ">
-                  <button className="gen-btn pos-relative">
+                <Col className='m-0 p-0 '>
+                  <button className='gen-btn pos-rel'>
                     <LazyLoadImage
-                      className="img-block"
-                      effect="black-and-white"
-                      alt="gpx visualizer demo"
-                      placeholderSrc="/icons/gpxdemo-o_thumb_.gif"
-                      src="/icons/gpxdemo-o.gif"
+                      className='img-block'
+                      effect='black-and-white'
+                      alt='gpx visualizer demo'
+                      placeholderSrc='/icons/gpxdemo-o_thumb_.gif'
+                      src='/icons/gpxdemo-o.gif'
                     />
                     {/* <p className="light-bg rounded centered" /> */}
                   </button>
@@ -63,17 +66,17 @@ class TreeMenuCover extends Component<MyProps, MyState> {
               <Link
                 to={{
                   pathname: '/art/',
-                  state: { openPath: [ 'root', 'art' ] }
+                  state: { openPath: [ 'root', 'art' ] },
                 }}
               >
-                <button className="gen-btn">
-                  <Col className="m-0 p-0">
+                <button className='gen-btn'>
+                  <Col className='m-0 p-0'>
                     <LazyLoadImage
-                      className="img-block"
-                      effect="black-and-white"
-                      alt="sherbert!"
-                      placeholderSrc="/icons/sherbert.svg"
-                      src="/icons/sherbert.svg"
+                      className='img-block'
+                      effect='black-and-white'
+                      alt='sherbert!'
+                      placeholderSrc='/icons/sherbert.svg'
+                      src='/icons/sherbert.svg'
                     />
                   </Col>
                 </button>
@@ -81,17 +84,17 @@ class TreeMenuCover extends Component<MyProps, MyState> {
               <Link
                 to={{
                   pathname: '/explore',
-                  state: { openPath: [ 'root', 'projects', 'fun' ] }
+                  state: { openPath: [ 'root', 'projects', 'fun' ] },
                 }}
               >
-                <button className="gen-btn">
-                  <Col className="m-0 p-0">
+                <button className='gen-btn'>
+                  <Col className='m-0 p-0'>
                     <LazyLoadImage
-                      className="img-block"
-                      effect="black-and-white"
-                      alt="madelbrot set zoom"
-                      placeholderSrc="/icons/mzoom_thumb_.gif"
-                      src="/icons/mzoom.gif"
+                      className='img-block'
+                      effect='black-and-white'
+                      alt='madelbrot set zoom'
+                      placeholderSrc='/icons/mzoom_thumb_.gif'
+                      src='/icons/mzoom.gif'
                     />
                   </Col>
                 </button>
@@ -100,11 +103,11 @@ class TreeMenuCover extends Component<MyProps, MyState> {
             <Link
               to={{
                 pathname: '/explore',
-                state: { openPath: [ 'root' ] }
+                state: { openPath: [ 'root' ] },
               }}
             >
               <button
-                className="gen-btn"
+                className='gen-btn'
                 style={{
                   position: 'absolute',
                   textAlign: 'center',
@@ -114,12 +117,12 @@ class TreeMenuCover extends Component<MyProps, MyState> {
                   width: 300,
                   bottom: 100,
                   left: 0,
-                  backgroundColor: '#116a88'
+                  backgroundColor: '#116a88',
                 }}
               >
                 <h1
                   style={{
-                    lineHeight: 2.5
+                    lineHeight: 2.5,
                   }}
                 >
                   Explore
@@ -130,24 +133,24 @@ class TreeMenuCover extends Component<MyProps, MyState> {
               style={{
                 position: 'absolute',
                 height: 100,
-                bottom: 0
+                bottom: 0,
               }}
             >
-              <Row className="m-0 p-0">
+              <Row className='m-0 p-0'>
                 <Link
                   to={{
                     pathname: '/art/ceramics',
-                    state: { openPath: [ 'root', 'art' ] }
+                    state: { openPath: [ 'root', 'art' ] },
                   }}
                 >
-                  <button className="gen-btn">
-                    <Col className="m-0 p-0">
+                  <button className='gen-btn'>
+                    <Col className='m-0 p-0'>
                       <LazyLoadImage
-                        className="img-block"
-                        effect="black-and-white"
-                        alt="raw bowl"
-                        placeholderSrc="/icons/raw-bowl_thumb_.jpg"
-                        src="/icons/raw-bowl.jpg"
+                        className='img-block'
+                        effect='black-and-white'
+                        alt='raw bowl'
+                        placeholderSrc='/icons/raw-bowl_thumb_.jpg'
+                        src='/icons/raw-bowl.jpg'
                       />
                     </Col>
                   </button>
@@ -155,17 +158,17 @@ class TreeMenuCover extends Component<MyProps, MyState> {
                 <Link
                   to={{
                     pathname: '/explore',
-                    state: { openPath: [ 'root', 'projects', 'fun' ] }
+                    state: { openPath: [ 'root', 'projects', 'fun' ] },
                   }}
                 >
-                  <button className="gen-btn">
-                    <Col className="m-0 p-0">
+                  <button className='gen-btn'>
+                    <Col className='m-0 p-0'>
                       <LazyLoadImage
-                        className="img-block"
-                        effect="black-and-white"
-                        alt="julia set zoom"
-                        placeholderSrc="/icons/jzoom_thumb_.gif"
-                        src="/icons/jzoom.gif"
+                        className='img-block'
+                        effect='black-and-white'
+                        alt='julia set zoom'
+                        placeholderSrc='/icons/jzoom_thumb_.gif'
+                        src='/icons/jzoom.gif'
                       />
                     </Col>
                   </button>
@@ -173,17 +176,17 @@ class TreeMenuCover extends Component<MyProps, MyState> {
                 <Link
                   to={{
                     pathname: '/art/photos',
-                    state: { openPath: [ 'root', 'art' ] }
+                    state: { openPath: [ 'root', 'art' ] },
                   }}
                 >
-                  <button className="gen-btn">
-                    <Col className="m-0 p-0">
+                  <button className='gen-btn'>
+                    <Col className='m-0 p-0'>
                       <LazyLoadImage
-                        className="img-block"
-                        effect="black-and-white"
-                        alt="water droplets"
-                        placeholderSrc="/icons/macro-drops_thumb_.jpg"
-                        src="/icons/macro-drops.jpg"
+                        className='img-block'
+                        effect='black-and-white'
+                        alt='water droplets'
+                        placeholderSrc='/icons/macro-drops_thumb_.jpg'
+                        src='/icons/macro-drops.jpg'
                       />
                     </Col>
                   </button>
@@ -200,7 +203,7 @@ class TreeMenuCover extends Component<MyProps, MyState> {
 
   //! --------------------------------------------------------------------------
 
-  componentWillUnmount() {
+  componentWillUnmount () {
     this.timeouts.forEach((timeoutId) => clearTimeout(timeoutId));
   }
 }
