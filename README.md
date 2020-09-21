@@ -51,7 +51,7 @@ The front end of a fully fledged portfolio website built with ReactJS, React-Boo
 
   - Renders an about me page with parallax banners and card links to routes. Automatically scaled using React-Bootstrap's flexbox layout system.
 
-- #### [`Notes Page:`](#Notes-Page)
+- #### [`Editable, Expandable, and Archiveable, Notes Page:`](#Notes-Page)
 
   - Renders fully editable and expandable notes and archive from a database, ordered by severity and date. Contains a form for note title and content as well as a severity slider and archive functionality.
 
