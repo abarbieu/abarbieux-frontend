@@ -1,6 +1,6 @@
 # Portfolio Website Front End Interface
 
-The front end of a fully fledged portfolio website built with ReactJS (NodeJS) in Typescript. Includes scripts and components that automatically generate content from photo folders, JSON files, and a back end interface.
+The front end of a fully fledged portfolio website built with ReactJS, React-Bootstrap, Typescript, and NodeJS. Includes scripts and components that automatically generate content from photo folders, JSON files, and the back end API.
 
 ### `Websites:`
 
@@ -15,6 +15,8 @@ The front end of a fully fledged portfolio website built with ReactJS (NodeJS) i
    1. [Tree Menu](#Tree-Menu)
    2. [Photo Gallery](#Photo-Gallery)
    3. [Contact Form](#Contact-Form)
+   4. [About Me](#About-Me)
+   5. [Notes Page](#Notes-Page)
 3. [Additional Info](#additional-info)
    1. [Reference Guides](#Reference-Guides)
    2. [ReactJS](#React-JS)
@@ -41,15 +43,27 @@ The front end of a fully fledged portfolio website built with ReactJS (NodeJS) i
 
   - Creates a stylized photogallery with dynamically sized layouts, full modal carousel viewer with fullscreen capability. Includes a script to generate a catalog JSON file with automatically shrinked thumbnails and src sets
 
+- #### [`API Backed Contact Form:`](#Contact-Form)
+
+  - Launches a Modal displaying a form to send an Email to me, which requests my API with potential Files and Content.
+
+- #### [`About Me Page:`](#About-Me)
+
+  - Renders an about me page with parallax banners and card links to routes. Automatically scaled using React-Bootstrap's flexbox layout system.
+
+- #### [`Notes Page:`](#Notes-Page)
+
+  - Renders fully editable and expandable notes and archive from a database, ordered by severity and date. Contains a form for note title and content as well as a severity slider and archive functionality.
+
 ---
 
 ## Tree Menu
 
 ---
 
-#### `Features:`
+#### `Usage:`
 
-Generated from a JSON file provided in `project-dir/src/resources/` in the form:
+Automatically generated from a JSON file provided in `project-dir/src/resources/` in the form:
 
 ```JSON
 [
@@ -95,7 +109,8 @@ For deep/tall tree structures that don't do well in traditional list menus. Larg
 
 #### `Todos:`
 
-Scale and modify paths with screen dimensions.
+1. Scale and modify paths with screen dimensions.
+2. Draw lines between nodes.
 
 ---
 
@@ -105,11 +120,75 @@ Scale and modify paths with screen dimensions.
 
 ### `Features:`
 
-Auto-scaled and layed out using *React Image Gallery*. Lazy loaded with *React Lazy Load Image*. When an image 
+Auto-scaled and layed out using _React Image Gallery_. Lazy loaded with _React Lazy Load Image_. When an image is clicked it is expanded into a Carousel managed by _React Images Viewer_
+
+JSON manifest and compressed thumbnail images automatically generated from imageScraper.js script using _GraphicksMagick_
 
 ### `Purpose:`
 
+To simplify the process of adding photos to the website, and generate pretty looking pages to display photos.
 
+### `Todos:`
+
+1. Create SrcSet for each image
+2. Possibly conver to .webp format
+3. Manage lazy load to stop loading images off screen
+
+---
+
+## Contact Form
+
+---
+
+### `Features:`
+
+Launches a fully stylized modal form at any website state which contains a form with validity checking and an alerts/errors stream.
+
+Allows for up to 512MB of files to be sent along with request.
+
+### `Purpose:`
+
+To allow users of the profile website to contact me immediately with no extra steps or unnecessary information.
+
+### `Todos:`
+
+1. Organize navbar dropdown to be center aligned on mobile, (much harder than it should be)
+
+---
+
+## About Me
+
+---
+
+### `Features:`
+
+Renders an about me page with parallax banners and card links to routes. Automatically scaled using React-Bootstrap's flexbox layout system.
+
+---
+
+## Notes Page
+
+---
+
+### `Features:`
+
+Automatically layed out, flex-box page of expandable notes. Each note allows for an editing state, allowing title and content changes, a severity slider, and an archive button
+
+A manageable archive holding notes before permanent deletion.
+
+### `Purpose:`
+
+To display todos and ideas in an ordered manner, presenting information based on how important it might be.
+
+I was not content with any other note app that I tried, so having full customizeability is the intent
+
+### `Todos:`
+
+1. Add tabs for todos vs ideas vs etc...
+2. Add due dates and notifications
+3. Handle formatting better, maybe an html or markdown formatter inside
+4. Check boxes and lists etc (part of #3)
+5. Manage width attribute to stop layout changes on expand
 
 ---
 
