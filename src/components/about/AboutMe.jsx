@@ -1,39 +1,39 @@
-import React, { useEffect } from 'react';
-import moment from 'moment';
-import { ParallaxBanner } from 'react-scroll-parallax';
-import { HashLink } from 'react-router-hash-link';
-import { useController } from 'react-scroll-parallax';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from "react";
+import moment from "moment";
+import { ParallaxBanner } from "react-scroll-parallax";
+import { HashLink } from "react-router-hash-link";
+import { useController } from "react-scroll-parallax";
+import { Link } from "react-router-dom";
 
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import Container from 'react-bootstrap/Container';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { BrowserView, MobileView } from 'react-device-detect';
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import Container from "react-bootstrap/Container";
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import { BrowserView, MobileView } from "react-device-detect";
 
-export default function AboutMe () {
+export default function AboutMe() {
   const { parallaxController } = useController();
 
   useEffect(() => {
     const handler = () => parallaxController.update();
-    window.addEventListener('load', handler);
-    return () => window.removeEventListener('load', handler);
+    window.addEventListener("load", handler);
+    return () => window.removeEventListener("load", handler);
   });
   return (
-    <div style={{ overflow: 'visible' }}>
+    <div style={{ overflow: "visible" }}>
       <div className='vh-75'>
         <ParallaxBanner
           className='centered'
           layers={[
             {
-              image  : '/fractals/fractal-bg.png',
-              amount : 1,
+              image: "/fractals/fractal-bg.png",
+              amount: 1,
             },
           ]}
           style={{
-            height : '100%',
+            height: "100%",
           }}
         >
           <div className='light-color centered w-100 txt-bg'>
@@ -71,27 +71,27 @@ export default function AboutMe () {
             <h4>
               <HashLink smooth to='/about#beginning' className='txt-link'>
                 Beginning
-              </HashLink>{' '}
-              |{' '}
+              </HashLink>{" "}
+              |{" "}
               <HashLink
                 smooth
                 to='/about#computer-science'
                 className='txt-link'
               >
                 Computer Science
-              </HashLink>{' '}
-              |{' '}
+              </HashLink>{" "}
+              |{" "}
               <HashLink smooth to='/about#ceramics' className=''>
                 Ceramics
-              </HashLink>{' '}
-              | {' '}
+              </HashLink>{" "}
+              |{" "}
               <HashLink smooth to='/about#photography' className='txt-link'>
                 Photography
-              </HashLink>{' '}
-              |{' '}
-              <HashLink smooth to='/about#cycling' className='txt-link'>
-                Cycling
-              </HashLink>
+              </HashLink>{" "}
+              |{" "}
+              <a href='/Resume-Aidan-Barbieux.pdf' className='txt-link'>
+                Resume
+              </a>
             </h4>
           </Row>
           <Row>
@@ -104,14 +104,14 @@ export default function AboutMe () {
               />
             </div>
             <Col
-              style={{ overFlow: 'hidden' }}
+              style={{ overFlow: "hidden" }}
               sm={6}
               lg={4}
               xl={3}
-              className='m-0 p-0'
+              className=''
             >
               {/* <Image src='/photos/55-me.jpg' thumbnail /> */}
-              <Card className='dark-bg-i m-0 p-0'>
+              <Card className='dark-bg-i rounded-10-i mt-3'>
                 <Card.Body variant='top' className='dark-bg-i m-0 p-0'>
                   <LazyLoadImage
                     className='rounded-10'
@@ -124,7 +124,7 @@ export default function AboutMe () {
                 </Card.Body>
                 <Card.Body className='m-0 p-1'>
                   <Card.Title className='accent-color'>
-                    I'll take the mask off after <i>The Pandemic</i>
+                    I'll take the mask off <i>after</i> the pandemic
                   </Card.Title>
                 </Card.Body>
               </Card>
@@ -137,9 +137,7 @@ export default function AboutMe () {
               <h2 className='accent-color'>A Bit to Start</h2>
               <h5 className='accent-color-1'>School</h5>
               <span className='not-p'>
-                I'm a {(moment().diff('2000-08-01', 'month') / 12.0).toFixed(
-                  2
-                )}{' '}
+                I'm a {(moment().diff("2000-08-01", "day") / 365.0).toFixed(2)}{" "}
                 year old student at Cal Poly, San Luis Obispo, studying Computer
                 Science and planning on graduating in June of 2022. Going into
                 my third year, I am focusing on Graphics, Algorithms, and Web
@@ -148,45 +146,58 @@ export default function AboutMe () {
               <h5 className='accent-color-1'>Outside of Class</h5>
               <span className='not-p'>
                 When I'm not studying I am considered a local of the ASI Craft
-                Center on campus where I throw, trim, carve, and glaze{' '}
+                Center on campus where I throw, trim, carve, and glaze{" "}
                 <a className='brand-color-1-i' href='/art/ceramics'>
                   Ceramic vessels
-                </a>{' '}
+                </a>{" "}
                 for occasional sale at craft shows. Other than that I'm an avid
                 cyclist, racing for the university team around California, as
                 well as as member of the Unicycling Club and of the Juggling
-                Club. In what time is left after that I'm either {' '}
+                Club. In what time is left after that I'm either{" "}
                 <a className='brand-color-1-i' href='/art/photos'>
                   taking photos
-                </a>{' '}
+                </a>{" "}
                 or having discussions in the philosophy or AHA clubs
               </span>
             </Col>
           </Row>
           <div id='computer-science' />
-          <LazyLoadImage
-            className='rounded-10 my-4'
-            width='100%'
-            alt='Me Covid'
-            effect='blur'
-            placeholderSrc='/fractals/fractal-bg-1.gif'
-            src='/fractals/fractal-bg-2.gif'
-          />
+          <Card className='dark-bg-i mt-4 rounded-10-i'>
+            <Card.Body className='m-0 p-0'>
+              <LazyLoadImage
+                className='rounded-10'
+                width='100%'
+                alt='Me Covid'
+                effect='blur'
+                placeholderSrc='/fractals/fractal-bg-2.gif'
+                src='/fractals/fractal-bg-2.gif'
+              />
+            </Card.Body>
+            <Card.Title className='accent-color'>
+              A rendering of the Mandelbrot set as maximum point deviation is
+              increased
+            </Card.Title>
+          </Card>
           <Row className='my-5'>
             <Col className='' sm={12} lg={12} xl={12}>
               <h2>Computer Science</h2>
-
+              <h5 className='accent-color-1'>Presently</h5>
               <span className='not-p'>
-                Currently my focus is on web development (clearly), specifically
-                on React.js utilizing PostgreSQL, Express, and NGINX. Normally,
-                I prefer C++ or Java and develop graphics oriented projects.
+                Currently my focus is on web development (
+                <a
+                  href='https://github.com/abarbieu/portfolio-production'
+                  className='brand-color-1-i'
+                >
+                  clearly
+                </a>
+                ), specifically with ReactJS and Bootstrap for the front end,
+                and NodeJS, Express, and PostgreSQL for the back end.
                 <Card
-                  className='dark-bg-i'
+                  className='dark-bg-i ml-3'
                   style={{
-                    float      : 'right',
-                    display    : 'inline',
-                    marginLeft : 15,
-                    width      : '15rem',
+                    float: "right",
+                    display: "inline",
+                    width: "16rem",
                   }}
                 >
                   <Card.Img variant='top' src='/icons/gpxvisdemo.gif' />
@@ -194,85 +205,101 @@ export default function AboutMe () {
                     <Card.Title className='accent-color'>
                       GPX Visualizer
                     </Card.Title>
-                    <Card.Text style={{ fontSize: 'large' }}>
-                      A 3D visualizer for GPX files describing cycling location,
-                      heart rate, and speed data
+                    <Card.Text style={{ fontSize: "large" }}>
+                      A 3D visualizer for GPX files: datafiles for cycling and
+                      sports location info, the color here represents heart rate
+                      zones and percieved effort.
                     </Card.Text>
                     <Button
                       as={Link}
-                      className='brand-bg'
+                      className='brand-bg-i'
                       href='https://github.com/abarbieu/gpxVis'
                       eventKey='projects'
                       to={{
-                        pathname : '/explore/',
-                        search   : '?path=projects',
-                        state    : { openPath: [ 'root', 'projects' ] },
+                        pathname: "/explore/",
+                        search: "?path=projects",
+                        state: { openPath: ["root", "projects"] },
                       }}
                     >
                       <div className='dark-color-1'>Explore Projects</div>
                     </Button>
                   </Card.Body>
-                </Card>
+                </Card>{" "}
+                <br /> <br />
+                Outside of web development, I mainly use Java with the
+                Processing API and OpenGL to develop graphics oriented projects,
+                though I am looking into C++ for this.
               </span>
-
-              <br />
+              <h5 className='accent-color-1 m-2'>Interests</h5>
+              <span className='not-p'>
+                As I move forward with my school work and personal projects, my
+                experience and interests are always changing as I discover new
+                things. But I seem to always return to a few areas: Data
+                Visualization, User Experience Design, and Logic/Algorithms
+              </span>
               <span className='not-p'>... Writing this still ...</span>
               {/* </Col>
             <Col sm={6} lg={4} xl={3} className='no-padding m-0 p-0'> */}
             </Col>
           </Row>
           <div id='ceramics' />
-          <BrowserView>
-            <ParallaxBanner
-              expanded={true}
-              layers={[
-                {
-                  image  : '/ceramics/10-bowl-on-wheel2.jpg',
-                  amount : 0.5,
-                },
-              ]}
-              style={{
-                borderRadius : 10,
-                height       : '25vh',
-                width        : '100%',
-              }}
-            />
-          </BrowserView>
-          <MobileView>
-            <LazyLoadImage
-              className='rounded-10'
-              width='100%'
-              alt='Clay bowl still on wheel'
-              effect='blur'
-              placeholderSrc='/ceramics/10-bowl-on-wheel2_thumb_.jpg'
-              src='/ceramics/10-bowl-on-wheel2.jpg'
-            />
-          </MobileView>
+          <Card className='dark-bg-i rounded-10-i mt-3'>
+            <Card.Body variant='top' className='dark-bg-i m-0 p-0'>
+              <BrowserView>
+                <ParallaxBanner
+                  expanded={true}
+                  layers={[
+                    {
+                      image: "/ceramics/10-bowl-on-wheel2.jpg",
+                      amount: 0.3,
+                    },
+                  ]}
+                  style={{
+                    borderRadius: 10,
+                    height: "25vh",
+                    width: "100%",
+                  }}
+                />
+              </BrowserView>
+              <MobileView>
+                <LazyLoadImage
+                  className='rounded-10'
+                  width='100%'
+                  alt='Clay bowl still on wheel'
+                  effect='blur'
+                  placeholderSrc='/ceramics/10-bowl-on-wheel2_thumb_.jpg'
+                  src='/ceramics/10-bowl-on-wheel2.jpg'
+                />
+              </MobileView>
+            </Card.Body>
+            <Card.Title className='accent-color'>
+              The muddy work of throwing a large bowl
+            </Card.Title>
+          </Card>
           <Row className='my-5'>
             <Col className='' sm={12} lg={12} xl={12}>
               <h2>Ceramics</h2>
               <span className='not-p'>
-                Exactly{' '}
-                {(moment().diff('2019-04-01', 'month') / 12.0).toFixed(2)} {' '}
-                years ago, at the end of my Freshman year, I discovered the ASI
-                craft center. This could've been a mistake, as I've lost
-                hundreds of hours down rabbit holes dug in there since, but I
-                enjoyed every muddy minute of it.
+                Exactly{" "}
+                {(moment().diff("2019-04-01", "day") / 365.0).toFixed(2)} years
+                ago, at the end of my Freshman year, I discovered the ASI craft
+                center. This could've been a mistake, as I've lost hundreds of
+                hours down rabbit holes dug in there since, but I enjoyed every
+                muddy minute of it.
                 <Card
-                  className='dark-bg-i'
+                  className='dark-bg-i mr-3'
                   style={{
-                    float       : 'left',
-                    display     : 'inline',
-                    marginRight : 5,
-                    width       : '16rem',
+                    float: "left",
+                    display: "inline",
+                    width: "16rem",
                   }}
                 >
                   <Card.Img variant='top' src='/ceramics/02-chatter.jpg' />
-                  <Card.Body className='m-0 p-1'>
+                  <Card.Body className='p-1'>
                     <Card.Title className='accent-color'>
                       A freshly carved fruit bowl
                     </Card.Title>
-                    <Card.Text style={{ fontSize: 'large' }}>
+                    <Card.Text style={{ fontSize: "large" }}>
                       You can get this effect by just losely holding a trimming
                       tool on leather-hard clay. Despite the inherent
                       randomness, there's still a lot you can do
@@ -281,7 +308,7 @@ export default function AboutMe () {
                       <div className='dark-color-1'>See More</div>
                     </Button>
                   </Card.Body>
-                </Card>{' '}
+                </Card>{" "}
                 <br />
                 <br />
                 Since the beginning I've stuck to the wheel, the other option of
@@ -307,10 +334,10 @@ export default function AboutMe () {
                 <Card
                   className='dark-bg-i'
                   style={{
-                    float      : 'right',
-                    display    : 'inline',
-                    marginLeft : 5,
-                    width      : '16rem',
+                    float: "right",
+                    display: "inline",
+                    marginLeft: 5,
+                    width: "16rem",
                   }}
                 >
                   <Card.Img variant='top' src='/photos/01-honey.jpg' />
@@ -318,7 +345,7 @@ export default function AboutMe () {
                     <Card.Title className='accent-color'>
                       Macro Honey Bees
                     </Card.Title>
-                    <Card.Text style={{ fontSize: 'large' }}>
+                    <Card.Text style={{ fontSize: "large" }}>
                       I've enjoyed Macro Photography a lot, revealing detail
                       that's otherwise invisbile almost always excites me.
                     </Card.Text>
@@ -326,7 +353,7 @@ export default function AboutMe () {
                       <div className='dark-color-1'>See More</div>
                     </Button>
                   </Card.Body>
-                </Card>{' '}
+                </Card>{" "}
                 <br />
                 <br />
                 ...

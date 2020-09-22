@@ -321,6 +321,12 @@ div.no-margin {
 .rounded-20 {
   border-radius: 20px;
 }
+.rounded-10-i {
+  border-radius: 10px !important;
+}
+.rounded-20-i {
+  border-radius: 20px !important;
+}
 .gen-btn,
 .img-btn {
   border-width: 1px;
