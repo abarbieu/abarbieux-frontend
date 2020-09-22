@@ -304,7 +304,7 @@ export default function AboutMe() {
                       tool on leather-hard clay. Despite the inherent
                       randomness, there's still a lot you can do
                     </Card.Text>
-                    <Button className='brand-bg' href='/art/ceramics'>
+                    <Button className='brand-bg-i' href='/art/ceramics'>
                       <div className='dark-color-1'>See More</div>
                     </Button>
                   </Card.Body>
@@ -349,7 +349,7 @@ export default function AboutMe() {
                       I've enjoyed Macro Photography a lot, revealing detail
                       that's otherwise invisbile almost always excites me.
                     </Card.Text>
-                    <Button className='brand-bg' href='/art/photos'>
+                    <Button className='brand-bg-i' href='/art/photos'>
                       <div className='dark-color-1'>See More</div>
                     </Button>
                   </Card.Body>
