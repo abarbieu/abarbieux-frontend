@@ -1,41 +1,27 @@
-import React, { useEffect } from "react";
+import React from "react";
 import moment from "moment";
-import { ParallaxBanner } from "react-scroll-parallax";
+// import { ParallaxBanner } from "react-scroll-parallax";
 import { HashLink } from "react-router-hash-link";
-import { useController } from "react-scroll-parallax";
+// import { useController } from "react-scroll-parallax";
 import { Link } from "react-router-dom";
-
+import { Parallax } from "react-parallax";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { BrowserView, MobileView } from "react-device-detect";
+// import { BrowserView, MobileView } from "react-device-detect";
 
 export default function AboutMe() {
-  const { parallaxController } = useController();
-
-  useEffect(() => {
-    const handler = () => parallaxController.update();
-    window.addEventListener("load", handler);
-    return () => window.removeEventListener("load", handler);
-  });
   return (
     <div style={{ overflow: "visible" }}>
-      <div className='vh-75'>
-        <ParallaxBanner
-          className='centered'
-          layers={[
-            {
-              image: "/fractals/fractal-bg.png",
-              amount: 1,
-            },
-          ]}
-          style={{
-            height: "100%",
-          }}
-        >
+      <Parallax
+        style={{ height: "75vh", width: "100vw" }}
+        bgImage='/fractals/fractal-bg.png'
+        strength={950}
+      >
+        <div className='vh-75'>
           <div className='light-color centered w-100 txt-bg'>
             <h1>
               <i> Aidan Barbieux</i>
@@ -60,8 +46,8 @@ export default function AboutMe() {
               </HashLink>
             </div>
           </div>
-        </ParallaxBanner>
-      </div>
+        </div>
+      </Parallax>
       <div className='m-1'>
         <Container fluid='lg'>
           <Row className='justify-content-center'>
@@ -212,7 +198,6 @@ export default function AboutMe() {
                     </Card.Text>
                     <Button
                       as={Link}
-                      className='brand-bg-i'
                       href='https://github.com/abarbieu/gpxVis'
                       eventKey='projects'
                       to={{
@@ -221,7 +206,7 @@ export default function AboutMe() {
                         state: { openPath: ["root", "projects"] },
                       }}
                     >
-                      <div className='dark-color-1'>Explore Projects</div>
+                      Explore Projects
                     </Button>
                   </Card.Body>
                 </Card>{" "}
@@ -232,45 +217,26 @@ export default function AboutMe() {
               </span>
               <h5 className='accent-color-1 m-2'>Interests</h5>
               <span className='not-p'>
-                As I move forward with my school work and personal projects, my
-                experience and interests are always changing as I discover new
-                things. But I seem to always return to a few areas: Data
-                Visualization, User Experience Design, and Logic/Algorithms
+                As I go through school and develop my projects, my experience
+                and interests changes, but I seem to always return to a few
+                areas: Data Visualization, Design, and Algorithms.
               </span>
-              <span className='not-p'>... Writing this still ...</span>
               {/* </Col>
             <Col sm={6} lg={4} xl={3} className='no-padding m-0 p-0'> */}
             </Col>
           </Row>
           <div id='ceramics' />
           <Card className='dark-bg-i rounded-10-i mt-3'>
-            <Card.Body variant='top' className='dark-bg-i m-0 p-0'>
-              <BrowserView>
-                <ParallaxBanner
-                  expanded={true}
-                  layers={[
-                    {
-                      image: "/ceramics/10-bowl-on-wheel2.jpg",
-                      amount: 0.3,
-                    },
-                  ]}
-                  style={{
-                    borderRadius: 10,
-                    height: "25vh",
-                    width: "100%",
-                  }}
-                />
-              </BrowserView>
-              <MobileView>
-                <LazyLoadImage
-                  className='rounded-10'
-                  width='100%'
-                  alt='Clay bowl still on wheel'
-                  effect='blur'
-                  placeholderSrc='/ceramics/10-bowl-on-wheel2_thumb_.jpg'
-                  src='/ceramics/10-bowl-on-wheel2.jpg'
-                />
-              </MobileView>
+            <Card.Body variant='top' className='rounded-10-i dark-bg-i m-0 p-0'>
+              <Parallax
+                style={{
+                  borderRadius: 10,
+                }}
+                bgImage='/ceramics/10-bowl-on-wheel2.jpg'
+                strength={500}
+              >
+                <div style={{ height: "25vh", width: "100%" }}></div>
+              </Parallax>
             </Card.Body>
             <Card.Title className='accent-color'>
               The muddy work of throwing a large bowl
@@ -313,10 +279,9 @@ export default function AboutMe() {
                 <br />
                 Since the beginning I've stuck to the wheel, the other option of
                 handbuilding has that exact quality of painting etc. brings out
-                my 3rd grade clumsiness
+                my 3rd grade clumsiness.
               </span>
               <br />
-              <span className='not-p'>... Writing this still ...</span>
             </Col>
           </Row>
           <div id='photography' className='w-100 vh-15 mb-4'>
@@ -331,6 +296,8 @@ export default function AboutMe() {
             <Col className='' sm={12} lg={12} xl={12}>
               <h2>Photography</h2>
               <span className='not-p'>
+                I don't take this very seriously, for now. The time I spend
+                taking photos is more for the experience than the result;
                 <Card
                   className='dark-bg-i'
                   style={{
@@ -354,12 +321,16 @@ export default function AboutMe() {
                     </Button>
                   </Card.Body>
                 </Card>{" "}
+                looking at reality through a lens can change your perception of
+                it.
                 <br />
                 <br />
-                ...
+                Photography also works as a way to justify my often odd habit of
+                staring at things for longer than necessary. Having a camera and
+                a face of focus can explain away showing up in weird locations
+                too, this proves useful maybe too often.
               </span>
               <br />
-              <span className='not-p'>... Writing this still ...</span>
             </Col>
           </Row>
         </Container>

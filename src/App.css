@@ -1,4 +1,12 @@
 :root {
+  /* --bg: #0b0b4e;
+  --dark-shade: #302833;
+  --dark-shade-1: #4e4153;
+  --dark-shade-2: #75617c;
+  --light-accent-1: #75967e;
+  --light-accent: #8eb699;
+  --light-shade: #e3d8b6;
+  --light-shade-1: #f7eac5;*/
   --brand: #227b99;
   --brand-1: #2da7cf;
   --dark-shade: #232435;
@@ -281,6 +289,12 @@ a div {
 .vw-100 {
   width: 100vw;
 }
+.vw-75 {
+  width: 75vw;
+}
+.vw-50 {
+  width: 50vw;
+}
 .border-box {
   box-sizing: border-box;
 }
@@ -326,6 +340,24 @@ div.no-margin {
 }
 .rounded-20-i {
   border-radius: 20px !important;
+}
+.btn-secondary {
+  /* transition: all 350ms; */
+  /* color: var(--dark-shade-1) !important; */
+  border: 0px solid #0000 !important;
+  background-color: var(--clear) !important;
+}
+.btn-secondary:hover {
+  border: 0px solid var(--light-accent-1) !important;
+}
+.btn-primary {
+  transition: all 350ms;
+  color: var(--dark-shade-1) !important;
+  border: 1px solid #0000 !important;
+  background-color: var(--brand) !important;
+}
+.btn-primary:hover {
+  border: 1px solid var(--light-accent-1) !important;
 }
 .gen-btn,
 .img-btn {

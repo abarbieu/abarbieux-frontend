@@ -1,17 +1,17 @@
-import React from 'react';
-import Dropdown from 'react-bootstrap/Dropdown';
-import Button from 'react-bootstrap/Button';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Logos from './Logos';
+import React from "react";
+import Dropdown from "react-bootstrap/Dropdown";
+import Button from "react-bootstrap/Button";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Logos from "./Logos";
 
-export default function Footer () {
+export default function Footer() {
   return (
     <div
       className='dark-bg'
-      style={{ position: 'fixed', bottom: 0, width: '100vw' }}
+      style={{ position: "fixed", bottom: 0, width: "100vw" }}
     >
       <Container fluid='lg'>
         <Row xs={3} sm={3} md={3}>
@@ -19,13 +19,10 @@ export default function Footer () {
             <Dropdown
               as={ButtonGroup}
               key='up'
-              id={'dropdown-button-drop-up'}
+              id={"dropdown-button-drop-up"}
               drop='up'
             >
-              <Dropdown.Toggle
-                id='dropdown-basic'
-                style={{ backgroundColor: '#0000', borderColor: '#0000' }}
-              >
+              <Dropdown.Toggle id='dropdown-basic' variant='secondary'>
                 <div className='link not-a'>{Logos.ig}</div>
               </Dropdown.Toggle>
               <Dropdown.Menu className='dropdown'>
@@ -34,34 +31,34 @@ export default function Footer () {
                   href='https://www.instagram.com/aidan_barbieux/'
                 >
                   {Logos.ig}
-                  <span>{'   '}Ceramics</span>
+                  <span>{"   "}Ceramics</span>
                 </Dropdown.Item>
                 <Dropdown.Item
                   className='dropdown-item'
                   href='https://www.instagram.com/bbq_photos/'
                 >
                   {Logos.ig}
-                  <span>{'   '}Photography</span>
+                  <span>{"   "}Photography</span>
                 </Dropdown.Item>
                 <Dropdown.Item
                   className='dropdown-item'
                   href='https://www.instagram.com/aidan.bbq/'
                 >
                   {Logos.ig}
-                  <span>{'   '}Personal</span>
+                  <span>{"   "}Personal</span>
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </Col>
           <Col>
-            <Button className='link' variant='btn-transparent'>
-              <a
-                className='link'
-                title='GitHub'
-                href='https://github.com/abarbieu/'
-              >
-                {Logos.git}
-              </a>
+            <Button
+              as='a'
+              href='https://github.com/abarbieu/'
+              title='GitHub'
+              className='link'
+              variant='btn-transparent'
+            >
+              {Logos.git}
             </Button>
           </Col>
           <Col>

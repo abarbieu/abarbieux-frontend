@@ -1,7 +1,7 @@
 import React from 'react';
 import Routes from './components/routes/Routes';
 import Footer from './components/footer/Footer';
-import { ParallaxProvider } from 'react-scroll-parallax';
+// import { ParallaxProvider } from 'react-scroll-parallax';
 import MainNavbar from './components/navbar/MainNavbar';
 import ContactMe from './components/contact/ContactMe';
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -40,7 +40,7 @@ class App extends React.Component<MyProps, MyState> {
   };
   render () {
     return (
-      <ParallaxProvider>
+      // <ParallaxProvider>
         <div className='Tiled-back'>
           <Router>
             <MainNavbar toggleContact={this.toggleContact} />
@@ -60,7 +60,7 @@ class App extends React.Component<MyProps, MyState> {
             </small>{' '} */}
           {/* </footer> */}
         </div>
-      </ParallaxProvider>
+      // </ParallaxProvider>
     );
   }
 
