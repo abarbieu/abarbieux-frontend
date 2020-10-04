@@ -1,20 +1,20 @@
-import React from 'react';
-import NotesPage from '../notes/NotesPage';
-import LaunchMenu from '../../resources/launch-menu.json';
-import TreeMenu from '../tree_menu/TreeMenu';
-import { MenuNode } from '../tree_menu/TreeMenuApi';
-import MyGallery from '../gallery/MyGallery';
-import Cover from '../cover/TreeMenuCover';
-import AboutMe from '../about/AboutMe';
-import ceramicsPhotos from './ceramics-photos.json';
-import photos from './photos.json';
+import React from "react";
+import NotesPage from "../notes/NotesPage";
+import LaunchMenu from "../../resources/launch-menu.json";
+import TreeMenu from "../tree_menu/TreeMenu";
+import { MenuNode } from "../tree_menu/TreeMenuApi";
+import MyGallery from "../gallery/MyGallery";
+import Cover from "../cover/TreeMenuCover";
+import AboutMe from "../about/AboutMe";
+import ceramicsPhotos from "./ceramics-photos.json";
+import photos from "./photos.json";
 
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect } from "react-router-dom";
 
 type MyProps = { rootPos: { x: number; y: number } };
 
-function Routes (props: MyProps) {
-  const thumbPos = props.rootPos.x > props.rootPos.y ? 'left' : 'bottom';
+function Routes(props: MyProps) {
+  const thumbPos = props.rootPos.x > props.rootPos.y ? "left" : "bottom";
 
   return (
     <Switch>
@@ -45,7 +45,7 @@ function Routes (props: MyProps) {
         <Cover fading={false} />
       </Route>
       <Route path='/'>
-        <Redirect to='/about/' />
+        <Redirect to='/home/' />
       </Route>
     </Switch>
   );

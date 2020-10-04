@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { Point } from '../tree_menu/TreeMenuApi';
-import { Link, withRouter } from 'react-router-dom';
-import { RouteComponentProps } from 'react-router';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import React, { Component } from "react";
+import { Point } from "../tree_menu/TreeMenuApi";
+import { Link, withRouter } from "react-router-dom";
+import { RouteComponentProps } from "react-router";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 type LocationState = {
   openPath?: Array<string>;
@@ -23,7 +23,7 @@ class TreeMenuCover extends Component<MyProps, MyState> {
   renderable = true;
   timeouts: Array<number> = [];
 
-  render () {
+  render() {
     if (!this.props.fading || (this.props.location.state && this.renderable)) {
       if (this.props.fading) {
         this.timeouts.push(
@@ -40,14 +40,14 @@ class TreeMenuCover extends Component<MyProps, MyState> {
       return (
         <div
           id='tree-cover'
-          className={this.props.fading ? 'shrinkFade' : undefined}
+          className={this.props.fading ? "shrinkFade" : undefined}
         >
           <Container className='justify-content-center m-0 p-0'>
             <Row className='m-0 p-0'>
               <Link
                 to={{
-                  pathname: '/explore',
-                  state: { openPath: [ 'root', 'projects', 'fun' ] },
+                  pathname: "/explore",
+                  state: { openPath: ["root", "projects", "fun"] },
                 }}
               >
                 <Col className='m-0 p-0 '>
@@ -65,8 +65,8 @@ class TreeMenuCover extends Component<MyProps, MyState> {
               </Link>
               <Link
                 to={{
-                  pathname: '/art/',
-                  state: { openPath: [ 'root', 'art' ] },
+                  pathname: "/art/",
+                  state: { openPath: ["root", "art"] },
                 }}
               >
                 <button className='gen-btn'>
@@ -83,8 +83,8 @@ class TreeMenuCover extends Component<MyProps, MyState> {
               </Link>
               <Link
                 to={{
-                  pathname: '/explore',
-                  state: { openPath: [ 'root', 'projects', 'fun' ] },
+                  pathname: "/explore",
+                  state: { openPath: ["root", "projects", "fun"] },
                 }}
               >
                 <button className='gen-btn'>
@@ -102,22 +102,22 @@ class TreeMenuCover extends Component<MyProps, MyState> {
             </Row>
             <Link
               to={{
-                pathname: '/explore',
-                state: { openPath: [ 'root' ] },
+                pathname: "/explore",
+                state: { openPath: ["root"] },
               }}
             >
               <button
                 className='gen-btn'
                 style={{
-                  position: 'absolute',
-                  textAlign: 'center',
+                  position: "absolute",
+                  textAlign: "center",
                   // padding: '20px 0',
                   lineHeight: 100,
                   height: 100,
                   width: 300,
                   bottom: 100,
                   left: 0,
-                  backgroundColor: '#116a88',
+                  backgroundColor: "#116a88",
                 }}
               >
                 <h1
@@ -125,13 +125,16 @@ class TreeMenuCover extends Component<MyProps, MyState> {
                     lineHeight: 2.5,
                   }}
                 >
-                  Explore
+                  Explore{" "}
+                  {/* <span style={{ color: "var(--warning)", fontSize: 16 }}>
+                    (in development)
+                  </span> */}
                 </h1>
               </button>
             </Link>
             <div
               style={{
-                position: 'absolute',
+                position: "absolute",
                 height: 100,
                 bottom: 0,
               }}
@@ -139,8 +142,8 @@ class TreeMenuCover extends Component<MyProps, MyState> {
               <Row className='m-0 p-0'>
                 <Link
                   to={{
-                    pathname: '/art/ceramics',
-                    state: { openPath: [ 'root', 'art' ] },
+                    pathname: "/art/ceramics",
+                    state: { openPath: ["root", "art"] },
                   }}
                 >
                   <button className='gen-btn'>
@@ -157,8 +160,8 @@ class TreeMenuCover extends Component<MyProps, MyState> {
                 </Link>
                 <Link
                   to={{
-                    pathname: '/explore',
-                    state: { openPath: [ 'root', 'projects', 'fun' ] },
+                    pathname: "/explore",
+                    state: { openPath: ["root", "projects", "fun"] },
                   }}
                 >
                   <button className='gen-btn'>
@@ -175,8 +178,8 @@ class TreeMenuCover extends Component<MyProps, MyState> {
                 </Link>
                 <Link
                   to={{
-                    pathname: '/art/photos',
-                    state: { openPath: [ 'root', 'art' ] },
+                    pathname: "/art/photos",
+                    state: { openPath: ["root", "art"] },
                   }}
                 >
                   <button className='gen-btn'>
@@ -198,12 +201,12 @@ class TreeMenuCover extends Component<MyProps, MyState> {
       );
     }
 
-    return <div style={{ display: 'none' }} />;
+    return <div style={{ display: "none" }} />;
   }
 
   //! --------------------------------------------------------------------------
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.timeouts.forEach((timeoutId) => clearTimeout(timeoutId));
   }
 }

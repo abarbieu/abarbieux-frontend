@@ -109,9 +109,7 @@ export default function AboutMe() {
                   />
                 </Card.Body>
                 <Card.Body className='m-0 p-1'>
-                  <Card.Title className='accent-color'>
-                    I'll take the mask off <i>after</i> the pandemic
-                  </Card.Title>
+                  <Card.Title className='accent-color'>6/22/2020</Card.Title>
                 </Card.Body>
               </Card>
               {/* 
@@ -123,7 +121,7 @@ export default function AboutMe() {
               <h2 className='accent-color'>A Bit to Start</h2>
               <h5 className='accent-color-1'>School</h5>
               <span className='not-p'>
-                I'm a {(moment().diff("2000-08-01", "day") / 365.0).toFixed(2)}{" "}
+                I'm a {(moment().diff("2000-08-01", "day") / 365.0).toFixed(0)}{" "}
                 year old student at Cal Poly, San Luis Obispo, studying Computer
                 Science and planning on graduating in June of 2022. Going into
                 my third year, I am focusing on Graphics, Algorithms, and Web
@@ -246,12 +244,11 @@ export default function AboutMe() {
             <Col className='' sm={12} lg={12} xl={12}>
               <h2>Ceramics</h2>
               <span className='not-p'>
-                Exactly{" "}
-                {(moment().diff("2019-04-01", "day") / 365.0).toFixed(2)} years
-                ago, at the end of my Freshman year, I discovered the ASI craft
-                center. This could've been a mistake, as I've lost hundreds of
-                hours down rabbit holes dug in there since, but I enjoyed every
-                muddy minute of it.
+                About {(moment().diff("2019-04-01", "day") / 365.0).toFixed(0)}{" "}
+                years ago, at the end of my Freshman year, I discovered the ASI
+                craft center. This could've been a mistake, as I've lost
+                hundreds of hours down rabbit holes dug in there since, but I
+                enjoyed every muddy minute of it.
                 <Card
                   className='dark-bg-i mr-3'
                   style={{
