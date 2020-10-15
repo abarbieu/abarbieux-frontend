@@ -31,6 +31,7 @@
     "react-lazy-load-image-component": "^1.5.0",
     "react-measure": "^2.3.0",
     "react-modal": "^3.11.2",
+    "react-parallax": "^3.0.3",
     "react-photo-gallery": "^8.0.0",
     "react-router-dom": "^5.2.0",
     "react-router-hash-link": "^2.1.0",
