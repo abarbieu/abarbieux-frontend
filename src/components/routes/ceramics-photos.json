@@ -123,5 +123,134 @@
         "height": 3840,
         "width": 2560,
         "type": "jpg"
+    },
+    {
+        "src": "/ceramics/carved-bowls.jpg",
+        "original": "/ceramics/carved-bowls.jpg",
+        "thumbnail": "/ceramics/carved-bowls_thumb_.jpg",
+        "placeholder": "/ceramics/carved-bowls_thumb_.jpg",
+        "height": 3072,
+        "orientation": 1,
+        "width": 4608,
+        "type": "jpg"
+    },
+    {
+        "src": "/ceramics/funkymug.JPG",
+        "original": "/ceramics/funkymug.JPG",
+        "thumbnail": "/ceramics/funkymug_thumb_.JPG",
+        "placeholder": "/ceramics/funkymug_thumb_.JPG",
+        "height": 4000,
+        "orientation": 1,
+        "width": 6000,
+        "type": "jpg"
+    },
+    {
+        "src": "/ceramics/honey-pots.jpg",
+        "original": "/ceramics/honey-pots.jpg",
+        "thumbnail": "/ceramics/honey-pots_thumb_.jpg",
+        "placeholder": "/ceramics/honey-pots_thumb_.jpg",
+        "height": 4000,
+        "orientation": 1,
+        "width": 4002,
+        "type": "jpg"
+    },
+    {
+        "src": "/ceramics/iris.jpg",
+        "original": "/ceramics/iris.jpg",
+        "thumbnail": "/ceramics/iris_thumb_.jpg",
+        "placeholder": "/ceramics/iris_thumb_.jpg",
+        "height": 4032,
+        "orientation": 6,
+        "width": 3024,
+        "type": "jpg"
+    },
+    {
+        "src": "/ceramics/irr-bowl-2.jpg",
+        "original": "/ceramics/irr-bowl-2.jpg",
+        "thumbnail": "/ceramics/irr-bowl-2_thumb_.jpg",
+        "placeholder": "/ceramics/irr-bowl-2_thumb_.jpg",
+        "height": 4000,
+        "orientation": 1,
+        "width": 6000,
+        "type": "jpg"
+    },
+    {
+        "src": "/ceramics/marbled-teapot.jpg",
+        "original": "/ceramics/marbled-teapot.jpg",
+        "thumbnail": "/ceramics/marbled-teapot_thumb_.jpg",
+        "placeholder": "/ceramics/marbled-teapot_thumb_.jpg",
+        "height": 4000,
+        "orientation": 1,
+        "width": 6000,
+        "type": "jpg"
+    },
+    {
+        "src": "/ceramics/mug-family.jpg",
+        "original": "/ceramics/mug-family.jpg",
+        "thumbnail": "/ceramics/mug-family_thumb_.jpg",
+        "placeholder": "/ceramics/mug-family_thumb_.jpg",
+        "height": 4000,
+        "orientation": 1,
+        "width": 6000,
+        "type": "jpg"
+    },
+    {
+        "src": "/ceramics/ocean-mug.jpg",
+        "original": "/ceramics/ocean-mug.jpg",
+        "thumbnail": "/ceramics/ocean-mug_thumb_.jpg",
+        "placeholder": "/ceramics/ocean-mug_thumb_.jpg",
+        "height": 3024,
+        "orientation": 3,
+        "width": 4032,
+        "type": "jpg"
+    },
+    {
+        "src": "/ceramics/pitcher3.jpg",
+        "original": "/ceramics/pitcher3.jpg",
+        "thumbnail": "/ceramics/pitcher3_thumb_.jpg",
+        "placeholder": "/ceramics/pitcher3_thumb_.jpg",
+        "height": 4000,
+        "orientation": 1,
+        "width": 6000,
+        "type": "jpg"
+    },
+    {
+        "src": "/ceramics/red-green.jpg",
+        "original": "/ceramics/red-green.jpg",
+        "thumbnail": "/ceramics/red-green_thumb_.jpg",
+        "placeholder": "/ceramics/red-green_thumb_.jpg",
+        "height": 1600,
+        "orientation": 1,
+        "width": 2400,
+        "type": "jpg"
+    },
+    {
+        "src": "/ceramics/rustic-teapot.jpg",
+        "original": "/ceramics/rustic-teapot.jpg",
+        "thumbnail": "/ceramics/rustic-teapot_thumb_.jpg",
+        "placeholder": "/ceramics/rustic-teapot_thumb_.jpg",
+        "height": 3265,
+        "width": 4898,
+        "type": "jpg"
+    },
+    {
+        "src": "/ceramics/stripey-mug.jpg",
+        "original": "/ceramics/stripey-mug.jpg",
+        "thumbnail": "/ceramics/stripey-mug_thumb_.jpg",
+        "placeholder": "/ceramics/stripey-mug_thumb_.jpg",
+        "height": 4000,
+        "orientation": 1,
+        "width": 6000,
+        "type": "jpg"
+    },
+    {
+        "src": "/ceramics/we-cups.jpg",
+        "original": "/ceramics/we-cups.jpg",
+        "thumbnail": "/ceramics/we-cups_thumb_.jpg",
+        "placeholder": "/ceramics/we-cups_thumb_.jpg",
+        "height": 4000,
+        "orientation": 1,
+        "width": 6000,
+        "type": "jpg"
     }
 ]
