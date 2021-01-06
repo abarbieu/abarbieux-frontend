@@ -16,7 +16,7 @@
     "@types/react-router-dom": "^5.1.5",
     "@types/styled-components": "^5.1.2",
     "@types/uuid": "^8.3.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bootstrap": "^4.5.2",
     "gm": "^1.23.1",
     "image-size": "^0.8.3",
