@@ -54,15 +54,6 @@
         "type": "jpg"
     },
     {
-        "src": "/photos/04-sunrise-vines.jpg",
-        "original": "/photos/04-sunrise-vines.jpg",
-        "thumbnail": "/photos/04-sunrise-vines_thumb_.jpg",
-        "placeholder": "/photos/04-sunrise-vines_thumb_.jpg",
-        "height": 2560,
-        "width": 3840,
-        "type": "jpg"
-    },
-    {
         "src": "/photos/05-hands.jpg",
         "original": "/photos/05-hands.jpg",
         "thumbnail": "/photos/05-hands_thumb_.jpg",
@@ -96,6 +87,150 @@
         "placeholder": "/photos/09-exo_thumb_.jpg",
         "height": 2560,
         "width": 3840,
+        "type": "jpg"
+    },
+    {
+        "src": "/photos/0S2020-08 (1).jpg",
+        "original": "/photos/0S2020-08 (1).jpg",
+        "thumbnail": "/photos/0S2020-08 (1)_thumb_.jpg",
+        "placeholder": "/photos/0S2020-08 (1)_thumb_.jpg",
+        "height": 6000,
+        "width": 4000,
+        "type": "jpg"
+    },
+    {
+        "src": "/photos/0S2020-08 (10).jpg",
+        "original": "/photos/0S2020-08 (10).jpg",
+        "thumbnail": "/photos/0S2020-08 (10)_thumb_.jpg",
+        "placeholder": "/photos/0S2020-08 (10)_thumb_.jpg",
+        "height": 3372,
+        "width": 5058,
+        "type": "jpg"
+    },
+    {
+        "src": "/photos/0S2020-08 (11).jpg",
+        "original": "/photos/0S2020-08 (11).jpg",
+        "thumbnail": "/photos/0S2020-08 (11)_thumb_.jpg",
+        "placeholder": "/photos/0S2020-08 (11)_thumb_.jpg",
+        "height": 4496,
+        "width": 3000,
+        "type": "jpg"
+    },
+    {
+        "src": "/photos/0S2020-08 (12).jpg",
+        "original": "/photos/0S2020-08 (12).jpg",
+        "thumbnail": "/photos/0S2020-08 (12)_thumb_.jpg",
+        "placeholder": "/photos/0S2020-08 (12)_thumb_.jpg",
+        "height": 4000,
+        "width": 6000,
+        "type": "jpg"
+    },
+    {
+        "src": "/photos/0S2020-08 (13).jpg",
+        "original": "/photos/0S2020-08 (13).jpg",
+        "thumbnail": "/photos/0S2020-08 (13)_thumb_.jpg",
+        "placeholder": "/photos/0S2020-08 (13)_thumb_.jpg",
+        "height": 3372,
+        "width": 5058,
+        "type": "jpg"
+    },
+    {
+        "src": "/photos/0S2020-08 (14).jpg",
+        "original": "/photos/0S2020-08 (14).jpg",
+        "thumbnail": "/photos/0S2020-08 (14)_thumb_.jpg",
+        "placeholder": "/photos/0S2020-08 (14)_thumb_.jpg",
+        "height": 3627,
+        "width": 4534,
+        "type": "jpg"
+    },
+    {
+        "src": "/photos/0S2020-08 (15).jpg",
+        "original": "/photos/0S2020-08 (15).jpg",
+        "thumbnail": "/photos/0S2020-08 (15)_thumb_.jpg",
+        "placeholder": "/photos/0S2020-08 (15)_thumb_.jpg",
+        "height": 4000,
+        "width": 6000,
+        "type": "jpg"
+    },
+    {
+        "src": "/photos/0S2020-08 (16).jpg",
+        "original": "/photos/0S2020-08 (16).jpg",
+        "thumbnail": "/photos/0S2020-08 (16)_thumb_.jpg",
+        "placeholder": "/photos/0S2020-08 (16)_thumb_.jpg",
+        "height": 6000,
+        "width": 4000,
+        "type": "jpg"
+    },
+    {
+        "src": "/photos/0S2020-08 (2).jpg",
+        "original": "/photos/0S2020-08 (2).jpg",
+        "thumbnail": "/photos/0S2020-08 (2)_thumb_.jpg",
+        "placeholder": "/photos/0S2020-08 (2)_thumb_.jpg",
+        "height": 4000,
+        "width": 2667,
+        "type": "jpg"
+    },
+    {
+        "src": "/photos/0S2020-08 (3).jpg",
+        "original": "/photos/0S2020-08 (3).jpg",
+        "thumbnail": "/photos/0S2020-08 (3)_thumb_.jpg",
+        "placeholder": "/photos/0S2020-08 (3)_thumb_.jpg",
+        "height": 5668,
+        "width": 3779,
+        "type": "jpg"
+    },
+    {
+        "src": "/photos/0S2020-08 (4).jpg",
+        "original": "/photos/0S2020-08 (4).jpg",
+        "thumbnail": "/photos/0S2020-08 (4)_thumb_.jpg",
+        "placeholder": "/photos/0S2020-08 (4)_thumb_.jpg",
+        "height": 6000,
+        "width": 4000,
+        "type": "jpg"
+    },
+    {
+        "src": "/photos/0S2020-08 (5).jpg",
+        "original": "/photos/0S2020-08 (5).jpg",
+        "thumbnail": "/photos/0S2020-08 (5)_thumb_.jpg",
+        "placeholder": "/photos/0S2020-08 (5)_thumb_.jpg",
+        "height": 3060,
+        "width": 2448,
+        "type": "jpg"
+    },
+    {
+        "src": "/photos/0S2020-08 (6).jpg",
+        "original": "/photos/0S2020-08 (6).jpg",
+        "thumbnail": "/photos/0S2020-08 (6)_thumb_.jpg",
+        "placeholder": "/photos/0S2020-08 (6)_thumb_.jpg",
+        "height": 6000,
+        "width": 4000,
+        "type": "jpg"
+    },
+    {
+        "src": "/photos/0S2020-08 (7).jpg",
+        "original": "/photos/0S2020-08 (7).jpg",
+        "thumbnail": "/photos/0S2020-08 (7)_thumb_.jpg",
+        "placeholder": "/photos/0S2020-08 (7)_thumb_.jpg",
+        "height": 6000,
+        "width": 4000,
+        "type": "jpg"
+    },
+    {
+        "src": "/photos/0S2020-08 (8).jpg",
+        "original": "/photos/0S2020-08 (8).jpg",
+        "thumbnail": "/photos/0S2020-08 (8)_thumb_.jpg",
+        "placeholder": "/photos/0S2020-08 (8)_thumb_.jpg",
+        "height": 6000,
+        "width": 4000,
+        "type": "jpg"
+    },
+    {
+        "src": "/photos/0S2020-08 (9).jpg",
+        "original": "/photos/0S2020-08 (9).jpg",
+        "thumbnail": "/photos/0S2020-08 (9)_thumb_.jpg",
+        "placeholder": "/photos/0S2020-08 (9)_thumb_.jpg",
+        "height": 4000,
+        "width": 6000,
         "type": "jpg"
     },
     {
@@ -135,15 +270,6 @@
         "type": "jpg"
     },
     {
-        "src": "/photos/13-covid.jpg",
-        "original": "/photos/13-covid.jpg",
-        "thumbnail": "/photos/13-covid_thumb_.jpg",
-        "placeholder": "/photos/13-covid_thumb_.jpg",
-        "height": 3840,
-        "width": 3072,
-        "type": "jpg"
-    },
-    {
         "src": "/photos/14-path.jpg",
         "original": "/photos/14-path.jpg",
         "thumbnail": "/photos/14-path_thumb_.jpg",
@@ -162,15 +288,6 @@
         "type": "jpg"
     },
     {
-        "src": "/photos/15-roadtrip.jpg",
-        "original": "/photos/15-roadtrip.jpg",
-        "thumbnail": "/photos/15-roadtrip_thumb_.jpg",
-        "placeholder": "/photos/15-roadtrip_thumb_.jpg",
-        "height": 2560,
-        "width": 3840,
-        "type": "jpg"
-    },
-    {
         "src": "/photos/20-bio.jpg",
         "original": "/photos/20-bio.jpg",
         "thumbnail": "/photos/20-bio_thumb_.jpg",
@@ -184,24 +301,6 @@
         "original": "/photos/20-neowise.jpg",
         "thumbnail": "/photos/20-neowise_thumb_.jpg",
         "placeholder": "/photos/20-neowise_thumb_.jpg",
-        "height": 2560,
-        "width": 3840,
-        "type": "jpg"
-    },
-    {
-        "src": "/photos/21-guts.jpg",
-        "original": "/photos/21-guts.jpg",
-        "thumbnail": "/photos/21-guts_thumb_.jpg",
-        "placeholder": "/photos/21-guts_thumb_.jpg",
-        "height": 3840,
-        "width": 2559,
-        "type": "jpg"
-    },
-    {
-        "src": "/photos/21-neowise.jpg",
-        "original": "/photos/21-neowise.jpg",
-        "thumbnail": "/photos/21-neowise_thumb_.jpg",
-        "placeholder": "/photos/21-neowise_thumb_.jpg",
         "height": 2560,
         "width": 3840,
         "type": "jpg"
@@ -234,33 +333,6 @@
         "type": "jpg"
     },
     {
-        "src": "/photos/22-run.jpg",
-        "original": "/photos/22-run.jpg",
-        "thumbnail": "/photos/22-run_thumb_.jpg",
-        "placeholder": "/photos/22-run_thumb_.jpg",
-        "height": 3840,
-        "width": 2560,
-        "type": "jpg"
-    },
-    {
-        "src": "/photos/22-stream.jpg",
-        "original": "/photos/22-stream.jpg",
-        "thumbnail": "/photos/22-stream_thumb_.jpg",
-        "placeholder": "/photos/22-stream_thumb_.jpg",
-        "height": 3840,
-        "width": 2560,
-        "type": "jpg"
-    },
-    {
-        "src": "/photos/23-guts.jpg",
-        "original": "/photos/23-guts.jpg",
-        "thumbnail": "/photos/23-guts_thumb_.jpg",
-        "placeholder": "/photos/23-guts_thumb_.jpg",
-        "height": 3840,
-        "width": 2560,
-        "type": "jpg"
-    },
-    {
         "src": "/photos/25-kill.jpg",
         "original": "/photos/25-kill.jpg",
         "thumbnail": "/photos/25-kill_thumb_.jpg",
@@ -285,15 +357,6 @@
         "placeholder": "/photos/26-screen_thumb_.jpg",
         "height": 2560,
         "width": 3840,
-        "type": "jpg"
-    },
-    {
-        "src": "/photos/30-drop.jpg",
-        "original": "/photos/30-drop.jpg",
-        "thumbnail": "/photos/30-drop_thumb_.jpg",
-        "placeholder": "/photos/30-drop_thumb_.jpg",
-        "height": 3840,
-        "width": 3072,
         "type": "jpg"
     },
     {
@@ -324,15 +387,6 @@
         "type": "jpg"
     },
     {
-        "src": "/photos/44-milky.jpg",
-        "original": "/photos/44-milky.jpg",
-        "thumbnail": "/photos/44-milky_thumb_.jpg",
-        "placeholder": "/photos/44-milky_thumb_.jpg",
-        "height": 2560,
-        "width": 3840,
-        "type": "jpg"
-    },
-    {
         "src": "/photos/44-mun.jpg",
         "original": "/photos/44-mun.jpg",
         "thumbnail": "/photos/44-mun_thumb_.jpg",
@@ -342,154 +396,10 @@
         "type": "jpg"
     },
     {
-        "src": "/photos/44-rocco.jpg",
-        "original": "/photos/44-rocco.jpg",
-        "thumbnail": "/photos/44-rocco_thumb_.jpg",
-        "placeholder": "/photos/44-rocco_thumb_.jpg",
-        "height": 2560,
-        "width": 3840,
-        "type": "jpg"
-    },
-    {
-        "src": "/photos/44-scar.jpg",
-        "original": "/photos/44-scar.jpg",
-        "thumbnail": "/photos/44-scar_thumb_.jpg",
-        "placeholder": "/photos/44-scar_thumb_.jpg",
-        "height": 3840,
-        "width": 2560,
-        "type": "jpg"
-    },
-    {
         "src": "/photos/44-sev.jpg",
         "original": "/photos/44-sev.jpg",
         "thumbnail": "/photos/44-sev_thumb_.jpg",
         "placeholder": "/photos/44-sev_thumb_.jpg",
-        "height": 2560,
-        "width": 3840,
-        "type": "jpg"
-    },
-    {
-        "src": "/photos/55-lament.jpg",
-        "original": "/photos/55-lament.jpg",
-        "thumbnail": "/photos/55-lament_thumb_.jpg",
-        "placeholder": "/photos/55-lament_thumb_.jpg",
-        "height": 3840,
-        "width": 2560,
-        "type": "jpg"
-    },
-    {
-        "src": "/photos/55-me.jpg",
-        "original": "/photos/55-me.jpg",
-        "thumbnail": "/photos/55-me_thumb_.jpg",
-        "placeholder": "/photos/55-me_thumb_.jpg",
-        "height": 3840,
-        "width": 2560,
-        "type": "jpg"
-    },
-    {
-        "src": "/photos/55-night.jpg",
-        "original": "/photos/55-night.jpg",
-        "thumbnail": "/photos/55-night_thumb_.jpg",
-        "placeholder": "/photos/55-night_thumb_.jpg",
-        "height": 2560,
-        "width": 3840,
-        "type": "jpg"
-    },
-    {
-        "src": "/photos/65-rain.jpg",
-        "original": "/photos/65-rain.jpg",
-        "thumbnail": "/photos/65-rain_thumb_.jpg",
-        "placeholder": "/photos/65-rain_thumb_.jpg",
-        "height": 3840,
-        "width": 3072,
-        "type": "jpg"
-    },
-    {
-        "src": "/photos/66-badass.jpg",
-        "original": "/photos/66-badass.jpg",
-        "thumbnail": "/photos/66-badass_thumb_.jpg",
-        "placeholder": "/photos/66-badass_thumb_.jpg",
-        "height": 3840,
-        "width": 2560,
-        "type": "jpg"
-    },
-    {
-        "src": "/photos/66-knob.jpg",
-        "original": "/photos/66-knob.jpg",
-        "thumbnail": "/photos/66-knob_thumb_.jpg",
-        "placeholder": "/photos/66-knob_thumb_.jpg",
-        "height": 3840,
-        "width": 2560,
-        "type": "jpg"
-    },
-    {
-        "src": "/photos/77-badass.jpg",
-        "original": "/photos/77-badass.jpg",
-        "thumbnail": "/photos/77-badass_thumb_.jpg",
-        "placeholder": "/photos/77-badass_thumb_.jpg",
-        "height": 3072,
-        "width": 3840,
-        "type": "jpg"
-    },
-    {
-        "src": "/photos/77-clouds.jpg",
-        "original": "/photos/77-clouds.jpg",
-        "thumbnail": "/photos/77-clouds_thumb_.jpg",
-        "placeholder": "/photos/77-clouds_thumb_.jpg",
-        "height": 2560,
-        "width": 3840,
-        "type": "jpg"
-    },
-    {
-        "src": "/photos/88-barbed.jpg",
-        "original": "/photos/88-barbed.jpg",
-        "thumbnail": "/photos/88-barbed_thumb_.jpg",
-        "placeholder": "/photos/88-barbed_thumb_.jpg",
-        "height": 2560,
-        "width": 3840,
-        "type": "jpg"
-    },
-    {
-        "src": "/photos/88-beauty.jpg",
-        "original": "/photos/88-beauty.jpg",
-        "thumbnail": "/photos/88-beauty_thumb_.jpg",
-        "placeholder": "/photos/88-beauty_thumb_.jpg",
-        "height": 3840,
-        "width": 3072,
-        "type": "jpg"
-    },
-    {
-        "src": "/photos/99-birb.jpg",
-        "original": "/photos/99-birb.jpg",
-        "thumbnail": "/photos/99-birb_thumb_.jpg",
-        "placeholder": "/photos/99-birb_thumb_.jpg",
-        "height": 2560,
-        "width": 3840,
-        "type": "jpg"
-    },
-    {
-        "src": "/photos/99-drama.jpg",
-        "original": "/photos/99-drama.jpg",
-        "thumbnail": "/photos/99-drama_thumb_.jpg",
-        "placeholder": "/photos/99-drama_thumb_.jpg",
-        "height": 2560,
-        "width": 3840,
-        "type": "jpg"
-    },
-    {
-        "src": "/photos/99-haze.jpg",
-        "original": "/photos/99-haze.jpg",
-        "thumbnail": "/photos/99-haze_thumb_.jpg",
-        "placeholder": "/photos/99-haze_thumb_.jpg",
-        "height": 2560,
-        "width": 3840,
-        "type": "jpg"
-    },
-    {
-        "src": "/photos/99-reflect.jpg",
-        "original": "/photos/99-reflect.jpg",
-        "thumbnail": "/photos/99-reflect_thumb_.jpg",
-        "placeholder": "/photos/99-reflect_thumb_.jpg",
         "height": 2560,
         "width": 3840,
         "type": "jpg"
