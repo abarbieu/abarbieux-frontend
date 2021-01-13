@@ -60,16 +60,16 @@ const imagesToJSON = (imageLoc, outPrefix, outFile, makeThumbs) => {
    });
 };
 
-imagesToJSON(
-   "./public/ceramics/",
-   "/ceramics/",
-   "./src/components/routes/ceramics-photos.json",
-   true
-);
 // imagesToJSON(
-//   './public/photos/',
-//   '/photos/',
-//   './src/components/routes/photos.json',
-//   true
+//    "./public/ceramics/",
+//    "/ceramics/",
+//    "./src/components/routes/ceramics-photos.json",
+//    true
 // );
+imagesToJSON(
+  './public/photos/',
+  '/photos/',
+  './src/components/routes/photos.json',
+  true
+);
 // imagesToJSON('./public/icons/', '/icons/', './public/icons/icons.json', true);
